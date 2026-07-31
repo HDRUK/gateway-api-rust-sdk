@@ -1,0 +1,57 @@
+# CreateDurIntegrationsRequest
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**non_gateway_datasets** | Option<**Vec<serde_json::Value>**> |  | [optional]
+**non_gateway_applicants** | Option<**Vec<serde_json::Value>**> |  | [optional]
+**funders_and_sponsors** | Option<**Vec<serde_json::Value>**> |  | [optional]
+**other_approval_committees** | Option<**Vec<serde_json::Value>**> |  | [optional]
+**gateway_outputs_tools** | Option<**Vec<serde_json::Value>**> |  | [optional]
+**gateway_outputs_papers** | Option<**Vec<serde_json::Value>**> |  | [optional]
+**non_gateway_outputs** | Option<**Vec<serde_json::Value>**> |  | [optional]
+**project_title** | Option<**String**> |  | [optional]
+**project_id_text** | Option<**String**> |  | [optional]
+**organisation_name** | Option<**String**> |  | [optional]
+**organisation_sector** | Option<**String**> |  | [optional]
+**lay_summary** | Option<**String**> |  | [optional]
+**technical_summary** | Option<**String**> |  | [optional]
+**latest_approval_date** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
+**manual_upload** | Option<**bool**> |  | [optional]
+**rejection_reason** | Option<**String**> |  | [optional]
+**sublicence_arrangements** | Option<**String**> |  | [optional]
+**public_benefit_statement** | Option<**String**> |  | [optional]
+**data_sensitivity_level** | Option<**String**> |  | [optional]
+**project_start_date** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
+**project_end_date** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
+**access_date** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
+**accredited_researcher_status** | Option<**String**> |  | [optional]
+**confidential_data_description** | Option<**String**> |  | [optional]
+**dataset_linkage_description** | Option<**String**> |  | [optional]
+**duty_of_confidentiality** | Option<**String**> |  | [optional]
+**legal_basis_for_data_article6** | Option<**String**> |  | [optional]
+**legal_basis_for_data_article9** | Option<**String**> |  | [optional]
+**national_data_optout** | Option<**String**> |  | [optional]
+**organisation_id** | Option<**String**> |  | [optional]
+**privacy_enhancements** | Option<**String**> |  | [optional]
+**request_category_type** | Option<**String**> |  | [optional]
+**request_frequency** | Option<**String**> |  | [optional]
+**access_type** | Option<**String**> |  | [optional]
+**mongo_object_dar_id** | Option<**String**> |  | [optional]
+**enabled** | Option<**bool**> |  | [optional]
+**last_activity** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
+**counter** | Option<**i32**> |  | [optional]
+**mongo_object_id** | Option<**String**> |  | [optional]
+**mongo_id** | Option<**String**> |  | [optional]
+**datasets** | Option<**Vec<serde_json::Value>**> |  | [optional]
+**keywords** | Option<**Vec<serde_json::Value>**> |  | [optional]
+**users** | Option<**Vec<serde_json::Value>**> |  | [optional]
+**user** | Option<**Vec<serde_json::Value>**> |  | [optional]
+**team** | Option<**Vec<serde_json::Value>**> |  | [optional]
+**applicant_id** | Option<**String**> |  | [optional]
+**status** | Option<**Status**> |  (enum: ACTIVE, DRAFT, ARCHIVED) | [optional]
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

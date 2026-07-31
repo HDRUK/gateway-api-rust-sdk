@@ -1,0 +1,15 @@
+# CreateDataProviderCollRequest
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**name** | **String** |  | 
+**summary** | **String** |  | 
+**enabled** | **bool** |  | 
+**service** | Option<**String**> |  | [optional]
+**team_ids** | **Vec<i32>** |  | 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

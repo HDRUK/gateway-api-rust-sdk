@@ -1,0 +1,18 @@
+# UpdateApplicationsRequest
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**name** | **String** |  | 
+**image_link** | **String** |  | 
+**description** | **String** |  | 
+**team_id** | **i32** |  | 
+**user_id** | **i32** |  | 
+**enabled** | **bool** |  | 
+**permissions** | **Vec<serde_json::Value>** |  | 
+**notifications** | Option<**Vec<serde_json::Value>**> |  | [optional]
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+
