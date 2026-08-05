@@ -15,24 +15,6 @@ use crate::{apis::ResponseContent, models};
 use super::{Error, configuration, ContentType};
 
 
-/// struct for typed errors of method [`delete_dar_application_files`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum DeleteDarApplicationFilesError {
-    Status404(models::UpdateApplications404Response),
-    Status500(models::CreateApplications500Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`delete_dar_applications`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum DeleteDarApplicationsError {
-    Status404(models::UpdateApplications404Response),
-    Status500(models::CreateApplications500Response),
-    UnknownValue(serde_json::Value),
-}
-
 /// struct for typed errors of method [`delete_team_dar_application_file`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -91,87 +73,6 @@ pub enum UpdateTeamDarApplicationError {
     UnknownValue(serde_json::Value),
 }
 
-
-/// Delete a file associated with a DAR application
-pub async fn delete_dar_application_files(configuration: &configuration::Configuration, id: i32, file_id: &str) -> Result<models::DeleteApplications200Response, Error<DeleteDarApplicationFilesError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_path_file_id = file_id;
-
-    let uri_str = format!("{}/api/v1/dar/applications/{id}/files/{fileId}", configuration.base_path, id=p_path_id, fileId=crate::apis::urlencode(p_path_file_id));
-    let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteApplications200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteApplications200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<DeleteDarApplicationFilesError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// Delete a system DAR application
-pub async fn delete_dar_applications(configuration: &configuration::Configuration, id: i32) -> Result<models::DeleteApplications200Response, Error<DeleteDarApplicationsError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/api/v1/dar/applications/{id}", configuration.base_path, id=p_path_id);
-    let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteApplications200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteApplications200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<DeleteDarApplicationsError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
 
 /// Delete a file associated with a DAR application
 pub async fn delete_team_dar_application_file(configuration: &configuration::Configuration, team_id: i32, id: i32, file_id: i32) -> Result<models::DeleteApplications200Response, Error<DeleteTeamDarApplicationFileError>> {

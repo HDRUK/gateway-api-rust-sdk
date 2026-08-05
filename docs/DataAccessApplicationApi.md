@@ -4,8 +4,6 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**delete_dar_application_files**](DataAccessApplicationApi.md#delete_dar_application_files) | **DELETE** /api/v1/dar/applications/{id}/files/{fileId} | DataAccessApplication@destroyFile
-[**delete_dar_applications**](DataAccessApplicationApi.md#delete_dar_applications) | **DELETE** /api/v1/dar/applications/{id} | DataAccessApplication@destroy
 [**delete_team_dar_application_file**](DataAccessApplicationApi.md#delete_team_dar_application_file) | **DELETE** /api/v1/teams/{teamId}/dar/applications/{id}/files/{fileId} | DataAccessApplication@destroyFile
 [**fetch_team_dar_application_answers**](DataAccessApplicationApi.md#fetch_team_dar_application_answers) | **GET** /api/v1/teams/{teamId}/dar/applications/{id}/answers | DataAccessApplication@showAnswers
 [**fetch_team_dar_application_download_zip**](DataAccessApplicationApi.md#fetch_team_dar_application_download_zip) | **GET** /api/v1/teams/{teamId}/dar/applications/{id}/download | DataAccessApplication@download
@@ -14,67 +12,6 @@ Method | HTTP request | Description
 [**fetch_team_dar_application_status_history**](DataAccessApplicationApi.md#fetch_team_dar_application_status_history) | **GET** /api/v1/teams/{teamId}/dar/applications/{id}/status | DataAccessApplication@status
 [**update_team_dar_application**](DataAccessApplicationApi.md#update_team_dar_application) | **PATCH** /api/v1/teams/{teamId}/dar/applications/{id} | DataAccessApplication@update
 
-
-
-## delete_dar_application_files
-
-> models::DeleteApplications200Response delete_dar_application_files(id, file_id)
-DataAccessApplication@destroyFile
-
-Delete a file associated with a DAR application
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**id** | **i32** | DAR application id | [required] |
-**file_id** | **String** | File id | [required] |
-
-### Return type
-
-[**models::DeleteApplications200Response**](delete_applications_200_response.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## delete_dar_applications
-
-> models::DeleteApplications200Response delete_dar_applications(id)
-DataAccessApplication@destroy
-
-Delete a system DAR application
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**id** | **i32** | DAR application id | [required] |
-
-### Return type
-
-[**models::DeleteApplications200Response**](delete_applications_200_response.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## delete_team_dar_application_file

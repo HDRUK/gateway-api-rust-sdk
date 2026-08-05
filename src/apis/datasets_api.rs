@@ -40,22 +40,6 @@ pub enum CreateDatasetsIntegrationsError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`create_datasets_linkage_extraction`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum CreateDatasetsLinkageExtractionError {
-    Status500(models::CreateDatasetsTermExtraction500Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`create_datasets_term_extraction`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum CreateDatasetsTermExtractionError {
-    Status500(models::CreateDatasetsTermExtraction500Response),
-    UnknownValue(serde_json::Value),
-}
-
 /// struct for typed errors of method [`create_datasets_v2`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -400,88 +384,6 @@ pub async fn create_datasets_integrations(configuration: &configuration::Configu
     } else {
         let content = resp.text().await?;
         let entity: Option<CreateDatasetsIntegrationsError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// Triggers the term extraction job for datasets within a specified range and controls whether data is partially indexed in Elasticsearch.
-pub async fn create_datasets_linkage_extraction(configuration: &configuration::Configuration, authorization: &str, create_datasets_linkage_extraction_request: models::CreateDatasetsLinkageExtractionRequest) -> Result<models::CreateDatasetsLinkageExtraction200Response, Error<CreateDatasetsLinkageExtractionError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_header_authorization = authorization;
-    let p_body_create_datasets_linkage_extraction_request = create_datasets_linkage_extraction_request;
-
-    let uri_str = format!("{}/api/v1/datasets/admin_ctrl/trigger/linkage_extraction", configuration.base_path);
-    let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    req_builder = req_builder.header("Authorization", p_header_authorization.to_string());
-    req_builder = req_builder.json(&p_body_create_datasets_linkage_extraction_request);
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateDatasetsLinkageExtraction200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateDatasetsLinkageExtraction200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<CreateDatasetsLinkageExtractionError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// Triggers the term extraction job for datasets within a specified range and controls whether data is partially indexed in Elasticsearch.
-pub async fn create_datasets_term_extraction(configuration: &configuration::Configuration, authorization: &str, role: &str, create_datasets_term_extraction_request: models::CreateDatasetsTermExtractionRequest) -> Result<models::CreateDatasetsTermExtraction200Response, Error<CreateDatasetsTermExtractionError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_header_authorization = authorization;
-    let p_header_role = role;
-    let p_body_create_datasets_term_extraction_request = create_datasets_term_extraction_request;
-
-    let uri_str = format!("{}/api/v1/datasets/admin_ctrl/trigger/term_extraction", configuration.base_path);
-    let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    req_builder = req_builder.header("Authorization", p_header_authorization.to_string());
-    req_builder = req_builder.header("role", p_header_role.to_string());
-    req_builder = req_builder.json(&p_body_create_datasets_term_extraction_request);
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateDatasetsTermExtraction200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateDatasetsTermExtraction200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<CreateDatasetsTermExtractionError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent { status, content, entity }))
     }
 }

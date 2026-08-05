@@ -6,8 +6,6 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_team_dar_application_question_review**](DataAccessApplicationReviewApi.md#create_team_dar_application_question_review) | **POST** /api/v1/teams/{team_id}/dar/applications/{id}/questions/{questionId}/reviews | DataAccessApplicationReview@store
 [**create_team_dar_application_review**](DataAccessApplicationReviewApi.md#create_team_dar_application_review) | **POST** /api/v1/teams/{team_id}/dar/applications/{id}/reviews | DataAccessApplicationReview@storeGlobal
-[**delete_team_dar_application_question_review**](DataAccessApplicationReviewApi.md#delete_team_dar_application_question_review) | **DELETE** /api/v1/teams/{team_id}/dar/applications/{id}/questions/{questionId}/reviews/{reviewId} | DataAccessApplicationReview@destroy
-[**delete_team_dar_application_review**](DataAccessApplicationReviewApi.md#delete_team_dar_application_review) | **DELETE** /api/v1/teams/{team_id}/dar/applications/{id}/reviews/{reviewId} | DataAccessApplicationReview@destroyGlobal
 [**delete_team_dar_application_review_file**](DataAccessApplicationReviewApi.md#delete_team_dar_application_review_file) | **DELETE** /api/v1/teams/{teamId}/dar/applications/{id}/reviews/{reviewId}/files/{fileId} | DataAccessApplicationReview@destroyFile
 [**fetch_team_dar_application_review_file**](DataAccessApplicationReviewApi.md#fetch_team_dar_application_review_file) | **GET** /api/v1/teams/{teamId}/dar/applications/{id}/reviews/{reviewId}/download/{fileId} | DataAccessApplicationReview@downloadFile
 [**fetch_team_dar_application_reviews**](DataAccessApplicationReviewApi.md#fetch_team_dar_application_reviews) | **GET** /api/v1/teams/{team_id}/dar/applications/{id}/reviews | DataAccessApplicationReview@index
@@ -76,71 +74,6 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## delete_team_dar_application_question_review
-
-> models::DeleteApplications200Response delete_team_dar_application_question_review(team_id, id, question_id, review_id)
-DataAccessApplicationReview@destroy
-
-Delete a review from a DAR application
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**team_id** | **i32** | Team id | [required] |
-**id** | **i32** | DAR application id | [required] |
-**question_id** | **i32** | DAR application question id | [required] |
-**review_id** | **i32** | DAR application review id | [required] |
-
-### Return type
-
-[**models::DeleteApplications200Response**](delete_applications_200_response.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## delete_team_dar_application_review
-
-> models::DeleteApplications200Response delete_team_dar_application_review(team_id, id, review_id)
-DataAccessApplicationReview@destroyGlobal
-
-Delete a review from a DAR application
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**team_id** | **i32** | Team id | [required] |
-**id** | **i32** | DAR application id | [required] |
-**review_id** | **i32** | DAR application review id | [required] |
-
-### Return type
-
-[**models::DeleteApplications200Response**](delete_applications_200_response.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

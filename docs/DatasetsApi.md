@@ -7,8 +7,6 @@ Method | HTTP request | Description
 [**count_unique_fields**](DatasetsApi.md#count_unique_fields) | **GET** /api/v1/datasets/count/{field} | DatasetController@count
 [**create_datasets**](DatasetsApi.md#create_datasets) | **POST** /api/v1/datasets | DatasetController@store
 [**create_datasets_integrations**](DatasetsApi.md#create_datasets_integrations) | **POST** /api/v1/integrations/datasets | IntegrationDatasetController@store
-[**create_datasets_linkage_extraction**](DatasetsApi.md#create_datasets_linkage_extraction) | **POST** /api/v1/datasets/admin_ctrl/trigger/linkage_extraction | Trigger Term Extraction for Datasets
-[**create_datasets_term_extraction**](DatasetsApi.md#create_datasets_term_extraction) | **POST** /api/v1/datasets/admin_ctrl/trigger/term_extraction | Trigger Term Extraction for Datasets
 [**create_datasets_v2**](DatasetsApi.md#create_datasets_v2) | **POST** /api/v2/datasets | DatasetController@store
 [**create_team_datasets_v2**](DatasetsApi.md#create_team_datasets_v2) | **POST** /api/v2/teams/{teamId}/datasets | TeamDatasetController@store
 [**delete_datasets**](DatasetsApi.md#delete_datasets) | **DELETE** /api/v1/datasets/{id} | DatasetController@destroy
@@ -121,69 +119,6 @@ Name | Type | Description  | Required | Notes
 ### Authorization
 
 [bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## create_datasets_linkage_extraction
-
-> models::CreateDatasetsLinkageExtraction200Response create_datasets_linkage_extraction(authorization, create_datasets_linkage_extraction_request)
-Trigger Term Extraction for Datasets
-
-Triggers the term extraction job for datasets within a specified range and controls whether data is partially indexed in Elasticsearch.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**authorization** | **String** | JWT token for authorization in the format 'Bearer {token}' | [required] |
-**create_datasets_linkage_extraction_request** | [**CreateDatasetsLinkageExtractionRequest**](CreateDatasetsLinkageExtractionRequest.md) |  | [required] |
-
-### Return type
-
-[**models::CreateDatasetsLinkageExtraction200Response**](create_datasets_linkage_extraction_200_response.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## create_datasets_term_extraction
-
-> models::CreateDatasetsTermExtraction200Response create_datasets_term_extraction(authorization, role, create_datasets_term_extraction_request)
-Trigger Term Extraction for Datasets
-
-Triggers the term extraction job for datasets within a specified range and controls whether data is partially indexed in Elasticsearch.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**authorization** | **String** | JWT token for authorization in the format 'Bearer {token}' | [required] |
-**role** | **String** | Role required to access this endpoint, e.g., 'hdruk.superadmin' | [required] |
-**create_datasets_term_extraction_request** | [**CreateDatasetsTermExtractionRequest**](CreateDatasetsTermExtractionRequest.md) |  | [required] |
-
-### Return type
-
-[**models::CreateDatasetsTermExtraction200Response**](create_datasets_term_extraction_200_response.md)
-
-### Authorization
-
-No authorization required
 
 ### HTTP request headers
 

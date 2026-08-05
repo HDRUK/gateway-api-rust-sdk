@@ -111,8 +111,6 @@ impl From<&str> for ContentType {
     }
 }
 
-pub mod admin_data_custodian_networks_api;
-pub mod admin_search_api;
 pub mod application_api;
 pub mod authentication_api;
 pub mod cancer_type_filter_api;
@@ -135,13 +133,9 @@ pub mod integration_data_use_registers_api;
 pub mod integrations_datasets_test_api;
 pub mod license_api;
 pub mod metrics_api;
-pub mod notification_api;
-pub mod programming_language_api;
-pub mod programming_package_api;
 pub mod project_grant_api;
 pub mod publication_api;
 pub mod question_bank_api;
-pub mod reviews_api;
 pub mod search_collections_api;
 pub mod search_data_custodian_networks_api;
 pub mod search_data_custodians_api;
@@ -154,8 +148,6 @@ pub mod team_data_access_application_api;
 pub mod team_data_access_template_api;
 pub mod team_federations_api;
 pub mod tools_api;
-pub mod type_category_api;
-pub mod user_roles_api;
 pub mod users_api;
 pub mod widgets_api;
 

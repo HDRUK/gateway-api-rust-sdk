@@ -4,108 +4,13 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_data_custodian_network**](DataCustodianNetworksApi.md#create_data_custodian_network) | **POST** /api/v2/data_custodian_networks | DataCustodianNetworks@store
-[**delete_data_custodian_network**](DataCustodianNetworksApi.md#delete_data_custodian_network) | **DELETE** /api/v2/data_custodian_networks/{id} | DataCustodianNetworks@destroy
-[**edit_data_custodian_network**](DataCustodianNetworksApi.md#edit_data_custodian_network) | **PATCH** /api/v2/data_custodian_networks/{id} | DataCustodianNetworks@edit
 [**fetch_data_custodian_network**](DataCustodianNetworksApi.md#fetch_data_custodian_network) | **GET** /api/v2/data_custodian_networks/{id} | DataCustodianNetworks@show
 [**fetch_data_custodian_network_custodians_summary**](DataCustodianNetworksApi.md#fetch_data_custodian_network_custodians_summary) | **GET** /api/v2/data_custodian_networks/{id}/custodians_summary | DataCustodianNetworks@showCustodiansSummary
 [**fetch_data_custodian_network_datasets_summary**](DataCustodianNetworksApi.md#fetch_data_custodian_network_datasets_summary) | **GET** /api/v2/data_custodian_networks/{id}/datasets_summary | DataCustodianNetworks@showDatasetsSummary
 [**fetch_data_custodian_network_entities_summary**](DataCustodianNetworksApi.md#fetch_data_custodian_network_entities_summary) | **GET** /api/v2/data_custodian_networks/{id}/entities_summary | DataCustodianNetworks@showSummary
 [**fetch_data_custodian_network_info**](DataCustodianNetworksApi.md#fetch_data_custodian_network_info) | **GET** /api/v2/data_custodian_networks/{id}/info | DataCustodianNetworks@showInfoSummary
 [**fetch_data_custodian_networks**](DataCustodianNetworksApi.md#fetch_data_custodian_networks) | **GET** /api/v2/data_custodian_networks | DataCustodianNetworks@index
-[**update_data_custodian_network**](DataCustodianNetworksApi.md#update_data_custodian_network) | **PUT** /api/v2/data_custodian_networks/{id} | DataCustodianNetworks@update
 
-
-
-## create_data_custodian_network
-
-> models::CreateDarIntegration201Response create_data_custodian_network(create_data_provider_coll_request)
-DataCustodianNetworks@store
-
-Creates a new DataCustodianNetwork
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**create_data_provider_coll_request** | [**CreateDataProviderCollRequest**](CreateDataProviderCollRequest.md) | DataCustodianNetwork definition | [required] |
-
-### Return type
-
-[**models::CreateDarIntegration201Response**](create_dar_integration_201_response.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## delete_data_custodian_network
-
-> models::DeleteApplications200Response delete_data_custodian_network(id)
-DataCustodianNetworks@destroy
-
-Delete a DataCustodianNetwork
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**id** | **i32** | DataCustodianNetwork ID | [required] |
-
-### Return type
-
-[**models::DeleteApplications200Response**](delete_applications_200_response.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## edit_data_custodian_network
-
-> models::UpdateDataCustodianNetwork200Response edit_data_custodian_network(id, edit_data_provider_coll_request)
-DataCustodianNetworks@edit
-
-Edit a DataCustodianNetwork
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**id** | **i32** | DataCustodianNetwork ID | [required] |
-**edit_data_provider_coll_request** | [**EditDataProviderCollRequest**](EditDataProviderCollRequest.md) | DataCustodianNetwork definition | [required] |
-
-### Return type
-
-[**models::UpdateDataCustodianNetwork200Response**](update_data_custodian_network_200_response.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## fetch_data_custodian_network
@@ -283,37 +188,6 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## update_data_custodian_network
-
-> models::UpdateDataCustodianNetwork200Response update_data_custodian_network(id, update_data_provider_coll_request)
-DataCustodianNetworks@update
-
-Update a DataCustodianNetwork
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**id** | **i32** | DataCustodianNetworks ID | [required] |
-**update_data_provider_coll_request** | [**UpdateDataProviderCollRequest**](UpdateDataProviderCollRequest.md) | DataCustodianNetwork definition | [required] |
-
-### Return type
-
-[**models::UpdateDataCustodianNetwork200Response**](update_data_custodian_network_200_response.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
