@@ -4,7 +4,6 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**count_team_unique_fields_datasets_v2**](DatasetsApi.md#count_team_unique_fields_datasets_v2) | **GET** /api/v2/teams/{teamId}/datasets/count/{field} | TeamDatasetController@count
 [**count_unique_fields**](DatasetsApi.md#count_unique_fields) | **GET** /api/v1/datasets/count/{field} | DatasetController@count
 [**create_datasets**](DatasetsApi.md#create_datasets) | **POST** /api/v1/datasets | DatasetController@store
 [**create_datasets_integrations**](DatasetsApi.md#create_datasets_integrations) | **POST** /api/v1/integrations/datasets | IntegrationDatasetController@store
@@ -27,8 +26,6 @@ Method | HTTP request | Description
 [**fetch_datasets**](DatasetsApi.md#fetch_datasets) | **GET** /api/v1/datasets/{id} | DatasetController@show
 [**fetch_datasets_integrations**](DatasetsApi.md#fetch_datasets_integrations) | **GET** /api/v1/integrations/datasets/{id} | IntegrationDatasetController@show
 [**fetch_datasets_v2**](DatasetsApi.md#fetch_datasets_v2) | **GET** /api/v2/datasets/{id} | DatasetController@showActive
-[**fetch_team_datasets_status**](DatasetsApi.md#fetch_team_datasets_status) | **GET** /api/v2/teams/{teamId}/datasets/status/{status} | TeamDatasetController@indexStatus
-[**fetch_team_datasets_v2**](DatasetsApi.md#fetch_team_datasets_v2) | **GET** /api/v2/teams/{teamId}/datasets/{id} | TeamDatasetController@show
 [**patch_datasets**](DatasetsApi.md#patch_datasets) | **PATCH** /api/v1/datasets/{id} | DatasetController@edit
 [**patch_datasets_integrations**](DatasetsApi.md#patch_datasets_integrations) | **PATCH** /api/v1/integrations/datasets/{id} | IntegrationDatasetController@edit
 [**patch_datasets_v2**](DatasetsApi.md#patch_datasets_v2) | **PATCH** /api/v2/datasets/{id} | DatasetController@edit
@@ -38,37 +35,6 @@ Method | HTTP request | Description
 [**update_datasets_v2**](DatasetsApi.md#update_datasets_v2) | **PUT** /api/v2/datasets/{id} | DatasetController@update
 [**update_team_datasets_v2**](DatasetsApi.md#update_team_datasets_v2) | **PUT** /api/v2/teams/{teamId}/datasets/{id} | TeamDatasetController@update
 
-
-
-## count_team_unique_fields_datasets_v2
-
-> models::CountUniqueFieldsCollections200Response count_team_unique_fields_datasets_v2(team_id, field)
-TeamDatasetController@count
-
-Get team counts for distinct entries of a field in the model
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**team_id** | **i32** | team id | [required] |
-**field** | **String** | name of the field to perform a count on | [required] |
-
-### Return type
-
-[**models::CountUniqueFieldsCollections200Response**](count_unique_fields_collections_200_response.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## count_unique_fields
@@ -104,7 +70,7 @@ Name | Type | Description  | Required | Notes
 
 ## create_datasets
 
-> models::CreateCategories200Response create_datasets(create_datasets_request)
+> models::CreateDarIntegration201Response create_datasets(create_datasets_request)
 DatasetController@store
 
 Create a new dataset
@@ -118,7 +84,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::CreateCategories200Response**](create_categories_200_response.md)
+[**models::CreateDarIntegration201Response**](create_dar_integration_201_response.md)
 
 ### Authorization
 
@@ -134,7 +100,7 @@ Name | Type | Description  | Required | Notes
 
 ## create_datasets_integrations
 
-> models::CreateCategories200Response create_datasets_integrations(datasets_test_request, input_schema, input_version)
+> models::CreateDarIntegration201Response create_datasets_integrations(datasets_test_request, input_schema, input_version)
 IntegrationDatasetController@store
 
 Create a new dataset
@@ -150,7 +116,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::CreateCategories200Response**](create_categories_200_response.md)
+[**models::CreateDarIntegration201Response**](create_dar_integration_201_response.md)
 
 ### Authorization
 
@@ -229,7 +195,7 @@ No authorization required
 
 ## create_datasets_v2
 
-> models::CreateCategories200Response create_datasets_v2(create_datasets_v2_request)
+> models::CreateDarIntegration201Response create_datasets_v2(create_datasets_v2_request)
 DatasetController@store
 
 Create a new dataset
@@ -243,7 +209,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::CreateCategories200Response**](create_categories_200_response.md)
+[**models::CreateDarIntegration201Response**](create_dar_integration_201_response.md)
 
 ### Authorization
 
@@ -259,7 +225,7 @@ Name | Type | Description  | Required | Notes
 
 ## create_team_datasets_v2
 
-> models::CreateCategories200Response create_team_datasets_v2(team_id, create_team_datasets_v2_request)
+> models::CreateDarIntegration201Response create_team_datasets_v2(team_id, create_team_datasets_v2_request)
 TeamDatasetController@store
 
 Create a new dataset for a team
@@ -274,7 +240,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::CreateCategories200Response**](create_categories_200_response.md)
+[**models::CreateDarIntegration201Response**](create_dar_integration_201_response.md)
 
 ### Authorization
 
@@ -290,7 +256,7 @@ Name | Type | Description  | Required | Notes
 
 ## delete_datasets
 
-> models::DeleteAliases200Response delete_datasets(id)
+> models::DeleteApplications200Response delete_datasets(id)
 DatasetController@destroy
 
 Delete a dataset
@@ -304,7 +270,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::DeleteAliases200Response**](delete_aliases_200_response.md)
+[**models::DeleteApplications200Response**](delete_applications_200_response.md)
 
 ### Authorization
 
@@ -320,7 +286,7 @@ Name | Type | Description  | Required | Notes
 
 ## delete_datasets_integrations
 
-> models::DeleteAliases200Response delete_datasets_integrations(id)
+> models::DeleteApplications200Response delete_datasets_integrations(id)
 IntegrationDatasetController@destroy
 
 Delete a dataset
@@ -334,7 +300,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::DeleteAliases200Response**](delete_aliases_200_response.md)
+[**models::DeleteApplications200Response**](delete_applications_200_response.md)
 
 ### Authorization
 
@@ -350,7 +316,7 @@ Name | Type | Description  | Required | Notes
 
 ## delete_datasets_v2
 
-> models::DeleteAliases200Response delete_datasets_v2(id)
+> models::DeleteApplications200Response delete_datasets_v2(id)
 Delete a dataset
 
 Delete a dataset
@@ -364,7 +330,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::DeleteAliases200Response**](delete_aliases_200_response.md)
+[**models::DeleteApplications200Response**](delete_applications_200_response.md)
 
 ### Authorization
 
@@ -380,7 +346,7 @@ Name | Type | Description  | Required | Notes
 
 ## delete_team_datasets_v2
 
-> models::DeleteAliases200Response delete_team_datasets_v2(team_id, id)
+> models::DeleteApplications200Response delete_team_datasets_v2(team_id, id)
 TeamDatasetController@destroy
 
 Delete a team's dataset
@@ -395,7 +361,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::DeleteAliases200Response**](delete_aliases_200_response.md)
+[**models::DeleteApplications200Response**](delete_applications_200_response.md)
 
 ### Authorization
 
@@ -761,76 +727,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## fetch_team_datasets_status
-
-> models::FetchAllDatasets200Response fetch_team_datasets_status(team_id, status, sort, with_metadata)
-TeamDatasetController@indexStatus
-
-Returns a list of a team's datasets with the given status
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**team_id** | **i32** | ID of the team to filter by | [required] |
-**status** | **String** | Status of the dataset (active, draft, or archived). Defaults to active if not provided. | [required] |[default to active]
-**sort** | Option<**String**> | Field and direction (colon separated) to sort by (default: 'created:desc') ... <br/> <br/>         - ?sort=\\<field\\>:\\<direction\\> <br/>         - \\<direction\\> can only be 'asc' or 'desc'  <br/>         - \\<field\\> can only be a valid field for the dataset table that can be ordered on  <br/>         - \\<field\\> can start with the prefix 'metadata.' so that nested values within the field 'metadata'  <br/>             (represented by the GWDM JSON structure) can be used to order on.  <br/>  <br/> |  |
-**with_metadata** | Option<**String**> | Boolean whether to return dataset metadata |  |
-
-### Return type
-
-[**models::FetchAllDatasets200Response**](fetch_all_datasets_200_response.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## fetch_team_datasets_v2
-
-> models::FetchDatasets200Response fetch_team_datasets_v2(team_id, id, export, schema_model, schema_version)
-TeamDatasetController@show
-
-Get dataset by id
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**team_id** | **i32** | team id | [required] |
-**id** | **i32** | dataset id | [required] |
-**export** | Option<**String**> | Alternative output schema model. |  |
-**schema_model** | Option<**String**> | Alternative output schema model. |  |
-**schema_version** | Option<**String**> | Alternative output schema version. |  |
-
-### Return type
-
-[**models::FetchDatasets200Response**](fetch_datasets_200_response.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
 ## patch_datasets
 
-> models::DeleteAliases200Response patch_datasets(id, unarchive)
+> models::DeleteApplications200Response patch_datasets(id, unarchive)
 DatasetController@edit
 
 Patch dataset by id
@@ -845,7 +744,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::DeleteAliases200Response**](delete_aliases_200_response.md)
+[**models::DeleteApplications200Response**](delete_applications_200_response.md)
 
 ### Authorization
 
@@ -861,7 +760,7 @@ Name | Type | Description  | Required | Notes
 
 ## patch_datasets_integrations
 
-> models::DeleteAliases200Response patch_datasets_integrations(id, unarchive)
+> models::DeleteApplications200Response patch_datasets_integrations(id, unarchive)
 IntegrationDatasetController@edit
 
 Patch dataset by id
@@ -876,7 +775,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::DeleteAliases200Response**](delete_aliases_200_response.md)
+[**models::DeleteApplications200Response**](delete_applications_200_response.md)
 
 ### Authorization
 
@@ -892,7 +791,7 @@ Name | Type | Description  | Required | Notes
 
 ## patch_datasets_v2
 
-> models::DeleteAliases200Response patch_datasets_v2(id, patch_datasets_v2_request)
+> models::DeleteApplications200Response patch_datasets_v2(id, patch_datasets_v2_request)
 DatasetController@edit
 
 Patch dataset by id
@@ -907,7 +806,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::DeleteAliases200Response**](delete_aliases_200_response.md)
+[**models::DeleteApplications200Response**](delete_applications_200_response.md)
 
 ### Authorization
 
@@ -923,7 +822,7 @@ Name | Type | Description  | Required | Notes
 
 ## patch_team_datasets_v2
 
-> models::DeleteAliases200Response patch_team_datasets_v2(team_id, id, patch_datasets_v2_request)
+> models::DeleteApplications200Response patch_team_datasets_v2(team_id, id, patch_datasets_v2_request)
 TeamDatasetController@edit
 
 Edit a dataset owned by a team
@@ -939,7 +838,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::DeleteAliases200Response**](delete_aliases_200_response.md)
+[**models::DeleteApplications200Response**](delete_applications_200_response.md)
 
 ### Authorization
 
@@ -955,7 +854,7 @@ Name | Type | Description  | Required | Notes
 
 ## update_datasets
 
-> models::CreateCategories200Response update_datasets(id, update_datasets_request)
+> models::CreateDarIntegration201Response update_datasets(id, update_datasets_request)
 DatasetController@update
 
 Update a dataset with a new dataset version
@@ -970,7 +869,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::CreateCategories200Response**](create_categories_200_response.md)
+[**models::CreateDarIntegration201Response**](create_dar_integration_201_response.md)
 
 ### Authorization
 
@@ -1019,7 +918,7 @@ Name | Type | Description  | Required | Notes
 
 ## update_datasets_v2
 
-> models::CreateCategories200Response update_datasets_v2(id, update_datasets_request)
+> models::CreateDarIntegration201Response update_datasets_v2(id, update_datasets_request)
 DatasetController@update
 
 Update a dataset with a new dataset version
@@ -1034,7 +933,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::CreateCategories200Response**](create_categories_200_response.md)
+[**models::CreateDarIntegration201Response**](create_dar_integration_201_response.md)
 
 ### Authorization
 
@@ -1050,7 +949,7 @@ Name | Type | Description  | Required | Notes
 
 ## update_team_datasets_v2
 
-> models::CreateCategories200Response update_team_datasets_v2(team_id, id, patch_datasets_v2_request)
+> models::CreateDarIntegration201Response update_team_datasets_v2(team_id, id, patch_datasets_v2_request)
 TeamDatasetController@update
 
 Update a team dataset with a new dataset version
@@ -1066,7 +965,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::CreateCategories200Response**](create_categories_200_response.md)
+[**models::CreateDarIntegration201Response**](create_dar_integration_201_response.md)
 
 ### Authorization
 

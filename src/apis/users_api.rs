@@ -19,8 +19,8 @@ use super::{Error, configuration, ContentType};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateUsersError {
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -28,9 +28,9 @@ pub enum CreateUsersError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteUsersError {
-    Status401(models::CreateTeamCollections401Response),
+    Status401(models::FetchAllDarIntegrations401Response),
     Status404(models::DeleteFederation404Response),
-    Status500(models::CreateAliases500Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -39,44 +39,9 @@ pub enum DeleteUsersError {
 #[serde(untagged)]
 pub enum EditUsersError {
     Status400(models::CreateToolsIntegrations400Response),
-    Status401(models::CreateTeamCollections401Response),
+    Status401(models::FetchAllDarIntegrations401Response),
     Status404(models::DeleteFederation404Response),
-    Status500(models::CreateAliases500Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`fetch_all_users`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum FetchAllUsersError {
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`fetch_users`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum FetchUsersError {
-    Status401(models::CreateTeamCollections401Response),
-    Status404(models::FetchAliases404Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`resend_secondary_verification_email`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum ResendSecondaryVerificationEmailError {
-    Status404(models::ResendSecondaryVerificationEmail404Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`update_users`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum UpdateUsersError {
-    Status400(models::CreateToolsIntegrations400Response),
-    Status401(models::CreateTeamCollections401Response),
-    Status404(models::DeleteFederation404Response),
-    Status500(models::CreateAliases500Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -91,7 +56,7 @@ pub enum VerifySecondaryEmailError {
 
 
 /// Create a new user
-pub async fn create_users(configuration: &configuration::Configuration, create_users_request: models::CreateUsersRequest) -> Result<models::CreateCategories200Response, Error<CreateUsersError>> {
+pub async fn create_users(configuration: &configuration::Configuration, create_users_request: models::CreateUsersRequest) -> Result<models::CreateDarIntegration201Response, Error<CreateUsersError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_body_create_users_request = create_users_request;
 
@@ -121,8 +86,8 @@ pub async fn create_users(configuration: &configuration::Configuration, create_u
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateCategories200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateCategories200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateDarIntegration201Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateDarIntegration201Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -172,10 +137,10 @@ pub async fn delete_users(configuration: &configuration::Configuration, id: i32)
 }
 
 /// Edit user
-pub async fn edit_users(configuration: &configuration::Configuration, id: i32, update_users_request: models::UpdateUsersRequest) -> Result<models::FetchUsers200Response, Error<EditUsersError>> {
+pub async fn edit_users(configuration: &configuration::Configuration, id: i32, edit_users_request: models::EditUsersRequest) -> Result<models::EditUsers200Response, Error<EditUsersError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_id = id;
-    let p_body_update_users_request = update_users_request;
+    let p_body_edit_users_request = edit_users_request;
 
     let uri_str = format!("{}/api/v1/users/{id}", configuration.base_path, id=p_path_id);
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
@@ -186,7 +151,7 @@ pub async fn edit_users(configuration: &configuration::Configuration, id: i32, u
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_update_users_request);
+    req_builder = req_builder.json(&p_body_edit_users_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -203,177 +168,12 @@ pub async fn edit_users(configuration: &configuration::Configuration, id: i32, u
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FetchUsers200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::FetchUsers200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::EditUsers200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::EditUsers200Response`")))),
         }
     } else {
         let content = resp.text().await?;
         let entity: Option<EditUsersError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// Get All Users
-pub async fn fetch_all_users(configuration: &configuration::Configuration, filter_names: Option<&str>) -> Result<models::FetchAllUsers200Response, Error<FetchAllUsersError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_filter_names = filter_names;
-
-    let uri_str = format!("{}/api/v1/users", configuration.base_path);
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
-
-    if let Some(ref param_value) = p_query_filter_names {
-        req_builder = req_builder.query(&[("filterNames", &param_value.to_string())]);
-    }
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FetchAllUsers200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::FetchAllUsers200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<FetchAllUsersError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// Get users by id
-pub async fn fetch_users(configuration: &configuration::Configuration, id: i32) -> Result<models::FetchUsers200Response, Error<FetchUsersError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/api/v1/users/{id}", configuration.base_path, id=p_path_id);
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FetchUsers200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::FetchUsers200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<FetchUsersError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// Resends the verification email for the secondary email address. Old tokens are expired.
-pub async fn resend_secondary_verification_email(configuration: &configuration::Configuration, id: i32) -> Result<models::ResendSecondaryVerificationEmail200Response, Error<ResendSecondaryVerificationEmailError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/api/v1/users/{id}/resend-secondary-verification", configuration.base_path, id=p_path_id);
-    let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ResendSecondaryVerificationEmail200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ResendSecondaryVerificationEmail200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<ResendSecondaryVerificationEmailError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// Update user
-pub async fn update_users(configuration: &configuration::Configuration, id: i32, update_users_request: models::UpdateUsersRequest) -> Result<models::FetchUsers200Response, Error<UpdateUsersError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_update_users_request = update_users_request;
-
-    let uri_str = format!("{}/api/v1/users/{id}", configuration.base_path, id=p_path_id);
-    let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-    req_builder = req_builder.json(&p_body_update_users_request);
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FetchUsers200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::FetchUsers200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<UpdateUsersError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent { status, content, entity }))
     }
 }

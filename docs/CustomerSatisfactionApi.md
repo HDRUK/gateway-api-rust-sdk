@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## create_csat
 
-> models::DeleteAliases200Response create_csat(create_csat_request)
+> models::DeleteApplications200Response create_csat(create_csat_request)
 Create Customer Satisfaction Score
 
 Creates a customer satisfaction score between 0 and 5
@@ -25,7 +25,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::DeleteAliases200Response**](delete_aliases_200_response.md)
+[**models::DeleteApplications200Response**](delete_applications_200_response.md)
 
 ### Authorization
 

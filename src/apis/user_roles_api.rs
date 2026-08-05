@@ -19,8 +19,8 @@ use super::{Error, configuration, ContentType};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateUserHasRolesError {
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -29,8 +29,8 @@ pub enum CreateUserHasRolesError {
 #[serde(untagged)]
 pub enum DeleteUserHasRolesError {
     Status404(models::DeleteFederation404Response),
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -38,14 +38,14 @@ pub enum DeleteUserHasRolesError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateUserHasRolesError {
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
 
 /// Create user has roles
-pub async fn create_user_has_roles(configuration: &configuration::Configuration, user_id: i32, create_user_has_roles_request: models::CreateUserHasRolesRequest) -> Result<models::DeleteAliases200Response, Error<CreateUserHasRolesError>> {
+pub async fn create_user_has_roles(configuration: &configuration::Configuration, user_id: i32, create_user_has_roles_request: models::CreateUserHasRolesRequest) -> Result<models::DeleteApplications200Response, Error<CreateUserHasRolesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_user_id = user_id;
     let p_body_create_user_has_roles_request = create_user_has_roles_request;
@@ -76,8 +76,8 @@ pub async fn create_user_has_roles(configuration: &configuration::Configuration,
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteAliases200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteAliases200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteApplications200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteApplications200Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -127,7 +127,7 @@ pub async fn delete_user_has_roles(configuration: &configuration::Configuration,
 }
 
 /// Update user has roles
-pub async fn update_user_has_roles(configuration: &configuration::Configuration, user_id: i32, update_user_has_roles_request: models::UpdateUserHasRolesRequest) -> Result<models::DeleteAliases200Response, Error<UpdateUserHasRolesError>> {
+pub async fn update_user_has_roles(configuration: &configuration::Configuration, user_id: i32, update_user_has_roles_request: models::UpdateUserHasRolesRequest) -> Result<models::DeleteApplications200Response, Error<UpdateUserHasRolesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_user_id = user_id;
     let p_body_update_user_has_roles_request = update_user_has_roles_request;
@@ -158,8 +158,8 @@ pub async fn update_user_has_roles(configuration: &configuration::Configuration,
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteAliases200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteAliases200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteApplications200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteApplications200Response`")))),
         }
     } else {
         let content = resp.text().await?;

@@ -19,7 +19,7 @@ use super::{Error, configuration, ContentType};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateTeamDarApplicationQuestionReviewError {
-    Status500(models::CreateAliases500Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -27,7 +27,7 @@ pub enum CreateTeamDarApplicationQuestionReviewError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateTeamDarApplicationReviewError {
-    Status500(models::CreateAliases500Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -35,8 +35,8 @@ pub enum CreateTeamDarApplicationReviewError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteTeamDarApplicationQuestionReviewError {
-    Status404(models::FetchAliases404Response),
-    Status500(models::CreateAliases500Response),
+    Status404(models::UpdateApplications404Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -44,8 +44,8 @@ pub enum DeleteTeamDarApplicationQuestionReviewError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteTeamDarApplicationReviewError {
-    Status404(models::FetchAliases404Response),
-    Status500(models::CreateAliases500Response),
+    Status404(models::UpdateApplications404Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -53,8 +53,8 @@ pub enum DeleteTeamDarApplicationReviewError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteTeamDarApplicationReviewFileError {
-    Status404(models::FetchAliases404Response),
-    Status500(models::CreateAliases500Response),
+    Status404(models::UpdateApplications404Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -62,7 +62,7 @@ pub enum DeleteTeamDarApplicationReviewFileError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum FetchTeamDarApplicationReviewFileError {
-    Status404(models::FetchAliases404Response),
+    Status404(models::UpdateApplications404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -70,23 +70,7 @@ pub enum FetchTeamDarApplicationReviewFileError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum FetchTeamDarApplicationReviewsError {
-    Status404(models::FetchAliases404Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`fetch_user_dar_application_review_file`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum FetchUserDarApplicationReviewFileError {
-    Status404(models::FetchAliases404Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`fetch_user_dar_application_reviews`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum FetchUserDarApplicationReviewsError {
-    Status404(models::FetchAliases404Response),
+    Status404(models::UpdateApplications404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -94,8 +78,8 @@ pub enum FetchUserDarApplicationReviewsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateTeamDarApplicationQuestionReviewError {
-    Status404(models::FetchAliases404Response),
-    Status500(models::CreateAliases500Response),
+    Status404(models::UpdateApplications404Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -103,32 +87,14 @@ pub enum UpdateTeamDarApplicationQuestionReviewError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateTeamDarApplicationReviewError {
-    Status404(models::FetchAliases404Response),
-    Status500(models::CreateAliases500Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`update_user_dar_application_question_review`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum UpdateUserDarApplicationQuestionReviewError {
-    Status404(models::FetchAliases404Response),
-    Status500(models::CreateAliases500Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`update_user_dar_application_review`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum UpdateUserDarApplicationReviewError {
-    Status404(models::FetchAliases404Response),
-    Status500(models::CreateAliases500Response),
+    Status404(models::UpdateApplications404Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
 
 /// Create a new review comment on a question in a DAR application
-pub async fn create_team_dar_application_question_review(configuration: &configuration::Configuration, team_id: i32, id: i32, question_id: i32, create_team_dar_application_review_request: models::CreateTeamDarApplicationReviewRequest) -> Result<models::CreateCategories200Response, Error<CreateTeamDarApplicationQuestionReviewError>> {
+pub async fn create_team_dar_application_question_review(configuration: &configuration::Configuration, team_id: i32, id: i32, question_id: i32, create_team_dar_application_review_request: models::CreateTeamDarApplicationReviewRequest) -> Result<models::CreateDarIntegration201Response, Error<CreateTeamDarApplicationQuestionReviewError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_team_id = team_id;
     let p_path_id = id;
@@ -161,8 +127,8 @@ pub async fn create_team_dar_application_question_review(configuration: &configu
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateCategories200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateCategories200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateDarIntegration201Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateDarIntegration201Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -172,7 +138,7 @@ pub async fn create_team_dar_application_question_review(configuration: &configu
 }
 
 /// Create a new review comment on a DAR application
-pub async fn create_team_dar_application_review(configuration: &configuration::Configuration, team_id: i32, id: i32, create_team_dar_application_review_request: models::CreateTeamDarApplicationReviewRequest) -> Result<models::CreateCategories200Response, Error<CreateTeamDarApplicationReviewError>> {
+pub async fn create_team_dar_application_review(configuration: &configuration::Configuration, team_id: i32, id: i32, create_team_dar_application_review_request: models::CreateTeamDarApplicationReviewRequest) -> Result<models::CreateDarIntegration201Response, Error<CreateTeamDarApplicationReviewError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_team_id = team_id;
     let p_path_id = id;
@@ -204,8 +170,8 @@ pub async fn create_team_dar_application_review(configuration: &configuration::C
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateCategories200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateCategories200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateDarIntegration201Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateDarIntegration201Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -215,7 +181,7 @@ pub async fn create_team_dar_application_review(configuration: &configuration::C
 }
 
 /// Delete a review from a DAR application
-pub async fn delete_team_dar_application_question_review(configuration: &configuration::Configuration, team_id: i32, id: i32, question_id: i32, review_id: i32) -> Result<models::DeleteAliases200Response, Error<DeleteTeamDarApplicationQuestionReviewError>> {
+pub async fn delete_team_dar_application_question_review(configuration: &configuration::Configuration, team_id: i32, id: i32, question_id: i32, review_id: i32) -> Result<models::DeleteApplications200Response, Error<DeleteTeamDarApplicationQuestionReviewError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_team_id = team_id;
     let p_path_id = id;
@@ -247,8 +213,8 @@ pub async fn delete_team_dar_application_question_review(configuration: &configu
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteAliases200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteAliases200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteApplications200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteApplications200Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -258,7 +224,7 @@ pub async fn delete_team_dar_application_question_review(configuration: &configu
 }
 
 /// Delete a review from a DAR application
-pub async fn delete_team_dar_application_review(configuration: &configuration::Configuration, team_id: i32, id: i32, review_id: i32) -> Result<models::DeleteAliases200Response, Error<DeleteTeamDarApplicationReviewError>> {
+pub async fn delete_team_dar_application_review(configuration: &configuration::Configuration, team_id: i32, id: i32, review_id: i32) -> Result<models::DeleteApplications200Response, Error<DeleteTeamDarApplicationReviewError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_team_id = team_id;
     let p_path_id = id;
@@ -289,8 +255,8 @@ pub async fn delete_team_dar_application_review(configuration: &configuration::C
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteAliases200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteAliases200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteApplications200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteApplications200Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -300,7 +266,7 @@ pub async fn delete_team_dar_application_review(configuration: &configuration::C
 }
 
 /// Delete a file associated with a DAR review
-pub async fn delete_team_dar_application_review_file(configuration: &configuration::Configuration, team_id: i32, id: i32, review_id: i32, file_id: &str) -> Result<models::DeleteAliases200Response, Error<DeleteTeamDarApplicationReviewFileError>> {
+pub async fn delete_team_dar_application_review_file(configuration: &configuration::Configuration, team_id: i32, id: i32, review_id: i32, file_id: &str) -> Result<models::DeleteApplications200Response, Error<DeleteTeamDarApplicationReviewFileError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_team_id = team_id;
     let p_path_id = id;
@@ -332,8 +298,8 @@ pub async fn delete_team_dar_application_review_file(configuration: &configurati
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteAliases200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteAliases200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteApplications200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteApplications200Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -350,7 +316,7 @@ pub async fn fetch_team_dar_application_review_file(configuration: &configuratio
     let p_path_review_id = review_id;
     let p_path_file_id = file_id;
 
-    let uri_str = format!("{}/ap1/v1/teams/{teamId}/dar/applications/{id}/reviews/{reviewId}/download/{fileId}", configuration.base_path, teamId=p_path_team_id, id=p_path_id, reviewId=p_path_review_id, fileId=crate::apis::urlencode(p_path_file_id));
+    let uri_str = format!("{}/api/v1/teams/{teamId}/dar/applications/{id}/reviews/{reviewId}/download/{fileId}", configuration.base_path, teamId=p_path_team_id, id=p_path_id, reviewId=p_path_review_id, fileId=crate::apis::urlencode(p_path_file_id));
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -411,79 +377,6 @@ pub async fn fetch_team_dar_application_reviews(configuration: &configuration::C
     } else {
         let content = resp.text().await?;
         let entity: Option<FetchTeamDarApplicationReviewsError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// Download a file associated with a DAR application review
-pub async fn fetch_user_dar_application_review_file(configuration: &configuration::Configuration, user_id: i32, id: i32, review_id: i32, file_id: &str) -> Result<(), Error<FetchUserDarApplicationReviewFileError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_user_id = user_id;
-    let p_path_id = id;
-    let p_path_review_id = review_id;
-    let p_path_file_id = file_id;
-
-    let uri_str = format!("{}/ap1/v1/users/{userId}/dar/applications/{id}/reviews/{reviewId}/download/{fileId}", configuration.base_path, userId=p_path_user_id, id=p_path_id, reviewId=p_path_review_id, fileId=crate::apis::urlencode(p_path_file_id));
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-
-    if !status.is_client_error() && !status.is_server_error() {
-        Ok(())
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<FetchUserDarApplicationReviewFileError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// Return all reviews on a DAR application
-pub async fn fetch_user_dar_application_reviews(configuration: &configuration::Configuration, user_id: i32, id: i32) -> Result<models::FetchTeamDarApplicationReviews200Response, Error<FetchUserDarApplicationReviewsError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_user_id = user_id;
-    let p_path_id = id;
-
-    let uri_str = format!("{}/api/v1/users/{userId}/dar/applications/{id}/reviews", configuration.base_path, userId=p_path_user_id, id=p_path_id);
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FetchTeamDarApplicationReviews200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::FetchTeamDarApplicationReviews200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<FetchUserDarApplicationReviewsError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent { status, content, entity }))
     }
 }
@@ -573,95 +466,6 @@ pub async fn update_team_dar_application_review(configuration: &configuration::C
     } else {
         let content = resp.text().await?;
         let entity: Option<UpdateTeamDarApplicationReviewError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// User endpoint to update a review comment on a question in a DAR application
-pub async fn update_user_dar_application_question_review(configuration: &configuration::Configuration, user_id: i32, id: i32, question_id: i32, review_id: i32, create_team_dar_application_review_request: models::CreateTeamDarApplicationReviewRequest) -> Result<models::UpdateTeamDarApplicationQuestionReview200Response, Error<UpdateUserDarApplicationQuestionReviewError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_user_id = user_id;
-    let p_path_id = id;
-    let p_path_question_id = question_id;
-    let p_path_review_id = review_id;
-    let p_body_create_team_dar_application_review_request = create_team_dar_application_review_request;
-
-    let uri_str = format!("{}/api/v1/users/{userId}/dar/applications/{id}/questions/{questionId}/reviews/{reviewId}", configuration.base_path, userId=p_path_user_id, id=p_path_id, questionId=p_path_question_id, reviewId=p_path_review_id);
-    let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-    req_builder = req_builder.json(&p_body_create_team_dar_application_review_request);
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UpdateTeamDarApplicationQuestionReview200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UpdateTeamDarApplicationQuestionReview200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<UpdateUserDarApplicationQuestionReviewError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// User endpoint to update a review comment on a DAR application
-pub async fn update_user_dar_application_review(configuration: &configuration::Configuration, user_id: i32, id: i32, review_id: i32, create_team_dar_application_review_request: models::CreateTeamDarApplicationReviewRequest) -> Result<models::UpdateTeamDarApplicationQuestionReview200Response, Error<UpdateUserDarApplicationReviewError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_user_id = user_id;
-    let p_path_id = id;
-    let p_path_review_id = review_id;
-    let p_body_create_team_dar_application_review_request = create_team_dar_application_review_request;
-
-    let uri_str = format!("{}/api/v1/users/{userId}/dar/applications/{id}/reviews/{reviewId}", configuration.base_path, userId=p_path_user_id, id=p_path_id, reviewId=p_path_review_id);
-    let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-    req_builder = req_builder.json(&p_body_create_team_dar_application_review_request);
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UpdateTeamDarApplicationQuestionReview200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UpdateTeamDarApplicationQuestionReview200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<UpdateUserDarApplicationReviewError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent { status, content, entity }))
     }
 }

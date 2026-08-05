@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## create_collections_integrations
 
-> models::CreateCategories200Response create_collections_integrations(update_team_collections_request)
+> models::CreateDarIntegration201Response create_collections_integrations(create_collections_integrations_request)
 IntegrationCollectionController@store
 
 Create a new collection
@@ -25,11 +25,11 @@ Create a new collection
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**update_team_collections_request** | [**UpdateTeamCollectionsRequest**](UpdateTeamCollectionsRequest.md) | Pass user credentials | [required] |
+**create_collections_integrations_request** | [**CreateCollectionsIntegrationsRequest**](CreateCollectionsIntegrationsRequest.md) | Pass user credentials | [required] |
 
 ### Return type
 
-[**models::CreateCategories200Response**](create_categories_200_response.md)
+[**models::CreateDarIntegration201Response**](create_dar_integration_201_response.md)
 
 ### Authorization
 
@@ -45,7 +45,7 @@ Name | Type | Description  | Required | Notes
 
 ## delete_collections_integrations
 
-> models::DeleteAliases200Response delete_collections_integrations(id)
+> models::DeleteApplications200Response delete_collections_integrations(id)
 Delete a collection
 
 Delete a collection
@@ -59,7 +59,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::DeleteAliases200Response**](delete_aliases_200_response.md)
+[**models::DeleteApplications200Response**](delete_applications_200_response.md)
 
 ### Authorization
 
@@ -75,7 +75,7 @@ Name | Type | Description  | Required | Notes
 
 ## edit_collections_integrations
 
-> models::FetchCollections200Response edit_collections_integrations(id, update_team_collections_request)
+> models::FetchCollections200Response edit_collections_integrations(id, create_collections_integrations_request)
 Edit a collection
 
 Edit a collection
@@ -86,7 +86,7 @@ Edit a collection
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **i32** | collection id | [required] |
-**update_team_collections_request** | [**UpdateTeamCollectionsRequest**](UpdateTeamCollectionsRequest.md) | Pass user credentials | [required] |
+**create_collections_integrations_request** | [**CreateCollectionsIntegrationsRequest**](CreateCollectionsIntegrationsRequest.md) | Pass user credentials | [required] |
 
 ### Return type
 
@@ -167,7 +167,7 @@ Name | Type | Description  | Required | Notes
 
 ## update_collections_integrations
 
-> models::FetchCollections200Response update_collections_integrations(id, update_team_collections_request)
+> models::FetchCollections200Response update_collections_integrations(id, create_collections_integrations_request)
 Update a collection
 
 Update a collection
@@ -178,7 +178,7 @@ Update a collection
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **i32** | collection id | [required] |
-**update_team_collections_request** | [**UpdateTeamCollectionsRequest**](UpdateTeamCollectionsRequest.md) | Pass user credentials | [required] |
+**create_collections_integrations_request** | [**CreateCollectionsIntegrationsRequest**](CreateCollectionsIntegrationsRequest.md) | Pass user credentials | [required] |
 
 ### Return type
 

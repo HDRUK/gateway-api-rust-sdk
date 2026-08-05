@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## create_dur_integrations
 
-> models::CreateCategories200Response create_dur_integrations(create_dur_integrations_request)
+> models::CreateDarIntegration201Response create_dur_integrations(create_dur_integrations_request)
 IntegrationDurController@store
 
 Create a new dur
@@ -29,7 +29,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::CreateCategories200Response**](create_categories_200_response.md)
+[**models::CreateDarIntegration201Response**](create_dar_integration_201_response.md)
 
 ### Authorization
 
@@ -45,7 +45,7 @@ Name | Type | Description  | Required | Notes
 
 ## delete_dur_integrations
 
-> models::DeleteAliases200Response delete_dur_integrations(id)
+> models::DeleteApplications200Response delete_dur_integrations(id)
 Delete a dur
 
 Delete a dur
@@ -59,7 +59,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::DeleteAliases200Response**](delete_aliases_200_response.md)
+[**models::DeleteApplications200Response**](delete_applications_200_response.md)
 
 ### Authorization
 

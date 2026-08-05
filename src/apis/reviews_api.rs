@@ -15,21 +15,12 @@ use crate::{apis::ResponseContent, models};
 use super::{Error, configuration, ContentType};
 
 
-/// struct for typed errors of method [`create_reviews`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum CreateReviewsError {
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
-    UnknownValue(serde_json::Value),
-}
-
 /// struct for typed errors of method [`delete_reviews`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteReviewsError {
-    Status404(models::FetchAliases404Response),
-    Status500(models::CreateAliases500Response),
+    Status404(models::UpdateApplications404Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -37,24 +28,8 @@ pub enum DeleteReviewsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum EditReviewsError {
-    Status404(models::FetchAliases404Response),
-    Status500(models::CreateAliases500Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`fetch_all_reviews`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum FetchAllReviewsError {
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`fetch_reviews`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum FetchReviewsError {
-    Status401(models::CreateTeamCollections401Response),
-    Status404(models::FetchAliases404Response),
+    Status404(models::UpdateApplications404Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -62,55 +37,14 @@ pub enum FetchReviewsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateReviewsError {
-    Status404(models::FetchAliases404Response),
-    Status500(models::CreateAliases500Response),
+    Status404(models::UpdateApplications404Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
 
-/// Create a new review
-pub async fn create_reviews(configuration: &configuration::Configuration, create_reviews_request: models::CreateReviewsRequest) -> Result<models::CreateCategories200Response, Error<CreateReviewsError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_create_reviews_request = create_reviews_request;
-
-    let uri_str = format!("{}/api/v1/reviews", configuration.base_path);
-    let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-    req_builder = req_builder.json(&p_body_create_reviews_request);
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateCategories200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateCategories200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<CreateReviewsError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
 /// Delete a review
-pub async fn delete_reviews(configuration: &configuration::Configuration, id: i32) -> Result<models::DeleteAliases200Response, Error<DeleteReviewsError>> {
+pub async fn delete_reviews(configuration: &configuration::Configuration, id: i32) -> Result<models::DeleteApplications200Response, Error<DeleteReviewsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_id = id;
 
@@ -139,8 +73,8 @@ pub async fn delete_reviews(configuration: &configuration::Configuration, id: i3
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteAliases200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteAliases200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteApplications200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteApplications200Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -150,10 +84,10 @@ pub async fn delete_reviews(configuration: &configuration::Configuration, id: i3
 }
 
 /// Edit a review
-pub async fn edit_reviews(configuration: &configuration::Configuration, id: i32, create_reviews_request: models::CreateReviewsRequest) -> Result<models::UpdateReviews200Response, Error<EditReviewsError>> {
+pub async fn edit_reviews(configuration: &configuration::Configuration, id: i32, update_reviews_request: models::UpdateReviewsRequest) -> Result<models::UpdateReviews200Response, Error<EditReviewsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_id = id;
-    let p_body_create_reviews_request = create_reviews_request;
+    let p_body_update_reviews_request = update_reviews_request;
 
     let uri_str = format!("{}/api/v1/reviews/{id}", configuration.base_path, id=p_path_id);
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
@@ -164,7 +98,7 @@ pub async fn edit_reviews(configuration: &configuration::Configuration, id: i32,
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_create_reviews_request);
+    req_builder = req_builder.json(&p_body_update_reviews_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -191,89 +125,11 @@ pub async fn edit_reviews(configuration: &configuration::Configuration, id: i32,
     }
 }
 
-/// Get All Reviews
-pub async fn fetch_all_reviews(configuration: &configuration::Configuration, ) -> Result<models::FetchAllReviews200Response, Error<FetchAllReviewsError>> {
-
-    let uri_str = format!("{}/api/v1/reviews", configuration.base_path);
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FetchAllReviews200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::FetchAllReviews200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<FetchAllReviewsError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// Get review by id
-pub async fn fetch_reviews(configuration: &configuration::Configuration, id: i32) -> Result<models::FetchAllReviews200Response, Error<FetchReviewsError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/api/v1/reviews/{id}", configuration.base_path, id=p_path_id);
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FetchAllReviews200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::FetchAllReviews200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<FetchReviewsError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
 /// Update a review
-pub async fn update_reviews(configuration: &configuration::Configuration, id: i32, create_reviews_request: models::CreateReviewsRequest) -> Result<models::UpdateReviews200Response, Error<UpdateReviewsError>> {
+pub async fn update_reviews(configuration: &configuration::Configuration, id: i32, update_reviews_request: models::UpdateReviewsRequest) -> Result<models::UpdateReviews200Response, Error<UpdateReviewsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_id = id;
-    let p_body_create_reviews_request = create_reviews_request;
+    let p_body_update_reviews_request = update_reviews_request;
 
     let uri_str = format!("{}/api/v1/reviews/{id}", configuration.base_path, id=p_path_id);
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
@@ -284,7 +140,7 @@ pub async fn update_reviews(configuration: &configuration::Configuration, id: i3
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_create_reviews_request);
+    req_builder = req_builder.json(&p_body_update_reviews_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;

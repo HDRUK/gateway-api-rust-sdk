@@ -6,7 +6,6 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**authentication**](AuthenticationApi.md#authentication) | **POST** /api/v1/auth | AuthController@checkAuthorization
 [**login**](AuthenticationApi.md#login) | **POST** /api/v1/auth/login | AuthController@login
-[**refresh_token**](AuthenticationApi.md#refresh_token) | **POST** /api/v1/refresh_token | AuthController@refreshToken
 [**register**](AuthenticationApi.md#register) | **POST** /api/v1/auth/register | AuthController@register
 
 
@@ -66,33 +65,6 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## refresh_token
-
-> models::Authentication200Response refresh_token()
-AuthController@refreshToken
-
-Regenerate jwt token
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-[**models::Authentication200Response**](authentication_200_response.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

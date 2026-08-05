@@ -15,13 +15,6 @@ use crate::{apis::ResponseContent, models};
 use super::{Error, configuration, ContentType};
 
 
-/// struct for typed errors of method [`count_team_unique_fields_publication_v2`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum CountTeamUniqueFieldsPublicationV2Error {
-    UnknownValue(serde_json::Value),
-}
-
 /// struct for typed errors of method [`count_unique_fields_publications`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -29,37 +22,12 @@ pub enum CountUniqueFieldsPublicationsError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`count_user_unique_fields_publication_v2`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum CountUserUniqueFieldsPublicationV2Error {
-    UnknownValue(serde_json::Value),
-}
-
 /// struct for typed errors of method [`create_publications`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreatePublicationsError {
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`create_publications_v2_by_team_id`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum CreatePublicationsV2ByTeamIdError {
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`create_publications_v2_by_user_id`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum CreatePublicationsV2ByUserIdError {
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -67,29 +35,9 @@ pub enum CreatePublicationsV2ByUserIdError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeletePublicationsError {
-    Status401(models::CreateTeamCollections401Response),
+    Status401(models::FetchAllDarIntegrations401Response),
     Status404(models::DeleteFederation404Response),
-    Status500(models::CreateAliases500Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`delete_publications_v2_by_team_id`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum DeletePublicationsV2ByTeamIdError {
-    Status401(models::CreateTeamCollections401Response),
-    Status404(models::DeleteFederation404Response),
-    Status500(models::CreateAliases500Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`delete_publications_v2_by_user_id`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum DeletePublicationsV2ByUserIdError {
-    Status401(models::CreateTeamCollections401Response),
-    Status404(models::DeleteFederation404Response),
-    Status500(models::CreateAliases500Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -98,28 +46,8 @@ pub enum DeletePublicationsV2ByUserIdError {
 #[serde(untagged)]
 pub enum EditPublicationsError {
     Status400(models::CreateToolsIntegrations400Response),
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`edit_publications_v2_by_team_id`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum EditPublicationsV2ByTeamIdError {
-    Status400(models::CreateToolsIntegrations400Response),
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`edit_publications_v2_by_user_id`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum EditPublicationsV2ByUserIdError {
-    Status400(models::CreateToolsIntegrations400Response),
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -127,22 +55,6 @@ pub enum EditPublicationsV2ByUserIdError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum FetchAllPublicationsError {
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`fetch_all_publications_by_team_and_status_v2`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum FetchAllPublicationsByTeamAndStatusV2Error {
-    Status404(),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`fetch_all_publications_by_user_and_status_v2`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum FetchAllPublicationsByUserAndStatusV2Error {
-    Status404(),
     UnknownValue(serde_json::Value),
 }
 
@@ -157,26 +69,8 @@ pub enum FetchAllPublicationsV2Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum FetchPublicationsError {
-    Status401(models::CreateTeamCollections401Response),
-    Status404(models::FetchAliases404Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`fetch_publications_by_team_and_by_id_v2`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum FetchPublicationsByTeamAndByIdV2Error {
-    Status401(models::CreateTeamCollections401Response),
-    Status404(models::FetchAliases404Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`fetch_publications_by_user_and_by_id_v2`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum FetchPublicationsByUserAndByIdV2Error {
-    Status401(models::CreateTeamCollections401Response),
-    Status404(models::FetchAliases404Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status404(models::UpdateApplications404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -184,8 +78,8 @@ pub enum FetchPublicationsByUserAndByIdV2Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum FetchPublicationsV2Error {
-    Status401(models::CreateTeamCollections401Response),
-    Status404(models::FetchAliases404Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status404(models::UpdateApplications404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -194,72 +88,11 @@ pub enum FetchPublicationsV2Error {
 #[serde(untagged)]
 pub enum UpdatePublicationsError {
     Status400(models::CreateToolsIntegrations400Response),
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`update_publications_v2_by_team_id`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum UpdatePublicationsV2ByTeamIdError {
-    Status400(models::CreateToolsIntegrations400Response),
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`update_publications_v2_by_user_id`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum UpdatePublicationsV2ByUserIdError {
-    Status400(models::CreateToolsIntegrations400Response),
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
-    UnknownValue(serde_json::Value),
-}
-
-
-/// Get team counts for distinct entries of a field in the model
-pub async fn count_team_unique_fields_publication_v2(configuration: &configuration::Configuration, team_id: i32, field: &str) -> Result<models::CountUniqueFieldsCollections200Response, Error<CountTeamUniqueFieldsPublicationV2Error>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_team_id = team_id;
-    let p_path_field = field;
-
-    let uri_str = format!("{}/api/v2/teams/{teamId}/publications/count/{field}", configuration.base_path, teamId=p_path_team_id, field=crate::apis::urlencode(p_path_field));
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CountUniqueFieldsCollections200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CountUniqueFieldsCollections200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<CountTeamUniqueFieldsPublicationV2Error> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
 
 /// Get Counts for distinct entries of a field in the model
 #[deprecated]
@@ -308,50 +141,9 @@ pub async fn count_unique_fields_publications(configuration: &configuration::Con
     }
 }
 
-/// Get user counts for distinct entries of a field in the model
-pub async fn count_user_unique_fields_publication_v2(configuration: &configuration::Configuration, user_id: i32, field: &str) -> Result<models::CountUniqueFieldsCollections200Response, Error<CountUserUniqueFieldsPublicationV2Error>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_user_id = user_id;
-    let p_path_field = field;
-
-    let uri_str = format!("{}/api/v2/users/{userId}/publications/count/{field}", configuration.base_path, userId=p_path_user_id, field=crate::apis::urlencode(p_path_field));
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CountUniqueFieldsCollections200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CountUniqueFieldsCollections200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<CountUserUniqueFieldsPublicationV2Error> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
 /// Create a new publication
 #[deprecated]
-pub async fn create_publications(configuration: &configuration::Configuration, create_publications_request: models::CreatePublicationsRequest) -> Result<models::CreateCategories200Response, Error<CreatePublicationsError>> {
+pub async fn create_publications(configuration: &configuration::Configuration, create_publications_request: models::CreatePublicationsRequest) -> Result<models::CreateDarIntegration201Response, Error<CreatePublicationsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_body_create_publications_request = create_publications_request;
 
@@ -381,96 +173,12 @@ pub async fn create_publications(configuration: &configuration::Configuration, c
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateCategories200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateCategories200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateDarIntegration201Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateDarIntegration201Response`")))),
         }
     } else {
         let content = resp.text().await?;
         let entity: Option<CreatePublicationsError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// Create a new publication by team id
-pub async fn create_publications_v2_by_team_id(configuration: &configuration::Configuration, team_id: i32, create_publications_request: models::CreatePublicationsRequest) -> Result<models::CreateCategories200Response, Error<CreatePublicationsV2ByTeamIdError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_team_id = team_id;
-    let p_body_create_publications_request = create_publications_request;
-
-    let uri_str = format!("{}/api/v2/teams/{teamId}/publications", configuration.base_path, teamId=p_path_team_id);
-    let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-    req_builder = req_builder.json(&p_body_create_publications_request);
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateCategories200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateCategories200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<CreatePublicationsV2ByTeamIdError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// Create a new publication by user id
-pub async fn create_publications_v2_by_user_id(configuration: &configuration::Configuration, user_id: i64, create_publications_request: models::CreatePublicationsRequest) -> Result<models::CreateCategories200Response, Error<CreatePublicationsV2ByUserIdError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_user_id = user_id;
-    let p_body_create_publications_request = create_publications_request;
-
-    let uri_str = format!("{}/api/v2/users/{userId}/publications", configuration.base_path, userId=p_path_user_id);
-    let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-    req_builder = req_builder.json(&p_body_create_publications_request);
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateCategories200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateCategories200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<CreatePublicationsV2ByUserIdError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent { status, content, entity }))
     }
 }
@@ -512,88 +220,6 @@ pub async fn delete_publications(configuration: &configuration::Configuration, i
     } else {
         let content = resp.text().await?;
         let entity: Option<DeletePublicationsError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// Delete publication by team id and id
-pub async fn delete_publications_v2_by_team_id(configuration: &configuration::Configuration, team_id: i32, id: i32) -> Result<models::DeleteFederation200Response, Error<DeletePublicationsV2ByTeamIdError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_team_id = team_id;
-    let p_path_id = id;
-
-    let uri_str = format!("{}/api/v2/teams/{teamId}/publications/{id}", configuration.base_path, teamId=p_path_team_id, id=p_path_id);
-    let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteFederation200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteFederation200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<DeletePublicationsV2ByTeamIdError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// Delete publication by user id and id
-pub async fn delete_publications_v2_by_user_id(configuration: &configuration::Configuration, user_id: i64, id: i32) -> Result<models::DeleteFederation200Response, Error<DeletePublicationsV2ByUserIdError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_user_id = user_id;
-    let p_path_id = id;
-
-    let uri_str = format!("{}/api/v2/users/{userId}/publications/{id}", configuration.base_path, userId=p_path_user_id, id=p_path_id);
-    let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteFederation200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteFederation200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<DeletePublicationsV2ByUserIdError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent { status, content, entity }))
     }
 }
@@ -641,92 +267,6 @@ pub async fn edit_publications(configuration: &configuration::Configuration, id:
     } else {
         let content = resp.text().await?;
         let entity: Option<EditPublicationsError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// Edit publications by team id
-pub async fn edit_publications_v2_by_team_id(configuration: &configuration::Configuration, team_id: i32, id: i32, update_publications_request: models::UpdatePublicationsRequest) -> Result<models::FetchPublications200Response, Error<EditPublicationsV2ByTeamIdError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_team_id = team_id;
-    let p_path_id = id;
-    let p_body_update_publications_request = update_publications_request;
-
-    let uri_str = format!("{}/api/v2/teams/{teamId}/publications/{id}", configuration.base_path, teamId=p_path_team_id, id=p_path_id);
-    let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-    req_builder = req_builder.json(&p_body_update_publications_request);
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FetchPublications200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::FetchPublications200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<EditPublicationsV2ByTeamIdError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// Edit publications by user id
-pub async fn edit_publications_v2_by_user_id(configuration: &configuration::Configuration, user_id: i64, id: i32, update_publications_request: models::UpdatePublicationsRequest) -> Result<models::FetchPublications200Response, Error<EditPublicationsV2ByUserIdError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_user_id = user_id;
-    let p_path_id = id;
-    let p_body_update_publications_request = update_publications_request;
-
-    let uri_str = format!("{}/api/v2/users/{userId}/publications/{id}", configuration.base_path, userId=p_path_user_id, id=p_path_id);
-    let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-    req_builder = req_builder.json(&p_body_update_publications_request);
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FetchPublications200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::FetchPublications200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<EditPublicationsV2ByUserIdError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent { status, content, entity }))
     }
 }
@@ -783,90 +323,6 @@ pub async fn fetch_all_publications(configuration: &configuration::Configuration
     } else {
         let content = resp.text().await?;
         let entity: Option<FetchAllPublicationsError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// Returns a list of a teams publications
-pub async fn fetch_all_publications_by_team_and_status_v2(configuration: &configuration::Configuration, team_id: i64, status: &str, paper_title: Option<&str>) -> Result<models::FetchAllPublications200Response, Error<FetchAllPublicationsByTeamAndStatusV2Error>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_team_id = team_id;
-    let p_path_status = status;
-    let p_query_paper_title = paper_title;
-
-    let uri_str = format!("{}/api/v2/teams/{teamId}/publications/status/{status}", configuration.base_path, teamId=p_path_team_id, status=crate::apis::urlencode(p_path_status));
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
-
-    if let Some(ref param_value) = p_query_paper_title {
-        req_builder = req_builder.query(&[("paper_title", &param_value.to_string())]);
-    }
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FetchAllPublications200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::FetchAllPublications200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<FetchAllPublicationsByTeamAndStatusV2Error> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// Returns a list of a users publications
-pub async fn fetch_all_publications_by_user_and_status_v2(configuration: &configuration::Configuration, user_id: i64, status: &str, paper_title: Option<&str>) -> Result<models::FetchAllPublications200Response, Error<FetchAllPublicationsByUserAndStatusV2Error>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_user_id = user_id;
-    let p_path_status = status;
-    let p_query_paper_title = paper_title;
-
-    let uri_str = format!("{}/api/v2/users/{userId}/publications/{status}", configuration.base_path, userId=p_path_user_id, status=crate::apis::urlencode(p_path_status));
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
-
-    if let Some(ref param_value) = p_query_paper_title {
-        req_builder = req_builder.query(&[("paper_title", &param_value.to_string())]);
-    }
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FetchAllPublications200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::FetchAllPublications200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<FetchAllPublicationsByUserAndStatusV2Error> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent { status, content, entity }))
     }
 }
@@ -963,88 +419,6 @@ pub async fn fetch_publications(configuration: &configuration::Configuration, id
     }
 }
 
-/// Get publication by team id and by id
-pub async fn fetch_publications_by_team_and_by_id_v2(configuration: &configuration::Configuration, team_id: i32, id: i32) -> Result<models::FetchPublications200Response, Error<FetchPublicationsByTeamAndByIdV2Error>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_team_id = team_id;
-    let p_path_id = id;
-
-    let uri_str = format!("{}/api/v2/teams/{teamId}/publications/{id}", configuration.base_path, teamId=p_path_team_id, id=p_path_id);
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FetchPublications200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::FetchPublications200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<FetchPublicationsByTeamAndByIdV2Error> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// Get publication by user id and by id
-pub async fn fetch_publications_by_user_and_by_id_v2(configuration: &configuration::Configuration, user_id: i64, id: i32) -> Result<models::FetchPublications200Response, Error<FetchPublicationsByUserAndByIdV2Error>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_user_id = user_id;
-    let p_path_id = id;
-
-    let uri_str = format!("{}/api/v2/users/{userId}/publications/{id}", configuration.base_path, userId=p_path_user_id, id=p_path_id);
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FetchPublications200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::FetchPublications200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<FetchPublicationsByUserAndByIdV2Error> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
 /// Get publication by id
 pub async fn fetch_publications_v2(configuration: &configuration::Configuration, id: i32) -> Result<models::FetchPublications200Response, Error<FetchPublicationsV2Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
@@ -1124,92 +498,6 @@ pub async fn update_publications(configuration: &configuration::Configuration, i
     } else {
         let content = resp.text().await?;
         let entity: Option<UpdatePublicationsError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// Update publications by team id
-pub async fn update_publications_v2_by_team_id(configuration: &configuration::Configuration, team_id: i32, id: i32, update_publications_request: models::UpdatePublicationsRequest) -> Result<models::FetchPublications200Response, Error<UpdatePublicationsV2ByTeamIdError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_team_id = team_id;
-    let p_path_id = id;
-    let p_body_update_publications_request = update_publications_request;
-
-    let uri_str = format!("{}/api/v2/teams/{teamId}/publications/{id}", configuration.base_path, teamId=p_path_team_id, id=p_path_id);
-    let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-    req_builder = req_builder.json(&p_body_update_publications_request);
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FetchPublications200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::FetchPublications200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<UpdatePublicationsV2ByTeamIdError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// Update publications by user id
-pub async fn update_publications_v2_by_user_id(configuration: &configuration::Configuration, user_id: i64, id: i32, update_publications_request: models::UpdatePublicationsRequest) -> Result<models::FetchPublications200Response, Error<UpdatePublicationsV2ByUserIdError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_user_id = user_id;
-    let p_path_id = id;
-    let p_body_update_publications_request = update_publications_request;
-
-    let uri_str = format!("{}/api/v2/users/{userId}/publications/{id}", configuration.base_path, userId=p_path_user_id, id=p_path_id);
-    let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-    req_builder = req_builder.json(&p_body_update_publications_request);
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FetchPublications200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::FetchPublications200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<UpdatePublicationsV2ByUserIdError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent { status, content, entity }))
     }
 }

@@ -19,8 +19,8 @@ use super::{Error, configuration, ContentType};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteTeamDarTemplateFileError {
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -40,7 +40,7 @@ pub enum TeamDarTemplateCountUniqueFieldsError {
 
 
 /// Delete a file associated with a DAR template
-pub async fn delete_team_dar_template_file(configuration: &configuration::Configuration, team_id: i32, id: i32, file_id: &str) -> Result<models::DeleteAliases200Response, Error<DeleteTeamDarTemplateFileError>> {
+pub async fn delete_team_dar_template_file(configuration: &configuration::Configuration, team_id: i32, id: i32, file_id: &str) -> Result<models::DeleteApplications200Response, Error<DeleteTeamDarTemplateFileError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_team_id = team_id;
     let p_path_id = id;
@@ -71,8 +71,8 @@ pub async fn delete_team_dar_template_file(configuration: &configuration::Config
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteAliases200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteAliases200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteApplications200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteApplications200Response`")))),
         }
     } else {
         let content = resp.text().await?;

@@ -33,14 +33,7 @@ pub enum CountUniqueFieldsDarApplicationsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum FetchTeamDarApplicationError {
-    Status404(models::FetchAliases404Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`fetch_team_dar_application_header`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum FetchTeamDarApplicationHeaderError {
+    Status404(models::UpdateApplications404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -170,47 +163,6 @@ pub async fn fetch_team_dar_application(configuration: &configuration::Configura
     } else {
         let content = resp.text().await?;
         let entity: Option<FetchTeamDarApplicationError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// Get header information about a specific DAR
-pub async fn fetch_team_dar_application_header(configuration: &configuration::Configuration, team_id: i32, id: i32) -> Result<models::FetchTeamDarApplicationHeader200Response, Error<FetchTeamDarApplicationHeaderError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_team_id = team_id;
-    let p_path_id = id;
-
-    let uri_str = format!("{}/api/v1/teams/{teamId}/dar/applications/{id}/showHeader", configuration.base_path, teamId=p_path_team_id, id=p_path_id);
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FetchTeamDarApplicationHeader200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::FetchTeamDarApplicationHeader200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<FetchTeamDarApplicationHeaderError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent { status, content, entity }))
     }
 }

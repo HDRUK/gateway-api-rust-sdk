@@ -49,7 +49,7 @@ Name | Type | Description  | Required | Notes
 
 ## delete_widget
 
-> models::DeleteAliases200Response delete_widget(team_id, id)
+> models::DeleteApplications200Response delete_widget(team_id, id)
 Delete a widget
 
 Soft delete a widget belonging to a specific team
@@ -64,7 +64,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::DeleteAliases200Response**](delete_aliases_200_response.md)
+[**models::DeleteApplications200Response**](delete_applications_200_response.md)
 
 ### Authorization
 

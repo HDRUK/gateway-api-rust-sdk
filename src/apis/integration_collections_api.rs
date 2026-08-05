@@ -19,8 +19,8 @@ use super::{Error, configuration, ContentType};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateCollectionsIntegrationsError {
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -28,8 +28,8 @@ pub enum CreateCollectionsIntegrationsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteCollectionsIntegrationsError {
-    Status404(models::FetchAliases404Response),
-    Status500(models::CreateAliases500Response),
+    Status404(models::UpdateApplications404Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -37,8 +37,8 @@ pub enum DeleteCollectionsIntegrationsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum EditCollectionsIntegrationsError {
-    Status404(models::FetchAliases404Response),
-    Status500(models::CreateAliases500Response),
+    Status404(models::UpdateApplications404Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -60,16 +60,16 @@ pub enum FetchCollectionsIntegrationsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateCollectionsIntegrationsError {
-    Status404(models::FetchAliases404Response),
-    Status500(models::CreateAliases500Response),
+    Status404(models::UpdateApplications404Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
 
 /// Create a new collection
-pub async fn create_collections_integrations(configuration: &configuration::Configuration, update_team_collections_request: models::UpdateTeamCollectionsRequest) -> Result<models::CreateCategories200Response, Error<CreateCollectionsIntegrationsError>> {
+pub async fn create_collections_integrations(configuration: &configuration::Configuration, create_collections_integrations_request: models::CreateCollectionsIntegrationsRequest) -> Result<models::CreateDarIntegration201Response, Error<CreateCollectionsIntegrationsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_update_team_collections_request = update_team_collections_request;
+    let p_body_create_collections_integrations_request = create_collections_integrations_request;
 
     let uri_str = format!("{}/api/v1/integrations/collections", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -80,7 +80,7 @@ pub async fn create_collections_integrations(configuration: &configuration::Conf
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_update_team_collections_request);
+    req_builder = req_builder.json(&p_body_create_collections_integrations_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -97,8 +97,8 @@ pub async fn create_collections_integrations(configuration: &configuration::Conf
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateCategories200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateCategories200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateDarIntegration201Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateDarIntegration201Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -108,7 +108,7 @@ pub async fn create_collections_integrations(configuration: &configuration::Conf
 }
 
 /// Delete a collection
-pub async fn delete_collections_integrations(configuration: &configuration::Configuration, id: i32) -> Result<models::DeleteAliases200Response, Error<DeleteCollectionsIntegrationsError>> {
+pub async fn delete_collections_integrations(configuration: &configuration::Configuration, id: i32) -> Result<models::DeleteApplications200Response, Error<DeleteCollectionsIntegrationsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_id = id;
 
@@ -137,8 +137,8 @@ pub async fn delete_collections_integrations(configuration: &configuration::Conf
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteAliases200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteAliases200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteApplications200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteApplications200Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -148,10 +148,10 @@ pub async fn delete_collections_integrations(configuration: &configuration::Conf
 }
 
 /// Edit a collection
-pub async fn edit_collections_integrations(configuration: &configuration::Configuration, id: i32, update_team_collections_request: models::UpdateTeamCollectionsRequest) -> Result<models::FetchCollections200Response, Error<EditCollectionsIntegrationsError>> {
+pub async fn edit_collections_integrations(configuration: &configuration::Configuration, id: i32, create_collections_integrations_request: models::CreateCollectionsIntegrationsRequest) -> Result<models::FetchCollections200Response, Error<EditCollectionsIntegrationsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_id = id;
-    let p_body_update_team_collections_request = update_team_collections_request;
+    let p_body_create_collections_integrations_request = create_collections_integrations_request;
 
     let uri_str = format!("{}/api/v1/integrations/collections/{id}", configuration.base_path, id=p_path_id);
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
@@ -162,7 +162,7 @@ pub async fn edit_collections_integrations(configuration: &configuration::Config
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_update_team_collections_request);
+    req_builder = req_builder.json(&p_body_create_collections_integrations_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -277,10 +277,10 @@ pub async fn fetch_collections_integrations(configuration: &configuration::Confi
 }
 
 /// Update a collection
-pub async fn update_collections_integrations(configuration: &configuration::Configuration, id: i32, update_team_collections_request: models::UpdateTeamCollectionsRequest) -> Result<models::FetchCollections200Response, Error<UpdateCollectionsIntegrationsError>> {
+pub async fn update_collections_integrations(configuration: &configuration::Configuration, id: i32, create_collections_integrations_request: models::CreateCollectionsIntegrationsRequest) -> Result<models::FetchCollections200Response, Error<UpdateCollectionsIntegrationsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_id = id;
-    let p_body_update_team_collections_request = update_team_collections_request;
+    let p_body_create_collections_integrations_request = create_collections_integrations_request;
 
     let uri_str = format!("{}/api/v1/integrations/collections/{id}", configuration.base_path, id=p_path_id);
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
@@ -291,7 +291,7 @@ pub async fn update_collections_integrations(configuration: &configuration::Conf
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_update_team_collections_request);
+    req_builder = req_builder.json(&p_body_create_collections_integrations_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;

@@ -15,13 +15,6 @@ use crate::{apis::ResponseContent, models};
 use super::{Error, configuration, ContentType};
 
 
-/// struct for typed errors of method [`count_team_unique_fields_datasets_v2`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum CountTeamUniqueFieldsDatasetsV2Error {
-    UnknownValue(serde_json::Value),
-}
-
 /// struct for typed errors of method [`count_unique_fields`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -33,8 +26,8 @@ pub enum CountUniqueFieldsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateDatasetsError {
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -42,8 +35,8 @@ pub enum CreateDatasetsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateDatasetsIntegrationsError {
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -67,8 +60,8 @@ pub enum CreateDatasetsTermExtractionError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateDatasetsV2Error {
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -76,8 +69,8 @@ pub enum CreateDatasetsV2Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateTeamDatasetsV2Error {
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -85,8 +78,8 @@ pub enum CreateTeamDatasetsV2Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteDatasetsError {
-    Status404(models::FetchAliases404Response),
-    Status500(models::CreateAliases500Response),
+    Status404(models::UpdateApplications404Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -94,8 +87,8 @@ pub enum DeleteDatasetsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteDatasetsIntegrationsError {
-    Status404(models::FetchAliases404Response),
-    Status500(models::CreateAliases500Response),
+    Status404(models::UpdateApplications404Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -103,8 +96,8 @@ pub enum DeleteDatasetsIntegrationsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteDatasetsV2Error {
-    Status404(models::FetchAliases404Response),
-    Status500(models::CreateAliases500Response),
+    Status404(models::UpdateApplications404Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -112,8 +105,8 @@ pub enum DeleteDatasetsV2Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteTeamDatasetsV2Error {
-    Status404(models::FetchAliases404Response),
-    Status500(models::CreateAliases500Response),
+    Status404(models::UpdateApplications404Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -129,7 +122,7 @@ pub enum ExportDatasetMetadataError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ExportDatasetsError {
-    Status401(models::CreateTeamCollections401Response),
+    Status401(models::FetchAllDarIntegrations401Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -137,7 +130,7 @@ pub enum ExportDatasetsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ExportDurError {
-    Status401(models::CreateTeamCollections401Response),
+    Status401(models::FetchAllDarIntegrations401Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -145,7 +138,7 @@ pub enum ExportDurError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ExportMockDatasetError {
-    Status401(models::CreateTeamCollections401Response),
+    Status401(models::FetchAllDarIntegrations401Response),
     Status404(models::ExportMockDataset404Response),
     UnknownValue(serde_json::Value),
 }
@@ -154,7 +147,7 @@ pub enum ExportMockDatasetError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ExportMockDatasetV2Error {
-    Status401(models::CreateTeamCollections401Response),
+    Status401(models::FetchAllDarIntegrations401Response),
     Status404(models::ExportMockDataset404Response),
     UnknownValue(serde_json::Value),
 }
@@ -184,8 +177,8 @@ pub enum FetchAllDatasetsV2Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum FetchDatasetsError {
-    Status401(models::CreateTeamCollections401Response),
-    Status404(models::FetchAliases404Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status404(models::UpdateApplications404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -193,8 +186,8 @@ pub enum FetchDatasetsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum FetchDatasetsIntegrationsError {
-    Status401(models::CreateTeamCollections401Response),
-    Status404(models::FetchAliases404Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status404(models::UpdateApplications404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -202,24 +195,8 @@ pub enum FetchDatasetsIntegrationsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum FetchDatasetsV2Error {
-    Status401(models::CreateTeamCollections401Response),
-    Status404(models::FetchAliases404Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`fetch_team_datasets_status`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum FetchTeamDatasetsStatusError {
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`fetch_team_datasets_v2`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum FetchTeamDatasetsV2Error {
-    Status401(models::CreateTeamCollections401Response),
-    Status404(models::FetchAliases404Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status404(models::UpdateApplications404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -227,7 +204,7 @@ pub enum FetchTeamDatasetsV2Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PatchDatasetsError {
-    Status500(models::CreateAliases500Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -235,7 +212,7 @@ pub enum PatchDatasetsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PatchDatasetsIntegrationsError {
-    Status500(models::CreateAliases500Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -243,7 +220,7 @@ pub enum PatchDatasetsIntegrationsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PatchDatasetsV2Error {
-    Status500(models::CreateAliases500Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -251,7 +228,7 @@ pub enum PatchDatasetsV2Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PatchTeamDatasetsV2Error {
-    Status500(models::CreateAliases500Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -259,8 +236,8 @@ pub enum PatchTeamDatasetsV2Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateDatasetsError {
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -268,8 +245,8 @@ pub enum UpdateDatasetsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateDatasetsIntegrationsError {
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -277,8 +254,8 @@ pub enum UpdateDatasetsIntegrationsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateDatasetsV2Error {
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -286,52 +263,11 @@ pub enum UpdateDatasetsV2Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateTeamDatasetsV2Error {
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
-
-/// Get team counts for distinct entries of a field in the model
-pub async fn count_team_unique_fields_datasets_v2(configuration: &configuration::Configuration, team_id: i32, field: &str) -> Result<models::CountUniqueFieldsCollections200Response, Error<CountTeamUniqueFieldsDatasetsV2Error>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_team_id = team_id;
-    let p_path_field = field;
-
-    let uri_str = format!("{}/api/v2/teams/{teamId}/datasets/count/{field}", configuration.base_path, teamId=p_path_team_id, field=crate::apis::urlencode(p_path_field));
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CountUniqueFieldsCollections200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CountUniqueFieldsCollections200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<CountTeamUniqueFieldsDatasetsV2Error> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
 
 /// Get Counts for distinct entries of a field in the model
 #[deprecated]
@@ -378,7 +314,7 @@ pub async fn count_unique_fields(configuration: &configuration::Configuration, f
 
 /// Create a new dataset
 #[deprecated]
-pub async fn create_datasets(configuration: &configuration::Configuration, create_datasets_request: models::CreateDatasetsRequest) -> Result<models::CreateCategories200Response, Error<CreateDatasetsError>> {
+pub async fn create_datasets(configuration: &configuration::Configuration, create_datasets_request: models::CreateDatasetsRequest) -> Result<models::CreateDarIntegration201Response, Error<CreateDatasetsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_body_create_datasets_request = create_datasets_request;
 
@@ -408,8 +344,8 @@ pub async fn create_datasets(configuration: &configuration::Configuration, creat
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateCategories200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateCategories200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateDarIntegration201Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateDarIntegration201Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -420,7 +356,7 @@ pub async fn create_datasets(configuration: &configuration::Configuration, creat
 
 /// Create a new dataset
 #[deprecated]
-pub async fn create_datasets_integrations(configuration: &configuration::Configuration, datasets_test_request: models::DatasetsTestRequest, input_schema: Option<&str>, input_version: Option<&str>) -> Result<models::CreateCategories200Response, Error<CreateDatasetsIntegrationsError>> {
+pub async fn create_datasets_integrations(configuration: &configuration::Configuration, datasets_test_request: models::DatasetsTestRequest, input_schema: Option<&str>, input_version: Option<&str>) -> Result<models::CreateDarIntegration201Response, Error<CreateDatasetsIntegrationsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_body_datasets_test_request = datasets_test_request;
     let p_query_input_schema = input_schema;
@@ -458,8 +394,8 @@ pub async fn create_datasets_integrations(configuration: &configuration::Configu
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateCategories200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateCategories200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateDarIntegration201Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateDarIntegration201Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -551,7 +487,7 @@ pub async fn create_datasets_term_extraction(configuration: &configuration::Conf
 }
 
 /// Create a new dataset
-pub async fn create_datasets_v2(configuration: &configuration::Configuration, create_datasets_v2_request: models::CreateDatasetsV2Request) -> Result<models::CreateCategories200Response, Error<CreateDatasetsV2Error>> {
+pub async fn create_datasets_v2(configuration: &configuration::Configuration, create_datasets_v2_request: models::CreateDatasetsV2Request) -> Result<models::CreateDarIntegration201Response, Error<CreateDatasetsV2Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_body_create_datasets_v2_request = create_datasets_v2_request;
 
@@ -581,8 +517,8 @@ pub async fn create_datasets_v2(configuration: &configuration::Configuration, cr
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateCategories200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateCategories200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateDarIntegration201Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateDarIntegration201Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -592,7 +528,7 @@ pub async fn create_datasets_v2(configuration: &configuration::Configuration, cr
 }
 
 /// Create a new dataset for a team
-pub async fn create_team_datasets_v2(configuration: &configuration::Configuration, team_id: i32, create_team_datasets_v2_request: models::CreateTeamDatasetsV2Request) -> Result<models::CreateCategories200Response, Error<CreateTeamDatasetsV2Error>> {
+pub async fn create_team_datasets_v2(configuration: &configuration::Configuration, team_id: i32, create_team_datasets_v2_request: models::CreateTeamDatasetsV2Request) -> Result<models::CreateDarIntegration201Response, Error<CreateTeamDatasetsV2Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_team_id = team_id;
     let p_body_create_team_datasets_v2_request = create_team_datasets_v2_request;
@@ -623,8 +559,8 @@ pub async fn create_team_datasets_v2(configuration: &configuration::Configuratio
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateCategories200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateCategories200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateDarIntegration201Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateDarIntegration201Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -635,7 +571,7 @@ pub async fn create_team_datasets_v2(configuration: &configuration::Configuratio
 
 /// Delete a dataset
 #[deprecated]
-pub async fn delete_datasets(configuration: &configuration::Configuration, id: i32) -> Result<models::DeleteAliases200Response, Error<DeleteDatasetsError>> {
+pub async fn delete_datasets(configuration: &configuration::Configuration, id: i32) -> Result<models::DeleteApplications200Response, Error<DeleteDatasetsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_id = id;
 
@@ -664,8 +600,8 @@ pub async fn delete_datasets(configuration: &configuration::Configuration, id: i
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteAliases200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteAliases200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteApplications200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteApplications200Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -676,7 +612,7 @@ pub async fn delete_datasets(configuration: &configuration::Configuration, id: i
 
 /// Delete a dataset
 #[deprecated]
-pub async fn delete_datasets_integrations(configuration: &configuration::Configuration, id: i32) -> Result<models::DeleteAliases200Response, Error<DeleteDatasetsIntegrationsError>> {
+pub async fn delete_datasets_integrations(configuration: &configuration::Configuration, id: i32) -> Result<models::DeleteApplications200Response, Error<DeleteDatasetsIntegrationsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_id = id;
 
@@ -705,8 +641,8 @@ pub async fn delete_datasets_integrations(configuration: &configuration::Configu
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteAliases200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteAliases200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteApplications200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteApplications200Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -716,7 +652,7 @@ pub async fn delete_datasets_integrations(configuration: &configuration::Configu
 }
 
 /// Delete a dataset
-pub async fn delete_datasets_v2(configuration: &configuration::Configuration, id: i32) -> Result<models::DeleteAliases200Response, Error<DeleteDatasetsV2Error>> {
+pub async fn delete_datasets_v2(configuration: &configuration::Configuration, id: i32) -> Result<models::DeleteApplications200Response, Error<DeleteDatasetsV2Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_id = id;
 
@@ -745,8 +681,8 @@ pub async fn delete_datasets_v2(configuration: &configuration::Configuration, id
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteAliases200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteAliases200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteApplications200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteApplications200Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -756,7 +692,7 @@ pub async fn delete_datasets_v2(configuration: &configuration::Configuration, id
 }
 
 /// Delete a team's dataset
-pub async fn delete_team_datasets_v2(configuration: &configuration::Configuration, team_id: i32, id: i32) -> Result<models::DeleteAliases200Response, Error<DeleteTeamDatasetsV2Error>> {
+pub async fn delete_team_datasets_v2(configuration: &configuration::Configuration, team_id: i32, id: i32) -> Result<models::DeleteApplications200Response, Error<DeleteTeamDatasetsV2Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_team_id = team_id;
     let p_path_id = id;
@@ -786,8 +722,8 @@ pub async fn delete_team_datasets_v2(configuration: &configuration::Configuratio
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteAliases200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteAliases200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteApplications200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteApplications200Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -1335,111 +1271,9 @@ pub async fn fetch_datasets_v2(configuration: &configuration::Configuration, id:
     }
 }
 
-/// Returns a list of a team's datasets with the given status
-pub async fn fetch_team_datasets_status(configuration: &configuration::Configuration, team_id: i32, status: &str, sort: Option<&str>, with_metadata: Option<&str>) -> Result<models::FetchAllDatasets200Response, Error<FetchTeamDatasetsStatusError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_team_id = team_id;
-    let p_path_status = status;
-    let p_query_sort = sort;
-    let p_query_with_metadata = with_metadata;
-
-    let uri_str = format!("{}/api/v2/teams/{teamId}/datasets/status/{status}", configuration.base_path, teamId=p_path_team_id, status=crate::apis::urlencode(p_path_status));
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
-
-    if let Some(ref param_value) = p_query_sort {
-        req_builder = req_builder.query(&[("sort", &param_value.to_string())]);
-    }
-    if let Some(ref param_value) = p_query_with_metadata {
-        req_builder = req_builder.query(&[("with_metadata", &param_value.to_string())]);
-    }
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FetchAllDatasets200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::FetchAllDatasets200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<FetchTeamDatasetsStatusError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// Get dataset by id
-pub async fn fetch_team_datasets_v2(configuration: &configuration::Configuration, team_id: i32, id: i32, export: Option<&str>, schema_model: Option<&str>, schema_version: Option<&str>) -> Result<models::FetchDatasets200Response, Error<FetchTeamDatasetsV2Error>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_team_id = team_id;
-    let p_path_id = id;
-    let p_query_export = export;
-    let p_query_schema_model = schema_model;
-    let p_query_schema_version = schema_version;
-
-    let uri_str = format!("{}/api/v2/teams/{teamId}/datasets/{id}", configuration.base_path, teamId=p_path_team_id, id=p_path_id);
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
-
-    if let Some(ref param_value) = p_query_export {
-        req_builder = req_builder.query(&[("export", &param_value.to_string())]);
-    }
-    if let Some(ref param_value) = p_query_schema_model {
-        req_builder = req_builder.query(&[("schema_model", &param_value.to_string())]);
-    }
-    if let Some(ref param_value) = p_query_schema_version {
-        req_builder = req_builder.query(&[("schema_version", &param_value.to_string())]);
-    }
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FetchDatasets200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::FetchDatasets200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<FetchTeamDatasetsV2Error> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
 /// Patch dataset by id
 #[deprecated]
-pub async fn patch_datasets(configuration: &configuration::Configuration, id: i32, unarchive: Option<&str>) -> Result<models::DeleteAliases200Response, Error<PatchDatasetsError>> {
+pub async fn patch_datasets(configuration: &configuration::Configuration, id: i32, unarchive: Option<&str>) -> Result<models::DeleteApplications200Response, Error<PatchDatasetsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_id = id;
     let p_query_unarchive = unarchive;
@@ -1472,8 +1306,8 @@ pub async fn patch_datasets(configuration: &configuration::Configuration, id: i3
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteAliases200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteAliases200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteApplications200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteApplications200Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -1484,7 +1318,7 @@ pub async fn patch_datasets(configuration: &configuration::Configuration, id: i3
 
 /// Patch dataset by id
 #[deprecated]
-pub async fn patch_datasets_integrations(configuration: &configuration::Configuration, id: i32, unarchive: Option<&str>) -> Result<models::DeleteAliases200Response, Error<PatchDatasetsIntegrationsError>> {
+pub async fn patch_datasets_integrations(configuration: &configuration::Configuration, id: i32, unarchive: Option<&str>) -> Result<models::DeleteApplications200Response, Error<PatchDatasetsIntegrationsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_id = id;
     let p_query_unarchive = unarchive;
@@ -1517,8 +1351,8 @@ pub async fn patch_datasets_integrations(configuration: &configuration::Configur
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteAliases200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteAliases200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteApplications200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteApplications200Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -1528,7 +1362,7 @@ pub async fn patch_datasets_integrations(configuration: &configuration::Configur
 }
 
 /// Patch dataset by id
-pub async fn patch_datasets_v2(configuration: &configuration::Configuration, id: i32, patch_datasets_v2_request: models::PatchDatasetsV2Request) -> Result<models::DeleteAliases200Response, Error<PatchDatasetsV2Error>> {
+pub async fn patch_datasets_v2(configuration: &configuration::Configuration, id: i32, patch_datasets_v2_request: models::PatchDatasetsV2Request) -> Result<models::DeleteApplications200Response, Error<PatchDatasetsV2Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_id = id;
     let p_body_patch_datasets_v2_request = patch_datasets_v2_request;
@@ -1559,8 +1393,8 @@ pub async fn patch_datasets_v2(configuration: &configuration::Configuration, id:
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteAliases200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteAliases200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteApplications200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteApplications200Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -1570,7 +1404,7 @@ pub async fn patch_datasets_v2(configuration: &configuration::Configuration, id:
 }
 
 /// Edit a dataset owned by a team
-pub async fn patch_team_datasets_v2(configuration: &configuration::Configuration, team_id: i32, id: i32, patch_datasets_v2_request: models::PatchDatasetsV2Request) -> Result<models::DeleteAliases200Response, Error<PatchTeamDatasetsV2Error>> {
+pub async fn patch_team_datasets_v2(configuration: &configuration::Configuration, team_id: i32, id: i32, patch_datasets_v2_request: models::PatchDatasetsV2Request) -> Result<models::DeleteApplications200Response, Error<PatchTeamDatasetsV2Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_team_id = team_id;
     let p_path_id = id;
@@ -1602,8 +1436,8 @@ pub async fn patch_team_datasets_v2(configuration: &configuration::Configuration
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteAliases200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteAliases200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteApplications200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteApplications200Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -1614,7 +1448,7 @@ pub async fn patch_team_datasets_v2(configuration: &configuration::Configuration
 
 /// Update a dataset with a new dataset version
 #[deprecated]
-pub async fn update_datasets(configuration: &configuration::Configuration, id: i32, update_datasets_request: models::UpdateDatasetsRequest) -> Result<models::CreateCategories200Response, Error<UpdateDatasetsError>> {
+pub async fn update_datasets(configuration: &configuration::Configuration, id: i32, update_datasets_request: models::UpdateDatasetsRequest) -> Result<models::CreateDarIntegration201Response, Error<UpdateDatasetsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_id = id;
     let p_body_update_datasets_request = update_datasets_request;
@@ -1645,8 +1479,8 @@ pub async fn update_datasets(configuration: &configuration::Configuration, id: i
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateCategories200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateCategories200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateDarIntegration201Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateDarIntegration201Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -1707,7 +1541,7 @@ pub async fn update_datasets_integrations(configuration: &configuration::Configu
 }
 
 /// Update a dataset with a new dataset version
-pub async fn update_datasets_v2(configuration: &configuration::Configuration, id: i32, update_datasets_request: models::UpdateDatasetsRequest) -> Result<models::CreateCategories200Response, Error<UpdateDatasetsV2Error>> {
+pub async fn update_datasets_v2(configuration: &configuration::Configuration, id: i32, update_datasets_request: models::UpdateDatasetsRequest) -> Result<models::CreateDarIntegration201Response, Error<UpdateDatasetsV2Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_id = id;
     let p_body_update_datasets_request = update_datasets_request;
@@ -1738,8 +1572,8 @@ pub async fn update_datasets_v2(configuration: &configuration::Configuration, id
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateCategories200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateCategories200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateDarIntegration201Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateDarIntegration201Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -1749,7 +1583,7 @@ pub async fn update_datasets_v2(configuration: &configuration::Configuration, id
 }
 
 /// Update a team dataset with a new dataset version
-pub async fn update_team_datasets_v2(configuration: &configuration::Configuration, team_id: i32, id: i32, patch_datasets_v2_request: models::PatchDatasetsV2Request) -> Result<models::CreateCategories200Response, Error<UpdateTeamDatasetsV2Error>> {
+pub async fn update_team_datasets_v2(configuration: &configuration::Configuration, team_id: i32, id: i32, patch_datasets_v2_request: models::PatchDatasetsV2Request) -> Result<models::CreateDarIntegration201Response, Error<UpdateTeamDatasetsV2Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_team_id = team_id;
     let p_path_id = id;
@@ -1781,8 +1615,8 @@ pub async fn update_team_datasets_v2(configuration: &configuration::Configuratio
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateCategories200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateCategories200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateDarIntegration201Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateDarIntegration201Response`")))),
         }
     } else {
         let content = resp.text().await?;

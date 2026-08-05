@@ -19,7 +19,7 @@ use super::{Error, configuration, ContentType};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateProgrammingLanguagesError {
-    Status500(models::CreateAliases500Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -27,8 +27,8 @@ pub enum CreateProgrammingLanguagesError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteProgrammingLanguagesError {
-    Status404(models::FetchAliases404Response),
-    Status500(models::CreateAliases500Response),
+    Status404(models::UpdateApplications404Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -36,23 +36,8 @@ pub enum DeleteProgrammingLanguagesError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum EditProgrammingLanguagesError {
-    Status404(models::FetchAliases404Response),
-    Status500(models::CreateAliases500Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`fetch_all_programming_languages`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum FetchAllProgrammingLanguagesError {
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`fetch_programming_languages`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum FetchProgrammingLanguagesError {
-    Status404(models::FetchAliases404Response),
+    Status404(models::UpdateApplications404Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -60,16 +45,16 @@ pub enum FetchProgrammingLanguagesError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateProgrammingLanguagesError {
-    Status404(models::FetchAliases404Response),
-    Status500(models::CreateAliases500Response),
+    Status404(models::UpdateApplications404Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
 
 /// Creates a new system programming language
-pub async fn create_programming_languages(configuration: &configuration::Configuration, create_categories_request: models::CreateCategoriesRequest) -> Result<models::CreateCategories200Response, Error<CreateProgrammingLanguagesError>> {
+pub async fn create_programming_languages(configuration: &configuration::Configuration, create_programming_languages_request: models::CreateProgrammingLanguagesRequest) -> Result<models::CreateDarIntegration201Response, Error<CreateProgrammingLanguagesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_create_categories_request = create_categories_request;
+    let p_body_create_programming_languages_request = create_programming_languages_request;
 
     let uri_str = format!("{}/api/v1/programming_languages", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -80,7 +65,7 @@ pub async fn create_programming_languages(configuration: &configuration::Configu
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_create_categories_request);
+    req_builder = req_builder.json(&p_body_create_programming_languages_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -97,8 +82,8 @@ pub async fn create_programming_languages(configuration: &configuration::Configu
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateCategories200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateCategories200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateDarIntegration201Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateDarIntegration201Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -108,7 +93,7 @@ pub async fn create_programming_languages(configuration: &configuration::Configu
 }
 
 /// Delete a system programming language
-pub async fn delete_programming_languages(configuration: &configuration::Configuration, id: i32) -> Result<models::DeleteAliases200Response, Error<DeleteProgrammingLanguagesError>> {
+pub async fn delete_programming_languages(configuration: &configuration::Configuration, id: i32) -> Result<models::DeleteApplications200Response, Error<DeleteProgrammingLanguagesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_id = id;
 
@@ -137,8 +122,8 @@ pub async fn delete_programming_languages(configuration: &configuration::Configu
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteAliases200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteAliases200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteApplications200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteApplications200Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -148,10 +133,10 @@ pub async fn delete_programming_languages(configuration: &configuration::Configu
 }
 
 /// Edit a system programming language
-pub async fn edit_programming_languages(configuration: &configuration::Configuration, id: i32, edit_categories_request: models::EditCategoriesRequest) -> Result<models::UpdateProgrammingLanguages200Response, Error<EditProgrammingLanguagesError>> {
+pub async fn edit_programming_languages(configuration: &configuration::Configuration, id: i32, edit_programming_languages_request: models::EditProgrammingLanguagesRequest) -> Result<models::UpdateProgrammingLanguages200Response, Error<EditProgrammingLanguagesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_id = id;
-    let p_body_edit_categories_request = edit_categories_request;
+    let p_body_edit_programming_languages_request = edit_programming_languages_request;
 
     let uri_str = format!("{}/api/v1/programming_languages/{id}", configuration.base_path, id=p_path_id);
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
@@ -162,7 +147,7 @@ pub async fn edit_programming_languages(configuration: &configuration::Configura
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_edit_categories_request);
+    req_builder = req_builder.json(&p_body_edit_programming_languages_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -189,89 +174,11 @@ pub async fn edit_programming_languages(configuration: &configuration::Configura
     }
 }
 
-/// Returns a list of programming languages enabled on the system
-pub async fn fetch_all_programming_languages(configuration: &configuration::Configuration, ) -> Result<models::FetchAllProgrammingLanguages200Response, Error<FetchAllProgrammingLanguagesError>> {
-
-    let uri_str = format!("{}/api/v1/programming_languages", configuration.base_path);
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FetchAllProgrammingLanguages200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::FetchAllProgrammingLanguages200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<FetchAllProgrammingLanguagesError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// Return a single system programming language
-pub async fn fetch_programming_languages(configuration: &configuration::Configuration, id: i32) -> Result<models::FetchProgrammingLanguages200Response, Error<FetchProgrammingLanguagesError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/api/v1/programming_languages/{id}", configuration.base_path, id=p_path_id);
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FetchProgrammingLanguages200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::FetchProgrammingLanguages200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<FetchProgrammingLanguagesError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
 /// Update a system programming language
-pub async fn update_programming_languages(configuration: &configuration::Configuration, id: i32, update_categories_request: models::UpdateCategoriesRequest) -> Result<models::UpdateProgrammingLanguages200Response, Error<UpdateProgrammingLanguagesError>> {
+pub async fn update_programming_languages(configuration: &configuration::Configuration, id: i32, update_programming_languages_request: models::UpdateProgrammingLanguagesRequest) -> Result<models::UpdateProgrammingLanguages200Response, Error<UpdateProgrammingLanguagesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_id = id;
-    let p_body_update_categories_request = update_categories_request;
+    let p_body_update_programming_languages_request = update_programming_languages_request;
 
     let uri_str = format!("{}/api/v1/programming_languages/{id}", configuration.base_path, id=p_path_id);
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
@@ -282,7 +189,7 @@ pub async fn update_programming_languages(configuration: &configuration::Configu
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_update_categories_request);
+    req_builder = req_builder.json(&p_body_update_programming_languages_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;

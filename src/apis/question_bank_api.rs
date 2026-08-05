@@ -19,7 +19,7 @@ use super::{Error, configuration, ContentType};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateQuestionBankQuestionError {
-    Status500(models::CreateAliases500Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -27,8 +27,8 @@ pub enum CreateQuestionBankQuestionError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteQuestionBankQuestionError {
-    Status404(models::FetchAliases404Response),
-    Status500(models::CreateAliases500Response),
+    Status404(models::UpdateApplications404Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -36,8 +36,8 @@ pub enum DeleteQuestionBankQuestionError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DownloadQuestionBankQuestionFileError {
-    Status404(models::FetchAliases404Response),
-    Status500(models::CreateAliases500Response),
+    Status404(models::UpdateApplications404Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -45,8 +45,8 @@ pub enum DownloadQuestionBankQuestionFileError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum EditQuestionBankQuestionError {
-    Status404(models::FetchAliases404Response),
-    Status500(models::CreateAliases500Response),
+    Status404(models::UpdateApplications404Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -75,7 +75,7 @@ pub enum FetchQuestionBankQuestionError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum FetchQuestionBankQuestionVersionError {
-    Status404(models::FetchAliases404Response),
+    Status404(models::UpdateApplications404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -104,8 +104,8 @@ pub enum FetchTeamQuestionBankQuestionsBySectionError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateQuestionBankQuestionError {
-    Status404(models::FetchAliases404Response),
-    Status500(models::CreateAliases500Response),
+    Status404(models::UpdateApplications404Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -113,14 +113,14 @@ pub enum UpdateQuestionBankQuestionError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateQuestionBankQuestionStatusError {
-    Status404(models::FetchAliases404Response),
-    Status500(models::CreateAliases500Response),
+    Status404(models::UpdateApplications404Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
 
 /// Create a new system question bank question with FE-helpful input format
-pub async fn create_question_bank_question(configuration: &configuration::Configuration, create_question_bank_question_request: models::CreateQuestionBankQuestionRequest) -> Result<models::CreateCategories200Response, Error<CreateQuestionBankQuestionError>> {
+pub async fn create_question_bank_question(configuration: &configuration::Configuration, create_question_bank_question_request: models::CreateQuestionBankQuestionRequest) -> Result<models::CreateDarIntegration201Response, Error<CreateQuestionBankQuestionError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_body_create_question_bank_question_request = create_question_bank_question_request;
 
@@ -150,8 +150,8 @@ pub async fn create_question_bank_question(configuration: &configuration::Config
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateCategories200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateCategories200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateDarIntegration201Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateDarIntegration201Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -161,7 +161,7 @@ pub async fn create_question_bank_question(configuration: &configuration::Config
 }
 
 /// Delete a system question bank question
-pub async fn delete_question_bank_question(configuration: &configuration::Configuration, id: i32) -> Result<models::DeleteAliases200Response, Error<DeleteQuestionBankQuestionError>> {
+pub async fn delete_question_bank_question(configuration: &configuration::Configuration, id: i32) -> Result<models::DeleteApplications200Response, Error<DeleteQuestionBankQuestionError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_id = id;
 
@@ -190,8 +190,8 @@ pub async fn delete_question_bank_question(configuration: &configuration::Config
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteAliases200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteAliases200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteApplications200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteApplications200Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -201,7 +201,7 @@ pub async fn delete_question_bank_question(configuration: &configuration::Config
 }
 
 /// Download a system question bank question
-pub async fn download_question_bank_question_file(configuration: &configuration::Configuration, id: i32, file_id: i32) -> Result<models::DeleteAliases200Response, Error<DownloadQuestionBankQuestionFileError>> {
+pub async fn download_question_bank_question_file(configuration: &configuration::Configuration, id: i32, file_id: i32) -> Result<models::DeleteApplications200Response, Error<DownloadQuestionBankQuestionFileError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_id = id;
     let p_path_file_id = file_id;
@@ -231,8 +231,8 @@ pub async fn download_question_bank_question_file(configuration: &configuration:
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteAliases200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteAliases200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteApplications200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteApplications200Response`")))),
         }
     } else {
         let content = resp.text().await?;

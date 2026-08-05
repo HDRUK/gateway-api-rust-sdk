@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 ## create_federation_team
 
-> models::CreateCategories200Response create_federation_team(team_id, create_federation_team_request)
+> models::CreateDarIntegration201Response create_federation_team(team_id, create_federation_team_request)
 FederationController@store
 
 Create federation
@@ -33,7 +33,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::CreateCategories200Response**](create_categories_200_response.md)
+[**models::CreateDarIntegration201Response**](create_dar_integration_201_response.md)
 
 ### Authorization
 
@@ -80,7 +80,7 @@ Name | Type | Description  | Required | Notes
 
 ## edit_federation_team
 
-> models::CreateCategories200Response edit_federation_team(team_id, federation_id, create_federation_team_request)
+> models::CreateDarIntegration201Response edit_federation_team(team_id, federation_id, create_federation_team_request)
 FederationController@edit
 
 Edit federation for team
@@ -96,7 +96,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::CreateCategories200Response**](create_categories_200_response.md)
+[**models::CreateDarIntegration201Response**](create_dar_integration_201_response.md)
 
 ### Authorization
 
@@ -266,7 +266,7 @@ Name | Type | Description  | Required | Notes
 
 ## update_federation_team
 
-> models::CreateCategories200Response update_federation_team(team_id, federation_id, update_federation_team_request)
+> models::CreateDarIntegration201Response update_federation_team(team_id, federation_id, update_federation_team_request)
 FederationController@update
 
 Update federation for team
@@ -282,7 +282,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::CreateCategories200Response**](create_categories_200_response.md)
+[**models::CreateDarIntegration201Response**](create_dar_integration_201_response.md)
 
 ### Authorization
 

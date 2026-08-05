@@ -24,13 +24,13 @@ pub struct CreateCollectionsRequest {
     #[serde(rename = "keywords", skip_serializing_if = "Option::is_none")]
     pub keywords: Option<Vec<String>>,
     #[serde(rename = "datasets", skip_serializing_if = "Option::is_none")]
-    pub datasets: Option<Vec<models::CreateTeamCollectionsRequestDatasetsInner>>,
+    pub datasets: Option<Vec<models::CreateCollectionsIntegrationsRequestDatasetsInner>>,
     #[serde(rename = "tools", skip_serializing_if = "Option::is_none")]
-    pub tools: Option<Vec<models::CreateTeamCollectionsRequestDatasetsInner>>,
+    pub tools: Option<Vec<models::CreateCollectionsIntegrationsRequestDatasetsInner>>,
     #[serde(rename = "dur", skip_serializing_if = "Option::is_none")]
-    pub dur: Option<Vec<models::CreateTeamCollectionsRequestDatasetsInner>>,
+    pub dur: Option<Vec<models::CreateCollectionsIntegrationsRequestDatasetsInner>>,
     #[serde(rename = "publications", skip_serializing_if = "Option::is_none")]
-    pub publications: Option<Vec<models::CreateTeamCollectionsRequestDatasetsInner>>,
+    pub publications: Option<Vec<models::CreateCollectionsIntegrationsRequestDatasetsInner>>,
     #[serde(rename = "collaborators", skip_serializing_if = "Option::is_none")]
     pub collaborators: Option<Vec<i32>>,
     #[serde(rename = "public", skip_serializing_if = "Option::is_none")]

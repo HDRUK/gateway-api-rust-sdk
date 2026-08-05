@@ -19,8 +19,8 @@ use super::{Error, configuration, ContentType};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateFederationTeamError {
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -29,8 +29,8 @@ pub enum CreateFederationTeamError {
 #[serde(untagged)]
 pub enum DeleteFederationError {
     Status404(models::DeleteFederation404Response),
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -38,8 +38,8 @@ pub enum DeleteFederationError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum EditFederationTeamError {
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -82,14 +82,14 @@ pub enum TestFederationError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateFederationTeamError {
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
 
 /// Create federation
-pub async fn create_federation_team(configuration: &configuration::Configuration, team_id: i32, create_federation_team_request: models::CreateFederationTeamRequest) -> Result<models::CreateCategories200Response, Error<CreateFederationTeamError>> {
+pub async fn create_federation_team(configuration: &configuration::Configuration, team_id: i32, create_federation_team_request: models::CreateFederationTeamRequest) -> Result<models::CreateDarIntegration201Response, Error<CreateFederationTeamError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_team_id = team_id;
     let p_body_create_federation_team_request = create_federation_team_request;
@@ -120,8 +120,8 @@ pub async fn create_federation_team(configuration: &configuration::Configuration
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateCategories200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateCategories200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateDarIntegration201Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateDarIntegration201Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -172,7 +172,7 @@ pub async fn delete_federation(configuration: &configuration::Configuration, tea
 }
 
 /// Edit federation for team
-pub async fn edit_federation_team(configuration: &configuration::Configuration, team_id: i32, federation_id: i32, create_federation_team_request: models::CreateFederationTeamRequest) -> Result<models::CreateCategories200Response, Error<EditFederationTeamError>> {
+pub async fn edit_federation_team(configuration: &configuration::Configuration, team_id: i32, federation_id: i32, create_federation_team_request: models::CreateFederationTeamRequest) -> Result<models::CreateDarIntegration201Response, Error<EditFederationTeamError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_team_id = team_id;
     let p_path_federation_id = federation_id;
@@ -204,8 +204,8 @@ pub async fn edit_federation_team(configuration: &configuration::Configuration, 
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateCategories200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateCategories200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateDarIntegration201Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateDarIntegration201Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -422,7 +422,7 @@ pub async fn test_federation(configuration: &configuration::Configuration, team_
 }
 
 /// Update federation for team
-pub async fn update_federation_team(configuration: &configuration::Configuration, team_id: i32, federation_id: i32, update_federation_team_request: models::UpdateFederationTeamRequest) -> Result<models::CreateCategories200Response, Error<UpdateFederationTeamError>> {
+pub async fn update_federation_team(configuration: &configuration::Configuration, team_id: i32, federation_id: i32, update_federation_team_request: models::UpdateFederationTeamRequest) -> Result<models::CreateDarIntegration201Response, Error<UpdateFederationTeamError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_team_id = team_id;
     let p_path_federation_id = federation_id;
@@ -454,8 +454,8 @@ pub async fn update_federation_team(configuration: &configuration::Configuration
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateCategories200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateCategories200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateDarIntegration201Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateDarIntegration201Response`")))),
         }
     } else {
         let content = resp.text().await?;

@@ -19,7 +19,7 @@ use super::{Error, configuration, ContentType};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateTypeCategoriesError {
-    Status500(models::CreateAliases500Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -27,8 +27,8 @@ pub enum CreateTypeCategoriesError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteTypeCategoriesError {
-    Status404(models::FetchAliases404Response),
-    Status500(models::CreateAliases500Response),
+    Status404(models::UpdateApplications404Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -36,23 +36,8 @@ pub enum DeleteTypeCategoriesError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum EditTypeCategoriesError {
-    Status404(models::FetchAliases404Response),
-    Status500(models::CreateAliases500Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`fetch_all_type_categories`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum FetchAllTypeCategoriesError {
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`fetch_type_categories`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum FetchTypeCategoriesError {
-    Status404(models::FetchAliases404Response),
+    Status404(models::UpdateApplications404Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -60,14 +45,14 @@ pub enum FetchTypeCategoriesError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateTypeCategoriesError {
-    Status404(models::FetchAliases404Response),
-    Status500(models::CreateAliases500Response),
+    Status404(models::UpdateApplications404Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
 
 /// Creates a new system type category
-pub async fn create_type_categories(configuration: &configuration::Configuration, create_type_categories_request: models::CreateTypeCategoriesRequest) -> Result<models::CreateCategories200Response, Error<CreateTypeCategoriesError>> {
+pub async fn create_type_categories(configuration: &configuration::Configuration, create_type_categories_request: models::CreateTypeCategoriesRequest) -> Result<models::CreateDarIntegration201Response, Error<CreateTypeCategoriesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_body_create_type_categories_request = create_type_categories_request;
 
@@ -97,8 +82,8 @@ pub async fn create_type_categories(configuration: &configuration::Configuration
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateCategories200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateCategories200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateDarIntegration201Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateDarIntegration201Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -108,7 +93,7 @@ pub async fn create_type_categories(configuration: &configuration::Configuration
 }
 
 /// Delete a system type category
-pub async fn delete_type_categories(configuration: &configuration::Configuration, id: i32) -> Result<models::DeleteAliases200Response, Error<DeleteTypeCategoriesError>> {
+pub async fn delete_type_categories(configuration: &configuration::Configuration, id: i32) -> Result<models::DeleteApplications200Response, Error<DeleteTypeCategoriesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_id = id;
 
@@ -137,8 +122,8 @@ pub async fn delete_type_categories(configuration: &configuration::Configuration
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteAliases200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteAliases200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteApplications200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteApplications200Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -148,10 +133,10 @@ pub async fn delete_type_categories(configuration: &configuration::Configuration
 }
 
 /// Edit a system type category
-pub async fn edit_type_categories(configuration: &configuration::Configuration, id: i32, edit_categories_request: models::EditCategoriesRequest) -> Result<models::UpdateTypeCategories200Response, Error<EditTypeCategoriesError>> {
+pub async fn edit_type_categories(configuration: &configuration::Configuration, id: i32, edit_programming_languages_request: models::EditProgrammingLanguagesRequest) -> Result<models::UpdateTypeCategories200Response, Error<EditTypeCategoriesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_id = id;
-    let p_body_edit_categories_request = edit_categories_request;
+    let p_body_edit_programming_languages_request = edit_programming_languages_request;
 
     let uri_str = format!("{}/api/v1/type_categories/{id}", configuration.base_path, id=p_path_id);
     let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
@@ -162,7 +147,7 @@ pub async fn edit_type_categories(configuration: &configuration::Configuration, 
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_edit_categories_request);
+    req_builder = req_builder.json(&p_body_edit_programming_languages_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -185,84 +170,6 @@ pub async fn edit_type_categories(configuration: &configuration::Configuration, 
     } else {
         let content = resp.text().await?;
         let entity: Option<EditTypeCategoriesError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// Returns a list of type categories enabled on the system
-pub async fn fetch_all_type_categories(configuration: &configuration::Configuration, ) -> Result<models::FetchAllTypeCategories200Response, Error<FetchAllTypeCategoriesError>> {
-
-    let uri_str = format!("{}/api/v1/type_categories", configuration.base_path);
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FetchAllTypeCategories200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::FetchAllTypeCategories200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<FetchAllTypeCategoriesError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// Return a single system type category
-pub async fn fetch_type_categories(configuration: &configuration::Configuration, id: i32) -> Result<models::FetchTypeCategories200Response, Error<FetchTypeCategoriesError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/api/v1/type_categories/{id}", configuration.base_path, id=p_path_id);
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FetchTypeCategories200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::FetchTypeCategories200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<FetchTypeCategoriesError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent { status, content, entity }))
     }
 }

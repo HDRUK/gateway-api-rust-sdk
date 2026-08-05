@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## create_user_has_roles
 
-> models::DeleteAliases200Response create_user_has_roles(user_id, create_user_has_roles_request)
+> models::DeleteApplications200Response create_user_has_roles(user_id, create_user_has_roles_request)
 UserRoleController@store
 
 Create user has roles
@@ -27,7 +27,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::DeleteAliases200Response**](delete_aliases_200_response.md)
+[**models::DeleteApplications200Response**](delete_applications_200_response.md)
 
 ### Authorization
 
@@ -73,7 +73,7 @@ Name | Type | Description  | Required | Notes
 
 ## update_user_has_roles
 
-> models::DeleteAliases200Response update_user_has_roles(user_id, update_user_has_roles_request)
+> models::DeleteApplications200Response update_user_has_roles(user_id, update_user_has_roles_request)
 UserRoleController@edit
 
 Update user has roles
@@ -88,7 +88,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::DeleteAliases200Response**](delete_aliases_200_response.md)
+[**models::DeleteApplications200Response**](delete_applications_200_response.md)
 
 ### Authorization
 

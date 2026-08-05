@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## delete_team_dar_template_file
 
-> models::DeleteAliases200Response delete_team_dar_template_file(team_id, id, file_id)
+> models::DeleteApplications200Response delete_team_dar_template_file(team_id, id, file_id)
 TeamDataAccessTemplateController@destroyFile
 
 Delete a file associated with a DAR template
@@ -28,7 +28,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::DeleteAliases200Response**](delete_aliases_200_response.md)
+[**models::DeleteApplications200Response**](delete_applications_200_response.md)
 
 ### Authorization
 

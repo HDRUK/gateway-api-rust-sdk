@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## create_licenses
 
-> models::CreateCategories200Response create_licenses(create_licenses_request)
+> models::CreateDarIntegration201Response create_licenses(create_licenses_request)
 License@store
 
 Creates a new license
@@ -29,7 +29,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::CreateCategories200Response**](create_categories_200_response.md)
+[**models::CreateDarIntegration201Response**](create_dar_integration_201_response.md)
 
 ### Authorization
 
@@ -45,7 +45,7 @@ Name | Type | Description  | Required | Notes
 
 ## delete_licenses
 
-> models::DeleteAliases200Response delete_licenses(id)
+> models::DeleteApplications200Response delete_licenses(id)
 License@destroy
 
 Delete a License
@@ -59,7 +59,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::DeleteAliases200Response**](delete_aliases_200_response.md)
+[**models::DeleteApplications200Response**](delete_applications_200_response.md)
 
 ### Authorization
 

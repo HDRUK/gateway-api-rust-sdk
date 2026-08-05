@@ -15,19 +15,12 @@ use crate::{apis::ResponseContent, models};
 use super::{Error, configuration, ContentType};
 
 
-/// struct for typed errors of method [`count_team_unique_fields_dur_v2`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum CountTeamUniqueFieldsDurV2Error {
-    UnknownValue(serde_json::Value),
-}
-
 /// struct for typed errors of method [`create_dur`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateDurError {
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -35,8 +28,8 @@ pub enum CreateDurError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateDurByTeamV2Error {
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -44,8 +37,8 @@ pub enum CreateDurByTeamV2Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteDurError {
-    Status404(models::FetchAliases404Response),
-    Status500(models::CreateAliases500Response),
+    Status404(models::UpdateApplications404Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -53,8 +46,8 @@ pub enum DeleteDurError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteDursV2ByTeamIdError {
-    Status404(models::FetchAliases404Response),
-    Status500(models::CreateAliases500Response),
+    Status404(models::UpdateApplications404Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -62,8 +55,8 @@ pub enum DeleteDursV2ByTeamIdError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum EditDurError {
-    Status404(models::FetchAliases404Response),
-    Status500(models::CreateAliases500Response),
+    Status404(models::UpdateApplications404Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -71,8 +64,8 @@ pub enum EditDurError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum EditDursV2ByTeamIdError {
-    Status404(models::FetchAliases404Response),
-    Status500(models::CreateAliases500Response),
+    Status404(models::UpdateApplications404Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -80,7 +73,7 @@ pub enum EditDursV2ByTeamIdError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ExportDurTemplateError {
-    Status401(models::CreateTeamCollections401Response),
+    Status401(models::FetchAllDarIntegrations401Response),
     Status404(models::ExportMockDataset404Response),
     UnknownValue(serde_json::Value),
 }
@@ -89,7 +82,7 @@ pub enum ExportDurTemplateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ExportDurTemplateV2Error {
-    Status401(models::CreateTeamCollections401Response),
+    Status401(models::FetchAllDarIntegrations401Response),
     Status404(models::ExportMockDataset404Response),
     UnknownValue(serde_json::Value),
 }
@@ -98,7 +91,7 @@ pub enum ExportDurTemplateV2Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ExportDurV2Error {
-    Status401(models::CreateTeamCollections401Response),
+    Status401(models::FetchAllDarIntegrations401Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -116,14 +109,6 @@ pub enum FetchAllDurV2Error {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`fetch_all_team_dur_status`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum FetchAllTeamDurStatusError {
-    Status404(),
-    UnknownValue(serde_json::Value),
-}
-
 /// struct for typed errors of method [`fetch_dur_by_id`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -138,19 +123,12 @@ pub enum FetchDurByIdV2Error {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`fetch_dur_by_team_and_by_id_v2`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum FetchDurByTeamAndByIdV2Error {
-    UnknownValue(serde_json::Value),
-}
-
 /// struct for typed errors of method [`update_dur`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateDurError {
-    Status404(models::FetchAliases404Response),
-    Status500(models::CreateAliases500Response),
+    Status404(models::UpdateApplications404Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -158,8 +136,8 @@ pub enum UpdateDurError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateDurV2ByTeamIdError {
-    Status404(models::FetchAliases404Response),
-    Status500(models::CreateAliases500Response),
+    Status404(models::UpdateApplications404Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -167,56 +145,15 @@ pub enum UpdateDurV2ByTeamIdError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UploadDurError {
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
 
-/// Get team counts for distinct entries of a field in the model
-pub async fn count_team_unique_fields_dur_v2(configuration: &configuration::Configuration, team_id: i32, field: &str) -> Result<models::CountUniqueFieldsCollections200Response, Error<CountTeamUniqueFieldsDurV2Error>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_team_id = team_id;
-    let p_path_field = field;
-
-    let uri_str = format!("{}/api/v2/teams/{teamId}/dur/count/{field}", configuration.base_path, teamId=p_path_team_id, field=crate::apis::urlencode(p_path_field));
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CountUniqueFieldsCollections200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CountUniqueFieldsCollections200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<CountTeamUniqueFieldsDurV2Error> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
 /// Create a new dur
 #[deprecated]
-pub async fn create_dur(configuration: &configuration::Configuration, create_dur_request: models::CreateDurRequest) -> Result<models::CreateCategories200Response, Error<CreateDurError>> {
+pub async fn create_dur(configuration: &configuration::Configuration, create_dur_request: models::CreateDurRequest) -> Result<models::CreateDarIntegration201Response, Error<CreateDurError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_body_create_dur_request = create_dur_request;
 
@@ -246,8 +183,8 @@ pub async fn create_dur(configuration: &configuration::Configuration, create_dur
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateCategories200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateCategories200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateDarIntegration201Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateDarIntegration201Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -257,7 +194,7 @@ pub async fn create_dur(configuration: &configuration::Configuration, create_dur
 }
 
 /// Create a new dur by team v2
-pub async fn create_dur_by_team_v2(configuration: &configuration::Configuration, team_id: i32, create_dur_request: models::CreateDurRequest) -> Result<models::CreateCategories200Response, Error<CreateDurByTeamV2Error>> {
+pub async fn create_dur_by_team_v2(configuration: &configuration::Configuration, team_id: i32, create_dur_request: models::CreateDurRequest) -> Result<models::CreateDarIntegration201Response, Error<CreateDurByTeamV2Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_team_id = team_id;
     let p_body_create_dur_request = create_dur_request;
@@ -288,8 +225,8 @@ pub async fn create_dur_by_team_v2(configuration: &configuration::Configuration,
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateCategories200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateCategories200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateDarIntegration201Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateDarIntegration201Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -300,7 +237,7 @@ pub async fn create_dur_by_team_v2(configuration: &configuration::Configuration,
 
 /// Delete a dur
 #[deprecated]
-pub async fn delete_dur(configuration: &configuration::Configuration, id: i32) -> Result<models::DeleteAliases200Response, Error<DeleteDurError>> {
+pub async fn delete_dur(configuration: &configuration::Configuration, id: i32) -> Result<models::DeleteApplications200Response, Error<DeleteDurError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_id = id;
 
@@ -329,8 +266,8 @@ pub async fn delete_dur(configuration: &configuration::Configuration, id: i32) -
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteAliases200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteAliases200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteApplications200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteApplications200Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -340,7 +277,7 @@ pub async fn delete_dur(configuration: &configuration::Configuration, id: i32) -
 }
 
 /// Delete a dur by team and id v2
-pub async fn delete_durs_v2_by_team_id(configuration: &configuration::Configuration, team_id: i32, id: i32) -> Result<models::DeleteAliases200Response, Error<DeleteDursV2ByTeamIdError>> {
+pub async fn delete_durs_v2_by_team_id(configuration: &configuration::Configuration, team_id: i32, id: i32) -> Result<models::DeleteApplications200Response, Error<DeleteDursV2ByTeamIdError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_team_id = team_id;
     let p_path_id = id;
@@ -370,8 +307,8 @@ pub async fn delete_durs_v2_by_team_id(configuration: &configuration::Configurat
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteAliases200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteAliases200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteApplications200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteApplications200Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -690,60 +627,6 @@ pub async fn fetch_all_dur_v2(configuration: &configuration::Configuration, sort
     }
 }
 
-/// Returns a list of dur owned by this team with given status
-pub async fn fetch_all_team_dur_status(configuration: &configuration::Configuration, team_id: i32, status: &str, sort: Option<models::models::ProjectTitleColonAscCommaUpdatedAtColonAsc>, project_title: Option<&str>, per_page: Option<i32>, with_related: Option<bool>) -> Result<models::FetchAllDur200Response, Error<FetchAllTeamDurStatusError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_team_id = team_id;
-    let p_path_status = status;
-    let p_query_sort = sort;
-    let p_query_project_title = project_title;
-    let p_query_per_page = per_page;
-    let p_query_with_related = with_related;
-
-    let uri_str = format!("{}/api/v2/teams/{teamId}/dur/status/{status}", configuration.base_path, teamId=p_path_team_id, status=crate::apis::urlencode(p_path_status));
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
-
-    if let Some(ref param_value) = p_query_sort {
-        req_builder = req_builder.query(&[("sort", &serde_json::to_string(param_value)?)]);
-    }
-    if let Some(ref param_value) = p_query_project_title {
-        req_builder = req_builder.query(&[("project_title", &param_value.to_string())]);
-    }
-    if let Some(ref param_value) = p_query_per_page {
-        req_builder = req_builder.query(&[("per_page", &param_value.to_string())]);
-    }
-    if let Some(ref param_value) = p_query_with_related {
-        req_builder = req_builder.query(&[("with_related", &param_value.to_string())]);
-    }
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FetchAllDur200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::FetchAllDur200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<FetchAllTeamDurStatusError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
 /// Get dur by id
 #[deprecated]
 pub async fn fetch_dur_by_id(configuration: &configuration::Configuration, id: i32) -> Result<models::FetchDurById200Response, Error<FetchDurByIdError>> {
@@ -821,47 +704,6 @@ pub async fn fetch_dur_by_id_v2(configuration: &configuration::Configuration, id
     } else {
         let content = resp.text().await?;
         let entity: Option<FetchDurByIdV2Error> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// Get dur by team id and by id
-pub async fn fetch_dur_by_team_and_by_id_v2(configuration: &configuration::Configuration, team_id: i32, id: i32) -> Result<models::UpdateDur200Response, Error<FetchDurByTeamAndByIdV2Error>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_team_id = team_id;
-    let p_path_id = id;
-
-    let uri_str = format!("{}/api/v1/teams/{teamId}/dur/{id}", configuration.base_path, teamId=p_path_team_id, id=p_path_id);
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UpdateDur200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UpdateDur200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<FetchDurByTeamAndByIdV2Error> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent { status, content, entity }))
     }
 }
@@ -953,7 +795,7 @@ pub async fn update_dur_v2_by_team_id(configuration: &configuration::Configurati
 }
 
 /// Create a new dur with upload data
-pub async fn upload_dur(configuration: &configuration::Configuration, upload_dur_request: models::UploadDurRequest) -> Result<models::CreateCategories200Response, Error<UploadDurError>> {
+pub async fn upload_dur(configuration: &configuration::Configuration, upload_dur_request: models::UploadDurRequest) -> Result<models::CreateDarIntegration201Response, Error<UploadDurError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_body_upload_dur_request = upload_dur_request;
 
@@ -983,8 +825,8 @@ pub async fn upload_dur(configuration: &configuration::Configuration, upload_dur
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateCategories200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateCategories200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateDarIntegration201Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateDarIntegration201Response`")))),
         }
     } else {
         let content = resp.text().await?;

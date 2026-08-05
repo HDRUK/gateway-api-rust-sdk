@@ -6,7 +6,6 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_dar_template**](DataAccessTemplateApi.md#create_dar_template) | **POST** /api/v1/dar/templates | DataAccessTemplate@store
 [**delete_dar_template**](DataAccessTemplateApi.md#delete_dar_template) | **DELETE** /api/v1/dar/templates/{id} | DataAccessTemplate@destroy
-[**download_dar_template_file**](DataAccessTemplateApi.md#download_dar_template_file) | **GET** /api/v1/dar/templates/{id}/download | DataAccessTemplate@downloadFile
 [**fetch_dar_template**](DataAccessTemplateApi.md#fetch_dar_template) | **GET** /api/v1/dar/templates/{id} | DataAccessTemplate@show
 [**fetch_dar_templates**](DataAccessTemplateApi.md#fetch_dar_templates) | **GET** /api/v1/dar/templates | DataAccessTemplate@index
 [**patch_dar_template**](DataAccessTemplateApi.md#patch_dar_template) | **PATCH** /api/v1/dar/templates/{id} | DataAccessTemplate@update
@@ -16,7 +15,7 @@ Method | HTTP request | Description
 
 ## create_dar_template
 
-> models::CreateCategories200Response create_dar_template(create_dar_template_request)
+> models::CreateDarIntegration201Response create_dar_template(create_dar_template_request)
 DataAccessTemplate@store
 
 Creates a new DAR template
@@ -30,7 +29,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::CreateCategories200Response**](create_categories_200_response.md)
+[**models::CreateDarIntegration201Response**](create_dar_integration_201_response.md)
 
 ### Authorization
 
@@ -46,7 +45,7 @@ Name | Type | Description  | Required | Notes
 
 ## delete_dar_template
 
-> models::DeleteAliases200Response delete_dar_template(id)
+> models::DeleteApplications200Response delete_dar_template(id)
 DataAccessTemplate@destroy
 
 Delete a system DAR template
@@ -60,7 +59,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::DeleteAliases200Response**](delete_aliases_200_response.md)
+[**models::DeleteApplications200Response**](delete_applications_200_response.md)
 
 ### Authorization
 
@@ -70,36 +69,6 @@ Name | Type | Description  | Required | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## download_dar_template_file
-
-> download_dar_template_file(id)
-DataAccessTemplate@downloadFile
-
-Download the template for a file based DAR application
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**id** | **i32** | DAR template id | [required] |
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: file, application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

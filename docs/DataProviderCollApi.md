@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## create_data_provider_coll
 
-> models::CreateCategories200Response create_data_provider_coll(create_data_provider_coll_request)
+> models::CreateDarIntegration201Response create_data_provider_coll(create_data_provider_coll_request)
 DataProviderColl@store
 
 Creates a new DataProviderColl
@@ -30,7 +30,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::CreateCategories200Response**](create_categories_200_response.md)
+[**models::CreateDarIntegration201Response**](create_dar_integration_201_response.md)
 
 ### Authorization
 
@@ -46,7 +46,7 @@ Name | Type | Description  | Required | Notes
 
 ## delete_data_provider_coll
 
-> models::DeleteAliases200Response delete_data_provider_coll(id)
+> models::DeleteApplications200Response delete_data_provider_coll(id)
 DataProviderColl@destroy
 
 Delete a DataProviderColl
@@ -60,7 +60,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::DeleteAliases200Response**](delete_aliases_200_response.md)
+[**models::DeleteApplications200Response**](delete_applications_200_response.md)
 
 ### Authorization
 

@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## create_dar_integration
 
-> models::CreateCategories200Response create_dar_integration(id, update_dar_integration_request)
+> models::CreateDarIntegration201Response create_dar_integration(id, update_dar_integration_request)
 DarIntegration@store
 
 Creates a new DAR integration enabled on the system
@@ -30,7 +30,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::CreateCategories200Response**](create_categories_200_response.md)
+[**models::CreateDarIntegration201Response**](create_dar_integration_201_response.md)
 
 ### Authorization
 
@@ -46,7 +46,7 @@ Name | Type | Description  | Required | Notes
 
 ## delete_dar_integration
 
-> models::DeleteAliases200Response delete_dar_integration(id)
+> models::DeleteApplications200Response delete_dar_integration(id)
 DarIntegration@destroy
 
 Delete a system Dar Integration
@@ -60,7 +60,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::DeleteAliases200Response**](delete_aliases_200_response.md)
+[**models::DeleteApplications200Response**](delete_applications_200_response.md)
 
 ### Authorization
 

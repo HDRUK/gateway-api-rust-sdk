@@ -15,24 +15,10 @@ use crate::{apis::ResponseContent, models};
 use super::{Error, configuration, ContentType};
 
 
-/// struct for typed errors of method [`count_team_unique_fields_tools_v2`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum CountTeamUniqueFieldsToolsV2Error {
-    UnknownValue(serde_json::Value),
-}
-
 /// struct for typed errors of method [`count_unique_fields_tools`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CountUniqueFieldsToolsError {
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`count_user_unique_fields_tools_v2`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum CountUserUniqueFieldsToolsV2Error {
     UnknownValue(serde_json::Value),
 }
 
@@ -41,8 +27,8 @@ pub enum CountUserUniqueFieldsToolsV2Error {
 #[serde(untagged)]
 pub enum CreateToolsError {
     Status400(models::CreateToolsIntegrations400Response),
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -51,18 +37,8 @@ pub enum CreateToolsError {
 #[serde(untagged)]
 pub enum CreateToolsByTeamV2Error {
     Status400(models::CreateToolsIntegrations400Response),
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`create_tools_by_user_v2`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum CreateToolsByUserV2Error {
-    Status400(models::CreateToolsIntegrations400Response),
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -71,8 +47,8 @@ pub enum CreateToolsByUserV2Error {
 #[serde(untagged)]
 pub enum CreateToolsIntegrationsError {
     Status400(models::CreateToolsIntegrations400Response),
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -81,8 +57,8 @@ pub enum CreateToolsIntegrationsError {
 #[serde(untagged)]
 pub enum DeleteToolsError {
     Status404(models::DeleteFederation404Response),
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -91,18 +67,8 @@ pub enum DeleteToolsError {
 #[serde(untagged)]
 pub enum DeleteToolsByTeamidV2Error {
     Status404(models::DeleteFederation404Response),
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`delete_tools_by_user_v2`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum DeleteToolsByUserV2Error {
-    Status404(models::DeleteFederation404Response),
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -111,8 +77,8 @@ pub enum DeleteToolsByUserV2Error {
 #[serde(untagged)]
 pub enum DeleteToolsIntegrationsError {
     Status404(models::DeleteFederation404Response),
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -121,8 +87,8 @@ pub enum DeleteToolsIntegrationsError {
 #[serde(untagged)]
 pub enum EditToolsError {
     Status400(models::CreateToolsIntegrations400Response),
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -131,18 +97,8 @@ pub enum EditToolsError {
 #[serde(untagged)]
 pub enum EditToolsByTeamidV2Error {
     Status400(models::CreateToolsIntegrations400Response),
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`edit_tools_by_user_v2`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum EditToolsByUserV2Error {
-    Status400(models::CreateToolsIntegrations400Response),
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -151,24 +107,8 @@ pub enum EditToolsByUserV2Error {
 #[serde(untagged)]
 pub enum EditToolsIntegrationsError {
     Status400(models::CreateToolsIntegrations400Response),
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`fetch_all_tool_by_team_and_status_v2`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum FetchAllToolByTeamAndStatusV2Error {
-    Status404(),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`fetch_all_tool_by_user_and_status_v2`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum FetchAllToolByUserAndStatusV2Error {
-    Status404(),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -201,26 +141,8 @@ pub enum FetchAllToolsV2Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum FetchToolsError {
-    Status401(models::CreateTeamCollections401Response),
-    Status404(models::FetchAliases404Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`fetch_tools_by_team_and_by_id_v2`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum FetchToolsByTeamAndByIdV2Error {
-    Status401(models::CreateTeamCollections401Response),
-    Status404(models::FetchAliases404Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`fetch_tools_by_user_and_by_id_v2`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum FetchToolsByUserAndByIdV2Error {
-    Status401(models::CreateTeamCollections401Response),
-    Status404(models::FetchAliases404Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status404(models::UpdateApplications404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -228,8 +150,8 @@ pub enum FetchToolsByUserAndByIdV2Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum FetchToolsIntegrationsError {
-    Status401(models::CreateTeamCollections401Response),
-    Status404(models::FetchAliases404Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status404(models::UpdateApplications404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -237,8 +159,8 @@ pub enum FetchToolsIntegrationsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum FetchToolsV2Error {
-    Status401(models::CreateTeamCollections401Response),
-    Status404(models::FetchAliases404Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status404(models::UpdateApplications404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -247,8 +169,8 @@ pub enum FetchToolsV2Error {
 #[serde(untagged)]
 pub enum UpdateToolsError {
     Status400(models::CreateToolsIntegrations400Response),
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -257,18 +179,8 @@ pub enum UpdateToolsError {
 #[serde(untagged)]
 pub enum UpdateToolsByTeamidV2Error {
     Status400(models::CreateToolsIntegrations400Response),
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`update_tools_by_user_v2`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum UpdateToolsByUserV2Error {
-    Status400(models::CreateToolsIntegrations400Response),
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -277,52 +189,11 @@ pub enum UpdateToolsByUserV2Error {
 #[serde(untagged)]
 pub enum UpdateToolsIntegrationsError {
     Status400(models::CreateToolsIntegrations400Response),
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
-
-/// Get team counts for distinct entries of a field in the model
-pub async fn count_team_unique_fields_tools_v2(configuration: &configuration::Configuration, team_id: i32, field: &str) -> Result<models::CountUniqueFieldsCollections200Response, Error<CountTeamUniqueFieldsToolsV2Error>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_team_id = team_id;
-    let p_path_field = field;
-
-    let uri_str = format!("{}/api/v2/teams/{teamId}/tools/count/{field}", configuration.base_path, teamId=p_path_team_id, field=crate::apis::urlencode(p_path_field));
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CountUniqueFieldsCollections200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CountUniqueFieldsCollections200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<CountTeamUniqueFieldsToolsV2Error> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
 
 /// Get Counts for distinct entries of a field in the model
 #[deprecated]
@@ -367,50 +238,9 @@ pub async fn count_unique_fields_tools(configuration: &configuration::Configurat
     }
 }
 
-/// Get user counts for distinct entries of a field in the model
-pub async fn count_user_unique_fields_tools_v2(configuration: &configuration::Configuration, user_id: i32, field: &str) -> Result<models::CountUniqueFieldsCollections200Response, Error<CountUserUniqueFieldsToolsV2Error>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_user_id = user_id;
-    let p_path_field = field;
-
-    let uri_str = format!("{}/api/v2/users/{userId}/tools/count/{field}", configuration.base_path, userId=p_path_user_id, field=crate::apis::urlencode(p_path_field));
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CountUniqueFieldsCollections200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CountUniqueFieldsCollections200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<CountUserUniqueFieldsToolsV2Error> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
 /// Create a new tool
 #[deprecated]
-pub async fn create_tools(configuration: &configuration::Configuration, create_tools_request: models::CreateToolsRequest) -> Result<models::CreateCategories200Response, Error<CreateToolsError>> {
+pub async fn create_tools(configuration: &configuration::Configuration, create_tools_request: models::CreateToolsRequest) -> Result<models::CreateDarIntegration201Response, Error<CreateToolsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_body_create_tools_request = create_tools_request;
 
@@ -440,8 +270,8 @@ pub async fn create_tools(configuration: &configuration::Configuration, create_t
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateCategories200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateCategories200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateDarIntegration201Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateDarIntegration201Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -451,7 +281,7 @@ pub async fn create_tools(configuration: &configuration::Configuration, create_t
 }
 
 /// Create a new tool by team v2
-pub async fn create_tools_by_team_v2(configuration: &configuration::Configuration, team_id: i32, create_tools_request: models::CreateToolsRequest) -> Result<models::CreateCategories200Response, Error<CreateToolsByTeamV2Error>> {
+pub async fn create_tools_by_team_v2(configuration: &configuration::Configuration, team_id: i32, create_tools_request: models::CreateToolsRequest) -> Result<models::CreateDarIntegration201Response, Error<CreateToolsByTeamV2Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_team_id = team_id;
     let p_body_create_tools_request = create_tools_request;
@@ -482,8 +312,8 @@ pub async fn create_tools_by_team_v2(configuration: &configuration::Configuratio
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateCategories200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateCategories200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateDarIntegration201Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateDarIntegration201Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -492,51 +322,9 @@ pub async fn create_tools_by_team_v2(configuration: &configuration::Configuratio
     }
 }
 
-/// Create a new tool by user v2
-pub async fn create_tools_by_user_v2(configuration: &configuration::Configuration, user_id: i32, create_tools_request: models::CreateToolsRequest) -> Result<models::CreateCategories200Response, Error<CreateToolsByUserV2Error>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_user_id = user_id;
-    let p_body_create_tools_request = create_tools_request;
-
-    let uri_str = format!("{}/api/v2/users/{userId}/tools", configuration.base_path, userId=p_path_user_id);
-    let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-    req_builder = req_builder.json(&p_body_create_tools_request);
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateCategories200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateCategories200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<CreateToolsByUserV2Error> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
 /// Create a new tool
 #[deprecated]
-pub async fn create_tools_integrations(configuration: &configuration::Configuration, create_tools_integrations_request: models::CreateToolsIntegrationsRequest) -> Result<models::CreateCategories200Response, Error<CreateToolsIntegrationsError>> {
+pub async fn create_tools_integrations(configuration: &configuration::Configuration, create_tools_integrations_request: models::CreateToolsIntegrationsRequest) -> Result<models::CreateDarIntegration201Response, Error<CreateToolsIntegrationsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_body_create_tools_integrations_request = create_tools_integrations_request;
 
@@ -566,8 +354,8 @@ pub async fn create_tools_integrations(configuration: &configuration::Configurat
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateCategories200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateCategories200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateDarIntegration201Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateDarIntegration201Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -654,47 +442,6 @@ pub async fn delete_tools_by_teamid_v2(configuration: &configuration::Configurat
     } else {
         let content = resp.text().await?;
         let entity: Option<DeleteToolsByTeamidV2Error> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// Delete tool by id and by user
-pub async fn delete_tools_by_user_v2(configuration: &configuration::Configuration, user_id: i32, id: i32) -> Result<models::DeleteFederation200Response, Error<DeleteToolsByUserV2Error>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_user_id = user_id;
-    let p_path_id = id;
-
-    let uri_str = format!("{}/api/v2/users/{userId}/tools/{id}", configuration.base_path, userId=p_path_user_id, id=p_path_id);
-    let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteFederation200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteFederation200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<DeleteToolsByUserV2Error> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent { status, content, entity }))
     }
 }
@@ -830,49 +577,6 @@ pub async fn edit_tools_by_teamid_v2(configuration: &configuration::Configuratio
     }
 }
 
-/// Edit tool by id and by user
-pub async fn edit_tools_by_user_v2(configuration: &configuration::Configuration, user_id: i32, id: i32, update_tools_request: models::UpdateToolsRequest) -> Result<models::FetchToolsIntegrations200Response, Error<EditToolsByUserV2Error>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_user_id = user_id;
-    let p_path_id = id;
-    let p_body_update_tools_request = update_tools_request;
-
-    let uri_str = format!("{}/api/v2/users/{userId}/tools/{id}", configuration.base_path, userId=p_path_user_id, id=p_path_id);
-    let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-    req_builder = req_builder.json(&p_body_update_tools_request);
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FetchToolsIntegrations200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::FetchToolsIntegrations200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<EditToolsByUserV2Error> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
 /// Edit tool by id
 #[deprecated]
 pub async fn edit_tools_integrations(configuration: &configuration::Configuration, id: i32, update_tools_integrations_request: models::UpdateToolsIntegrationsRequest) -> Result<models::FetchToolsIntegrations200Response, Error<EditToolsIntegrationsError>> {
@@ -912,88 +616,6 @@ pub async fn edit_tools_integrations(configuration: &configuration::Configuratio
     } else {
         let content = resp.text().await?;
         let entity: Option<EditToolsIntegrationsError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// Returns a list of a teams tools with given status
-pub async fn fetch_all_tool_by_team_and_status_v2(configuration: &configuration::Configuration, team_id: i64, status: &str) -> Result<models::FetchAllToolsIntegrations200Response, Error<FetchAllToolByTeamAndStatusV2Error>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_team_id = team_id;
-    let p_path_status = status;
-
-    let uri_str = format!("{}/api/v2/teams/{teamId}/tools/status/{status}", configuration.base_path, teamId=p_path_team_id, status=crate::apis::urlencode(p_path_status));
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FetchAllToolsIntegrations200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::FetchAllToolsIntegrations200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<FetchAllToolByTeamAndStatusV2Error> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// Returns a list of a user tools
-pub async fn fetch_all_tool_by_user_and_status_v2(configuration: &configuration::Configuration, user_id: i64, status: &str) -> Result<models::FetchAllToolsIntegrations200Response, Error<FetchAllToolByUserAndStatusV2Error>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_user_id = user_id;
-    let p_path_status = status;
-
-    let uri_str = format!("{}/api/v2/users/{userId}/tools/status/{status}", configuration.base_path, userId=p_path_user_id, status=crate::apis::urlencode(p_path_status));
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FetchAllToolsIntegrations200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::FetchAllToolsIntegrations200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<FetchAllToolByUserAndStatusV2Error> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent { status, content, entity }))
     }
 }
@@ -1189,96 +811,6 @@ pub async fn fetch_tools(configuration: &configuration::Configuration, id: i32, 
     }
 }
 
-/// Get tool by team id and by id
-pub async fn fetch_tools_by_team_and_by_id_v2(configuration: &configuration::Configuration, team_id: i32, id: i32, view_type: Option<&str>) -> Result<models::FetchToolsIntegrations200Response, Error<FetchToolsByTeamAndByIdV2Error>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_team_id = team_id;
-    let p_path_id = id;
-    let p_query_view_type = view_type;
-
-    let uri_str = format!("{}/api/v2/teams/{teamId}/tools/{id}", configuration.base_path, teamId=p_path_team_id, id=p_path_id);
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
-
-    if let Some(ref param_value) = p_query_view_type {
-        req_builder = req_builder.query(&[("view_type", &param_value.to_string())]);
-    }
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FetchToolsIntegrations200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::FetchToolsIntegrations200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<FetchToolsByTeamAndByIdV2Error> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// Get tool by user id and by id
-pub async fn fetch_tools_by_user_and_by_id_v2(configuration: &configuration::Configuration, user_id: i32, id: i32, view_type: Option<&str>) -> Result<models::FetchToolsIntegrations200Response, Error<FetchToolsByUserAndByIdV2Error>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_user_id = user_id;
-    let p_path_id = id;
-    let p_query_view_type = view_type;
-
-    let uri_str = format!("{}/api/v2/users/{userId}/tools/{id}", configuration.base_path, userId=p_path_user_id, id=p_path_id);
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
-
-    if let Some(ref param_value) = p_query_view_type {
-        req_builder = req_builder.query(&[("view_type", &param_value.to_string())]);
-    }
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FetchToolsIntegrations200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::FetchToolsIntegrations200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<FetchToolsByUserAndByIdV2Error> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
 /// Get tool by id
 #[deprecated]
 pub async fn fetch_tools_integrations(configuration: &configuration::Configuration, id: i32) -> Result<models::FetchToolsIntegrations200Response, Error<FetchToolsIntegrationsError>> {
@@ -1442,49 +974,6 @@ pub async fn update_tools_by_teamid_v2(configuration: &configuration::Configurat
     } else {
         let content = resp.text().await?;
         let entity: Option<UpdateToolsByTeamidV2Error> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// Update tools by user id
-pub async fn update_tools_by_user_v2(configuration: &configuration::Configuration, user_id: i32, id: i32, update_tools_request: models::UpdateToolsRequest) -> Result<models::FetchToolsIntegrations200Response, Error<UpdateToolsByUserV2Error>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_user_id = user_id;
-    let p_path_id = id;
-    let p_body_update_tools_request = update_tools_request;
-
-    let uri_str = format!("{}/api/v2/users/{userId}/tools/{id}", configuration.base_path, userId=p_path_user_id, id=p_path_id);
-    let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-    req_builder = req_builder.json(&p_body_update_tools_request);
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FetchToolsIntegrations200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::FetchToolsIntegrations200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<UpdateToolsByUserV2Error> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent { status, content, entity }))
     }
 }

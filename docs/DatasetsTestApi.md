@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## datasets_test
 
-> models::CreateCategories200Response datasets_test(datasets_test_request)
+> models::CreateDarIntegration201Response datasets_test(datasets_test_request)
 DatasetController@datasetTest
 
 Datasets test
@@ -24,7 +24,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::CreateCategories200Response**](create_categories_200_response.md)
+[**models::CreateDarIntegration201Response**](create_dar_integration_201_response.md)
 
 ### Authorization
 

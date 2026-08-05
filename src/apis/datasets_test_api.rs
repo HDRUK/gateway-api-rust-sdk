@@ -19,14 +19,14 @@ use super::{Error, configuration, ContentType};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DatasetsTestError {
-    Status401(models::CreateTeamCollections401Response),
-    Status500(models::CreateAliases500Response),
+    Status401(models::FetchAllDarIntegrations401Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
 
 /// Datasets test
-pub async fn datasets_test(configuration: &configuration::Configuration, datasets_test_request: models::DatasetsTestRequest) -> Result<models::CreateCategories200Response, Error<DatasetsTestError>> {
+pub async fn datasets_test(configuration: &configuration::Configuration, datasets_test_request: models::DatasetsTestRequest) -> Result<models::CreateDarIntegration201Response, Error<DatasetsTestError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_body_datasets_test_request = datasets_test_request;
 
@@ -53,8 +53,8 @@ pub async fn datasets_test(configuration: &configuration::Configuration, dataset
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateCategories200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateCategories200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateDarIntegration201Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateDarIntegration201Response`")))),
         }
     } else {
         let content = resp.text().await?;

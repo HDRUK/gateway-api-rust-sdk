@@ -22,7 +22,7 @@ Method | HTTP request | Description
 
 ## create_question_bank_question
 
-> models::CreateCategories200Response create_question_bank_question(create_question_bank_question_request)
+> models::CreateDarIntegration201Response create_question_bank_question(create_question_bank_question_request)
 QuestionBank@store
 
 Create a new system question bank question with FE-helpful input format
@@ -36,7 +36,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::CreateCategories200Response**](create_categories_200_response.md)
+[**models::CreateDarIntegration201Response**](create_dar_integration_201_response.md)
 
 ### Authorization
 
@@ -52,7 +52,7 @@ Name | Type | Description  | Required | Notes
 
 ## delete_question_bank_question
 
-> models::DeleteAliases200Response delete_question_bank_question(id)
+> models::DeleteApplications200Response delete_question_bank_question(id)
 QuestionBank@destroy
 
 Delete a system question bank question
@@ -66,7 +66,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::DeleteAliases200Response**](delete_aliases_200_response.md)
+[**models::DeleteApplications200Response**](delete_applications_200_response.md)
 
 ### Authorization
 
@@ -82,7 +82,7 @@ Name | Type | Description  | Required | Notes
 
 ## download_question_bank_question_file
 
-> models::DeleteAliases200Response download_question_bank_question_file(id, file_id)
+> models::DeleteApplications200Response download_question_bank_question_file(id, file_id)
 QuestionBank@destroyFile
 
 Download a system question bank question
@@ -97,7 +97,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::DeleteAliases200Response**](delete_aliases_200_response.md)
+[**models::DeleteApplications200Response**](delete_applications_200_response.md)
 
 ### Authorization
 

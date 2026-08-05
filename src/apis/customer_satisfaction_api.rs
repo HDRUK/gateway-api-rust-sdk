@@ -20,7 +20,7 @@ use super::{Error, configuration, ContentType};
 #[serde(untagged)]
 pub enum CreateCsatError {
     Status422(models::CreateCsat422Response),
-    Status500(models::CreateAliases500Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -33,7 +33,7 @@ pub enum EditCsatError {
 
 
 /// Creates a customer satisfaction score between 0 and 5
-pub async fn create_csat(configuration: &configuration::Configuration, create_csat_request: models::CreateCsatRequest) -> Result<models::DeleteAliases200Response, Error<CreateCsatError>> {
+pub async fn create_csat(configuration: &configuration::Configuration, create_csat_request: models::CreateCsatRequest) -> Result<models::DeleteApplications200Response, Error<CreateCsatError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_body_create_csat_request = create_csat_request;
 
@@ -63,8 +63,8 @@ pub async fn create_csat(configuration: &configuration::Configuration, create_cs
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteAliases200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteAliases200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteApplications200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteApplications200Response`")))),
         }
     } else {
         let content = resp.text().await?;

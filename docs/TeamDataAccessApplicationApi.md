@@ -7,7 +7,6 @@ Method | HTTP request | Description
 [**count_team_dar_applications**](TeamDataAccessApplicationApi.md#count_team_dar_applications) | **GET** /api/v1/teams/{teamId}/dar/applications/count | TeamDataAccessApplicationController@allCounts
 [**count_unique_fields_dar_applications**](TeamDataAccessApplicationApi.md#count_unique_fields_dar_applications) | **GET** /api/v1/teams/{teamId}/dar/applications/count/{field} | TeamDataAccessApplicationController@count
 [**fetch_team_dar_application**](TeamDataAccessApplicationApi.md#fetch_team_dar_application) | **GET** /api/v1/teams/{teamId}/dar/applications/{id} | TeamDataAccessApplicationController@show
-[**fetch_team_dar_application_header**](TeamDataAccessApplicationApi.md#fetch_team_dar_application_header) | **GET** /api/v1/teams/{teamId}/dar/applications/{id}/showHeader | TeamDataAccessApplicationController@showHeader
 [**fetch_team_dar_applications**](TeamDataAccessApplicationApi.md#fetch_team_dar_applications) | **GET** /api/v1/teams/{teamId}/dar/applications | TeamDataAccessApplicationController@index
 
 
@@ -91,37 +90,6 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**models::FetchTeamDarApplication200Response**](fetch_team_dar_application_200_response.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## fetch_team_dar_application_header
-
-> models::FetchTeamDarApplicationHeader200Response fetch_team_dar_application_header(team_id, id)
-TeamDataAccessApplicationController@showHeader
-
-Get header information about a specific DAR
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**team_id** | **i32** | Team id | [required] |
-**id** | **i32** | DAR application id | [required] |
-
-### Return type
-
-[**models::FetchTeamDarApplicationHeader200Response**](fetch_team_dar_application_header_200_response.md)
 
 ### Authorization
 

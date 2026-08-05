@@ -47,7 +47,7 @@ Name | Type | Description  | Required | Notes
 
 ## delete_applications
 
-> models::DeleteAliases200Response delete_applications(id)
+> models::DeleteApplications200Response delete_applications(id)
 ApplicationController@delete
 
 Delete application
@@ -61,7 +61,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::DeleteAliases200Response**](delete_aliases_200_response.md)
+[**models::DeleteApplications200Response**](delete_applications_200_response.md)
 
 ### Authorization
 

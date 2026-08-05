@@ -20,7 +20,7 @@ use super::{Error, configuration, ContentType};
 #[serde(untagged)]
 pub enum CreateWidgetError {
     Status400(models::CreateWidget400Response),
-    Status500(models::CreateAliases500Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -28,8 +28,8 @@ pub enum CreateWidgetError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteWidgetError {
-    Status404(models::FetchAliases404Response),
-    Status500(models::CreateAliases500Response),
+    Status404(models::UpdateApplications404Response),
+    Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -44,7 +44,7 @@ pub enum FetchAllWidgetsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum FetchWidgetError {
-    Status404(models::FetchAliases404Response),
+    Status404(models::UpdateApplications404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -134,7 +134,7 @@ pub async fn create_widget(configuration: &configuration::Configuration, team_id
 }
 
 /// Soft delete a widget belonging to a specific team
-pub async fn delete_widget(configuration: &configuration::Configuration, team_id: i32, id: i32) -> Result<models::DeleteAliases200Response, Error<DeleteWidgetError>> {
+pub async fn delete_widget(configuration: &configuration::Configuration, team_id: i32, id: i32) -> Result<models::DeleteApplications200Response, Error<DeleteWidgetError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_team_id = team_id;
     let p_path_id = id;
@@ -164,8 +164,8 @@ pub async fn delete_widget(configuration: &configuration::Configuration, team_id
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteAliases200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteAliases200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteApplications200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteApplications200Response`")))),
         }
     } else {
         let content = resp.text().await?;
