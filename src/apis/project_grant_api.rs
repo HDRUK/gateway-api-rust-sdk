@@ -15,6 +15,13 @@ use crate::{apis::ResponseContent, models};
 use super::{Error, configuration, ContentType};
 
 
+/// struct for typed errors of method [`create_project_grant`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum CreateProjectGrantError {
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`fetch_all_project_grants`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -29,6 +36,44 @@ pub enum FetchProjectGrantError {
     UnknownValue(serde_json::Value),
 }
 
+
+/// Create a project grant (and initial version)
+pub async fn create_project_grant(configuration: &configuration::Configuration, ) -> Result<models::CreateProjectGrant201Response, Error<CreateProjectGrantError>> {
+
+    let uri_str = format!("{}/api/v1/project_grants", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateProjectGrant201Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateProjectGrant201Response`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<CreateProjectGrantError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent { status, content, entity }))
+    }
+}
 
 /// Get all project grants
 pub async fn fetch_all_project_grants(configuration: &configuration::Configuration, pid: Option<&str>, version: Option<i32>, project_grant_name: Option<&str>, user_id: Option<i32>, team_id: Option<i32>, with_related: Option<bool>) -> Result<models::FetchAllProjectGrants200Response, Error<FetchAllProjectGrantsError>> {

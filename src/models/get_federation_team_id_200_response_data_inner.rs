@@ -33,6 +33,8 @@ pub struct GetFederationTeamId200ResponseDataInner {
     pub run_time_minute: Option<String>,
     #[serde(rename = "enabled", skip_serializing_if = "Option::is_none")]
     pub enabled: Option<bool>,
+    #[serde(rename = "enabled_at", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub enabled_at: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
     #[serde(rename = "created_at", skip_serializing_if = "Option::is_none")]
     pub created_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "updated_at", skip_serializing_if = "Option::is_none")]
@@ -62,6 +64,7 @@ impl GetFederationTeamId200ResponseDataInner {
             run_time_hour: None,
             run_time_minute: None,
             enabled: None,
+            enabled_at: None,
             created_at: None,
             updated_at: None,
             deleted_at: None,

@@ -15,18 +15,18 @@ use crate::{apis::ResponseContent, models};
 use super::{Error, configuration, ContentType};
 
 
-/// struct for typed errors of method [`fetch_key_metrics_v2`]
+/// struct for typed errors of method [`fetch_dataset_link_check_results_v2`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum FetchKeyMetricsV2Error {
+pub enum FetchDatasetLinkCheckResultsV2Error {
     UnknownValue(serde_json::Value),
 }
 
 
-/// Get key metrics
-pub async fn fetch_key_metrics_v2(configuration: &configuration::Configuration, ) -> Result<models::FetchDatasetLinkCheckResultsV2200Response, Error<FetchKeyMetricsV2Error>> {
+/// Get the confirmed dead links (HTTP 404, verified across multiple checks) found in active dataset metadata by the nightly link check
+pub async fn fetch_dataset_link_check_results_v2(configuration: &configuration::Configuration, ) -> Result<models::FetchDatasetLinkCheckResultsV2200Response, Error<FetchDatasetLinkCheckResultsV2Error>> {
 
-    let uri_str = format!("{}/api/v2/metrics", configuration.base_path);
+    let uri_str = format!("{}/api/v2/dataset_link_check_results", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -53,7 +53,7 @@ pub async fn fetch_key_metrics_v2(configuration: &configuration::Configuration, 
         }
     } else {
         let content = resp.text().await?;
-        let entity: Option<FetchKeyMetricsV2Error> = serde_json::from_str(&content).ok();
+        let entity: Option<FetchDatasetLinkCheckResultsV2Error> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent { status, content, entity }))
     }
 }

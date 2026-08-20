@@ -12,16 +12,16 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct FetchKeyMetricsV2200Response {
+pub struct FetchDatasetLinkCheckResultsV2200Response {
     #[serde(rename = "message", skip_serializing_if = "Option::is_none")]
     pub message: Option<String>,
     #[serde(rename = "data", skip_serializing_if = "Option::is_none")]
     pub data: Option<Vec<Vec<serde_json::Value>>>,
 }
 
-impl FetchKeyMetricsV2200Response {
-    pub fn new() -> FetchKeyMetricsV2200Response {
-        FetchKeyMetricsV2200Response {
+impl FetchDatasetLinkCheckResultsV2200Response {
+    pub fn new() -> FetchDatasetLinkCheckResultsV2200Response {
+        FetchDatasetLinkCheckResultsV2200Response {
             message: None,
             data: None,
         }

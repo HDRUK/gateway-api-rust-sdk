@@ -15,18 +15,18 @@ use crate::{apis::ResponseContent, models};
 use super::{Error, configuration, ContentType};
 
 
-/// struct for typed errors of method [`fetch_key_metrics_v2`]
+/// struct for typed errors of method [`fetch_nightly_dataset_tests_v2`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum FetchKeyMetricsV2Error {
+pub enum FetchNightlyDatasetTestsV2Error {
     UnknownValue(serde_json::Value),
 }
 
 
-/// Get key metrics
-pub async fn fetch_key_metrics_v2(configuration: &configuration::Configuration, ) -> Result<models::FetchDatasetLinkCheckResultsV2200Response, Error<FetchKeyMetricsV2Error>> {
+/// Get the results of the nightly dataset reachability check, with a summary and a list of failures
+pub async fn fetch_nightly_dataset_tests_v2(configuration: &configuration::Configuration, ) -> Result<models::FetchDatasetLinkCheckResultsV2200Response, Error<FetchNightlyDatasetTestsV2Error>> {
 
-    let uri_str = format!("{}/api/v2/metrics", configuration.base_path);
+    let uri_str = format!("{}/api/v2/nightly_dataset_tests", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -53,7 +53,7 @@ pub async fn fetch_key_metrics_v2(configuration: &configuration::Configuration, 
         }
     } else {
         let content = resp.text().await?;
-        let entity: Option<FetchKeyMetricsV2Error> = serde_json::from_str(&content).ok();
+        let entity: Option<FetchNightlyDatasetTestsV2Error> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent { status, content, entity }))
     }
 }

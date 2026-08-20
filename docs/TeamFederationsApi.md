@@ -6,7 +6,6 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_federation_team**](TeamFederationsApi.md#create_federation_team) | **POST** /api/v1/teams/{teamId}/federations | FederationController@store
 [**delete_federation**](TeamFederationsApi.md#delete_federation) | **DELETE** /api/v1/teams/{teamId}/federations/{federationId} | FederationController@destroy
-[**edit_federation_team**](TeamFederationsApi.md#edit_federation_team) | **PATCH** /api/v1/teams/{teamId}/federations/{federationId} | FederationController@edit
 [**get_federation_by_federation_id_and_team_id**](TeamFederationsApi.md#get_federation_by_federation_id_and_team_id) | **GET** /api/v1/teams/{teamId}/federations/{federationId} | FederationController@show
 [**get_federation_history**](TeamFederationsApi.md#get_federation_history) | **GET** /api/v1/teams/{teamId}/federations/{federationId}/history | FederationController@history
 [**get_federation_team_id**](TeamFederationsApi.md#get_federation_team_id) | **GET** /api/v1/teams/{teamId}/federations | FederationController@index
@@ -73,38 +72,6 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## edit_federation_team
-
-> models::CreateDarIntegration201Response edit_federation_team(team_id, federation_id, create_federation_team_request)
-FederationController@edit
-
-Edit federation for team
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**team_id** | **i32** | team id | [required] |
-**federation_id** | **i32** | federation id | [required] |
-**create_federation_team_request** | [**CreateFederationTeamRequest**](CreateFederationTeamRequest.md) | Pass user credentials | [required] |
-
-### Return type
-
-[**models::CreateDarIntegration201Response**](create_dar_integration_201_response.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

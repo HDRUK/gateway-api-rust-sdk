@@ -4,9 +4,37 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**create_project_grant**](ProjectGrantApi.md#create_project_grant) | **POST** /api/v1/project_grants | ProjectGrantController@store
 [**fetch_all_project_grants**](ProjectGrantApi.md#fetch_all_project_grants) | **GET** /api/v1/project_grants | ProjectGrantController@index
 [**fetch_project_grant**](ProjectGrantApi.md#fetch_project_grant) | **GET** /api/v1/project_grants/{id} | ProjectGrantController@show
 
+
+
+## create_project_grant
+
+> models::CreateProjectGrant201Response create_project_grant()
+ProjectGrantController@store
+
+Create a project grant (and initial version)
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**models::CreateProjectGrant201Response**](create_project_grant_201_response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## fetch_all_project_grants

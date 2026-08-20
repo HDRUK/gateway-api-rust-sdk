@@ -1,19 +1,19 @@
-# \MetricsApi
+# \NightlyDatasetTestsApi
 
 All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**fetch_key_metrics_v2**](MetricsApi.md#fetch_key_metrics_v2) | **GET** /api/v2/metrics | KeyMetricController@index
+[**fetch_nightly_dataset_tests_v2**](NightlyDatasetTestsApi.md#fetch_nightly_dataset_tests_v2) | **GET** /api/v2/nightly_dataset_tests | NightlyDatasetTestController@index
 
 
 
-## fetch_key_metrics_v2
+## fetch_nightly_dataset_tests_v2
 
-> models::FetchDatasetLinkCheckResultsV2200Response fetch_key_metrics_v2()
-KeyMetricController@index
+> models::FetchDatasetLinkCheckResultsV2200Response fetch_nightly_dataset_tests_v2()
+NightlyDatasetTestController@index
 
-Get key metrics
+Get the results of the nightly dataset reachability check, with a summary and a list of failures
 
 ### Parameters
 

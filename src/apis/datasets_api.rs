@@ -31,15 +31,6 @@ pub enum CreateDatasetsError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`create_datasets_integrations`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum CreateDatasetsIntegrationsError {
-    Status401(models::FetchAllDarIntegrations401Response),
-    Status500(models::CreateApplications500Response),
-    UnknownValue(serde_json::Value),
-}
-
 /// struct for typed errors of method [`create_datasets_v2`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -62,15 +53,6 @@ pub enum CreateTeamDatasetsV2Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteDatasetsError {
-    Status404(models::UpdateApplications404Response),
-    Status500(models::CreateApplications500Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`delete_datasets_integrations`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum DeleteDatasetsIntegrationsError {
     Status404(models::UpdateApplications404Response),
     Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
@@ -143,13 +125,6 @@ pub enum FetchAllDatasetsError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`fetch_all_datasets_integrations`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum FetchAllDatasetsIntegrationsError {
-    UnknownValue(serde_json::Value),
-}
-
 /// struct for typed errors of method [`fetch_all_datasets_v2`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -161,15 +136,6 @@ pub enum FetchAllDatasetsV2Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum FetchDatasetsError {
-    Status401(models::FetchAllDarIntegrations401Response),
-    Status404(models::UpdateApplications404Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`fetch_datasets_integrations`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum FetchDatasetsIntegrationsError {
     Status401(models::FetchAllDarIntegrations401Response),
     Status404(models::UpdateApplications404Response),
     UnknownValue(serde_json::Value),
@@ -188,14 +154,6 @@ pub enum FetchDatasetsV2Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PatchDatasetsError {
-    Status500(models::CreateApplications500Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`patch_datasets_integrations`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum PatchDatasetsIntegrationsError {
     Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }
@@ -220,15 +178,6 @@ pub enum PatchTeamDatasetsV2Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateDatasetsError {
-    Status401(models::FetchAllDarIntegrations401Response),
-    Status500(models::CreateApplications500Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`update_datasets_integrations`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum UpdateDatasetsIntegrationsError {
     Status401(models::FetchAllDarIntegrations401Response),
     Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
@@ -334,56 +283,6 @@ pub async fn create_datasets(configuration: &configuration::Configuration, creat
     } else {
         let content = resp.text().await?;
         let entity: Option<CreateDatasetsError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// Create a new dataset
-#[deprecated]
-pub async fn create_datasets_integrations(configuration: &configuration::Configuration, datasets_test_request: models::DatasetsTestRequest, input_schema: Option<&str>, input_version: Option<&str>) -> Result<models::CreateDarIntegration201Response, Error<CreateDatasetsIntegrationsError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_datasets_test_request = datasets_test_request;
-    let p_query_input_schema = input_schema;
-    let p_query_input_version = input_version;
-
-    let uri_str = format!("{}/api/v1/integrations/datasets", configuration.base_path);
-    let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
-
-    if let Some(ref param_value) = p_query_input_schema {
-        req_builder = req_builder.query(&[("input_schema", &param_value.to_string())]);
-    }
-    if let Some(ref param_value) = p_query_input_version {
-        req_builder = req_builder.query(&[("input_version", &param_value.to_string())]);
-    }
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-    req_builder = req_builder.json(&p_body_datasets_test_request);
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateDarIntegration201Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateDarIntegration201Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<CreateDatasetsIntegrationsError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent { status, content, entity }))
     }
 }
@@ -508,47 +407,6 @@ pub async fn delete_datasets(configuration: &configuration::Configuration, id: i
     } else {
         let content = resp.text().await?;
         let entity: Option<DeleteDatasetsError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// Delete a dataset
-#[deprecated]
-pub async fn delete_datasets_integrations(configuration: &configuration::Configuration, id: i32) -> Result<models::DeleteApplications200Response, Error<DeleteDatasetsIntegrationsError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-
-    let uri_str = format!("{}/api/v1/integrations/datasets/{id}", configuration.base_path, id=p_path_id);
-    let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteApplications200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteApplications200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<DeleteDatasetsIntegrationsError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent { status, content, entity }))
     }
 }
@@ -906,64 +764,6 @@ pub async fn fetch_all_datasets(configuration: &configuration::Configuration, te
     }
 }
 
-/// Get All Datasets
-#[deprecated]
-pub async fn fetch_all_datasets_integrations(configuration: &configuration::Configuration, team_id: i32, pid: Option<&str>, sort: Option<&str>, title: Option<&str>, status: Option<&str>) -> Result<models::FetchAllDatasets200Response, Error<FetchAllDatasetsIntegrationsError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_team_id = team_id;
-    let p_query_pid = pid;
-    let p_query_sort = sort;
-    let p_query_title = title;
-    let p_query_status = status;
-
-    let uri_str = format!("{}/api/v1/integrations/datasets", configuration.base_path);
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
-
-    req_builder = req_builder.query(&[("team_id", &p_query_team_id.to_string())]);
-    if let Some(ref param_value) = p_query_pid {
-        req_builder = req_builder.query(&[("pid", &param_value.to_string())]);
-    }
-    if let Some(ref param_value) = p_query_sort {
-        req_builder = req_builder.query(&[("sort", &param_value.to_string())]);
-    }
-    if let Some(ref param_value) = p_query_title {
-        req_builder = req_builder.query(&[("title", &param_value.to_string())]);
-    }
-    if let Some(ref param_value) = p_query_status {
-        req_builder = req_builder.query(&[("status", &param_value.to_string())]);
-    }
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FetchAllDatasets200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::FetchAllDatasets200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<FetchAllDatasetsIntegrationsError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
 /// Returns a list of all datasets
 pub async fn fetch_all_datasets_v2(configuration: &configuration::Configuration, sort: Option<&str>, title: Option<&str>, status: Option<&str>, with_metadata: Option<&str>) -> Result<models::FetchAllDatasets200Response, Error<FetchAllDatasetsV2Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
@@ -1072,55 +872,6 @@ pub async fn fetch_datasets(configuration: &configuration::Configuration, id: i3
     }
 }
 
-/// Get dataset by id
-#[deprecated]
-pub async fn fetch_datasets_integrations(configuration: &configuration::Configuration, id: i32, schema_model: Option<&str>, schema_version: Option<&str>) -> Result<models::FetchDatasets200Response, Error<FetchDatasetsIntegrationsError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_query_schema_model = schema_model;
-    let p_query_schema_version = schema_version;
-
-    let uri_str = format!("{}/api/v1/integrations/datasets/{id}", configuration.base_path, id=p_path_id);
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
-
-    if let Some(ref param_value) = p_query_schema_model {
-        req_builder = req_builder.query(&[("schema_model", &param_value.to_string())]);
-    }
-    if let Some(ref param_value) = p_query_schema_version {
-        req_builder = req_builder.query(&[("schema_version", &param_value.to_string())]);
-    }
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FetchDatasets200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::FetchDatasets200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<FetchDatasetsIntegrationsError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
 /// Get publicly visible dataset by id
 pub async fn fetch_datasets_v2(configuration: &configuration::Configuration, id: i32, export: Option<&str>, schema_model: Option<&str>, schema_version: Option<&str>) -> Result<models::FetchDatasets200Response, Error<FetchDatasetsV2Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
@@ -1214,51 +965,6 @@ pub async fn patch_datasets(configuration: &configuration::Configuration, id: i3
     } else {
         let content = resp.text().await?;
         let entity: Option<PatchDatasetsError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// Patch dataset by id
-#[deprecated]
-pub async fn patch_datasets_integrations(configuration: &configuration::Configuration, id: i32, unarchive: Option<&str>) -> Result<models::DeleteApplications200Response, Error<PatchDatasetsIntegrationsError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_query_unarchive = unarchive;
-
-    let uri_str = format!("{}/api/v1/integrations/datasets/{id}", configuration.base_path, id=p_path_id);
-    let mut req_builder = configuration.client.request(reqwest::Method::PATCH, &uri_str);
-
-    if let Some(ref param_value) = p_query_unarchive {
-        req_builder = req_builder.query(&[("unarchive", &param_value.to_string())]);
-    }
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeleteApplications200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeleteApplications200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<PatchDatasetsIntegrationsError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent { status, content, entity }))
     }
 }
@@ -1387,57 +1093,6 @@ pub async fn update_datasets(configuration: &configuration::Configuration, id: i
     } else {
         let content = resp.text().await?;
         let entity: Option<UpdateDatasetsError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// Update a dataset with a new dataset version
-#[deprecated]
-pub async fn update_datasets_integrations(configuration: &configuration::Configuration, id: i32, update_datasets_request: models::UpdateDatasetsRequest, input_schema: Option<&str>, input_version: Option<&str>) -> Result<models::FetchDatasets200Response, Error<UpdateDatasetsIntegrationsError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_id = id;
-    let p_body_update_datasets_request = update_datasets_request;
-    let p_query_input_schema = input_schema;
-    let p_query_input_version = input_version;
-
-    let uri_str = format!("{}/api/v1/integrations/datasets/{id}", configuration.base_path, id=p_path_id);
-    let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
-
-    if let Some(ref param_value) = p_query_input_schema {
-        req_builder = req_builder.query(&[("input_schema", &param_value.to_string())]);
-    }
-    if let Some(ref param_value) = p_query_input_version {
-        req_builder = req_builder.query(&[("input_version", &param_value.to_string())]);
-    }
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-    req_builder = req_builder.json(&p_body_update_datasets_request);
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FetchDatasets200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::FetchDatasets200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<UpdateDatasetsIntegrationsError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent { status, content, entity }))
     }
 }

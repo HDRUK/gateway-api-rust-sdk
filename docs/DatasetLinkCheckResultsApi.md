@@ -1,19 +1,19 @@
-# \MetricsApi
+# \DatasetLinkCheckResultsApi
 
 All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**fetch_key_metrics_v2**](MetricsApi.md#fetch_key_metrics_v2) | **GET** /api/v2/metrics | KeyMetricController@index
+[**fetch_dataset_link_check_results_v2**](DatasetLinkCheckResultsApi.md#fetch_dataset_link_check_results_v2) | **GET** /api/v2/dataset_link_check_results | DatasetLinkCheckResultController@index
 
 
 
-## fetch_key_metrics_v2
+## fetch_dataset_link_check_results_v2
 
-> models::FetchDatasetLinkCheckResultsV2200Response fetch_key_metrics_v2()
-KeyMetricController@index
+> models::FetchDatasetLinkCheckResultsV2200Response fetch_dataset_link_check_results_v2()
+DatasetLinkCheckResultController@index
 
-Get key metrics
+Get the confirmed dead links (HTTP 404, verified across multiple checks) found in active dataset metadata by the nightly link check
 
 ### Parameters
 

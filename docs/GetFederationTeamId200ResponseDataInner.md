@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **run_time_hour** | Option<**i32**> |  | [optional]
 **run_time_minute** | Option<**String**> |  | [optional]
 **enabled** | Option<**bool**> |  | [optional]
+**enabled_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
 **created_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
 **updated_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
 **deleted_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
