@@ -29,8 +29,6 @@ pub struct UpdatePublicationsRequest {
     pub r#abstract: Option<String>,
     #[serde(rename = "url", skip_serializing_if = "Option::is_none")]
     pub url: Option<String>,
-    #[serde(rename = "mongo_id", skip_serializing_if = "Option::is_none")]
-    pub mongo_id: Option<String>,
     #[serde(rename = "status", skip_serializing_if = "Option::is_none")]
     pub status: Option<Status>,
     #[serde(rename = "datasets", skip_serializing_if = "Option::is_none")]
@@ -50,7 +48,6 @@ impl UpdatePublicationsRequest {
             journal_name: None,
             r#abstract: None,
             url: None,
-            mongo_id: None,
             status: None,
             datasets: None,
             tools: None,

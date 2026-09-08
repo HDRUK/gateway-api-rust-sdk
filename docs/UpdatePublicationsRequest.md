@@ -12,7 +12,6 @@ Name | Type | Description | Notes
 **journal_name** | Option<**String**> |  | [optional]
 **r#abstract** | Option<**String**> |  | [optional]
 **url** | Option<**String**> |  | [optional]
-**mongo_id** | Option<**String**> |  | [optional]
 **status** | Option<**Status**> |  (enum: ACTIVE, DRAFT, ARCHIVED) | [optional]
 **datasets** | Option<[**Vec<models::CreatePublicationsRequestDatasetsInner>**](CreatePublicationsRequestDatasetsInner.md)> |  | [optional]
 **tools** | Option<[**Vec<models::CreatePublicationsRequestToolsInner>**](CreatePublicationsRequestToolsInner.md)> |  | [optional]

@@ -336,7 +336,7 @@ Name | Type | Description  | Required | Notes
 
 ## fetch_all_tools
 
-> models::FetchAllTools200Response fetch_all_tools(mongo_id, team_id, user_id, title, sort)
+> models::FetchAllTools200Response fetch_all_tools(team_id, user_id, title, sort)
 Fetch all tools
 
 Get all tools with optional filters and sorting
@@ -346,7 +346,6 @@ Get all tools with optional filters and sorting
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**mongo_id** | Option<**String**> | Filter tools by mongo ID |  |
 **team_id** | Option<**i32**> | Filter tools by team ID |  |
 **user_id** | Option<**i32**> | Filter tools by user ID |  |
 **title** | Option<**String**> | Filter tools by title |  |

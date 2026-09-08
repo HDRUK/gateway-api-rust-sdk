@@ -92,7 +92,7 @@ Name | Type | Description  | Required | Notes
 
 ## create_datasets_v2
 
-> models::CreateDarIntegration201Response create_datasets_v2(create_datasets_v2_request)
+> models::CreateDarIntegration201Response create_datasets_v2(update_datasets_request)
 DatasetController@store
 
 Create a new dataset
@@ -102,7 +102,7 @@ Create a new dataset
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**create_datasets_v2_request** | [**CreateDatasetsV2Request**](CreateDatasetsV2Request.md) | Pass user credentials | [required] |
+**update_datasets_request** | [**UpdateDatasetsRequest**](UpdateDatasetsRequest.md) | Pass user credentials | [required] |
 
 ### Return type
 
@@ -122,7 +122,7 @@ Name | Type | Description  | Required | Notes
 
 ## create_team_datasets_v2
 
-> models::CreateDarIntegration201Response create_team_datasets_v2(team_id, create_team_datasets_v2_request)
+> models::CreateDarIntegration201Response create_team_datasets_v2(team_id, patch_datasets_v2_request)
 TeamDatasetController@store
 
 Create a new dataset for a team
@@ -133,7 +133,7 @@ Create a new dataset for a team
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **team_id** | **i32** | team id | [required] |
-**create_team_datasets_v2_request** | [**CreateTeamDatasetsV2Request**](CreateTeamDatasetsV2Request.md) | Pass user credentials | [required] |
+**patch_datasets_v2_request** | [**PatchDatasetsV2Request**](PatchDatasetsV2Request.md) | Pass user credentials | [required] |
 
 ### Return type
 

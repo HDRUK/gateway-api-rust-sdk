@@ -29,8 +29,6 @@ pub struct CreatePublicationsRequest {
     pub r#abstract: Option<String>,
     #[serde(rename = "url", skip_serializing_if = "Option::is_none")]
     pub url: Option<String>,
-    #[serde(rename = "mongo_id", skip_serializing_if = "Option::is_none")]
-    pub mongo_id: Option<String>,
     #[serde(rename = "datasets", skip_serializing_if = "Option::is_none")]
     pub datasets: Option<Vec<models::CreatePublicationsRequestDatasetsInner>>,
     #[serde(rename = "tools", skip_serializing_if = "Option::is_none")]
@@ -48,7 +46,6 @@ impl CreatePublicationsRequest {
             journal_name: None,
             r#abstract: None,
             url: None,
-            mongo_id: None,
             datasets: None,
             tools: None,
         }

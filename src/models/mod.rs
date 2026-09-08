@@ -38,8 +38,6 @@ pub mod create_dar_template_request_questions_inner;
 pub use self::create_dar_template_request_questions_inner::CreateDarTemplateRequestQuestionsInner;
 pub mod create_datasets_request;
 pub use self::create_datasets_request::CreateDatasetsRequest;
-pub mod create_datasets_v2_request;
-pub use self::create_datasets_v2_request::CreateDatasetsV2Request;
 pub mod create_dur_integrations_request;
 pub use self::create_dur_integrations_request::CreateDurIntegrationsRequest;
 pub mod create_dur_request;
@@ -72,8 +70,6 @@ pub mod create_question_bank_question_request_options_inner_children_inner_optio
 pub use self::create_question_bank_question_request_options_inner_children_inner_options_inner::CreateQuestionBankQuestionRequestOptionsInnerChildrenInnerOptionsInner;
 pub mod create_team_dar_application_review_request;
 pub use self::create_team_dar_application_review_request::CreateTeamDarApplicationReviewRequest;
-pub mod create_team_datasets_v2_request;
-pub use self::create_team_datasets_v2_request::CreateTeamDatasetsV2Request;
 pub mod create_tools_integrations_400_response;
 pub use self::create_tools_integrations_400_response::CreateToolsIntegrations400Response;
 pub mod create_tools_integrations_request;

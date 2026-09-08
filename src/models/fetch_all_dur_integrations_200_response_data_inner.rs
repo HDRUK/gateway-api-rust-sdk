@@ -89,18 +89,12 @@ pub struct FetchAllDurIntegrations200ResponseDataInner {
     pub request_frequency: Option<String>,
     #[serde(rename = "access_type", skip_serializing_if = "Option::is_none")]
     pub access_type: Option<String>,
-    #[serde(rename = "mongo_object_dar_id", skip_serializing_if = "Option::is_none")]
-    pub mongo_object_dar_id: Option<String>,
     #[serde(rename = "enabled", skip_serializing_if = "Option::is_none")]
     pub enabled: Option<bool>,
     #[serde(rename = "last_activity", skip_serializing_if = "Option::is_none")]
     pub last_activity: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "counter", skip_serializing_if = "Option::is_none")]
     pub counter: Option<i32>,
-    #[serde(rename = "mongo_object_id", skip_serializing_if = "Option::is_none")]
-    pub mongo_object_id: Option<String>,
-    #[serde(rename = "mongo_id", skip_serializing_if = "Option::is_none")]
-    pub mongo_id: Option<String>,
     #[serde(rename = "datasets", skip_serializing_if = "Option::is_none")]
     pub datasets: Option<Vec<serde_json::Value>>,
     #[serde(rename = "publications", skip_serializing_if = "Option::is_none")]
@@ -162,12 +156,9 @@ impl FetchAllDurIntegrations200ResponseDataInner {
             request_category_type: None,
             request_frequency: None,
             access_type: None,
-            mongo_object_dar_id: None,
             enabled: None,
             last_activity: None,
             counter: None,
-            mongo_object_id: None,
-            mongo_id: None,
             datasets: None,
             publications: None,
             tools: None,

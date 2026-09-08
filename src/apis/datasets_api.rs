@@ -288,9 +288,9 @@ pub async fn create_datasets(configuration: &configuration::Configuration, creat
 }
 
 /// Create a new dataset
-pub async fn create_datasets_v2(configuration: &configuration::Configuration, create_datasets_v2_request: models::CreateDatasetsV2Request) -> Result<models::CreateDarIntegration201Response, Error<CreateDatasetsV2Error>> {
+pub async fn create_datasets_v2(configuration: &configuration::Configuration, update_datasets_request: models::UpdateDatasetsRequest) -> Result<models::CreateDarIntegration201Response, Error<CreateDatasetsV2Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_create_datasets_v2_request = create_datasets_v2_request;
+    let p_body_update_datasets_request = update_datasets_request;
 
     let uri_str = format!("{}/api/v2/datasets", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -301,7 +301,7 @@ pub async fn create_datasets_v2(configuration: &configuration::Configuration, cr
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_create_datasets_v2_request);
+    req_builder = req_builder.json(&p_body_update_datasets_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -329,10 +329,10 @@ pub async fn create_datasets_v2(configuration: &configuration::Configuration, cr
 }
 
 /// Create a new dataset for a team
-pub async fn create_team_datasets_v2(configuration: &configuration::Configuration, team_id: i32, create_team_datasets_v2_request: models::CreateTeamDatasetsV2Request) -> Result<models::CreateDarIntegration201Response, Error<CreateTeamDatasetsV2Error>> {
+pub async fn create_team_datasets_v2(configuration: &configuration::Configuration, team_id: i32, patch_datasets_v2_request: models::PatchDatasetsV2Request) -> Result<models::CreateDarIntegration201Response, Error<CreateTeamDatasetsV2Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_team_id = team_id;
-    let p_body_create_team_datasets_v2_request = create_team_datasets_v2_request;
+    let p_body_patch_datasets_v2_request = patch_datasets_v2_request;
 
     let uri_str = format!("{}/api/v2/teams/{teamId}/datasets", configuration.base_path, teamId=p_path_team_id);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -343,7 +343,7 @@ pub async fn create_team_datasets_v2(configuration: &configuration::Configuratio
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_create_team_datasets_v2_request);
+    req_builder = req_builder.json(&p_body_patch_datasets_v2_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;

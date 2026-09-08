@@ -622,9 +622,8 @@ pub async fn edit_tools_integrations(configuration: &configuration::Configuratio
 
 /// Get all tools with optional filters and sorting
 #[deprecated]
-pub async fn fetch_all_tools(configuration: &configuration::Configuration, mongo_id: Option<&str>, team_id: Option<i32>, user_id: Option<i32>, title: Option<&str>, sort: Option<&str>) -> Result<models::FetchAllTools200Response, Error<FetchAllToolsError>> {
+pub async fn fetch_all_tools(configuration: &configuration::Configuration, team_id: Option<i32>, user_id: Option<i32>, title: Option<&str>, sort: Option<&str>) -> Result<models::FetchAllTools200Response, Error<FetchAllToolsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_mongo_id = mongo_id;
     let p_query_team_id = team_id;
     let p_query_user_id = user_id;
     let p_query_title = title;
@@ -633,9 +632,6 @@ pub async fn fetch_all_tools(configuration: &configuration::Configuration, mongo
     let uri_str = format!("{}/api/v1/tools", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_mongo_id {
-        req_builder = req_builder.query(&[("mongo_id", &param_value.to_string())]);
-    }
     if let Some(ref param_value) = p_query_team_id {
         req_builder = req_builder.query(&[("team_id", &param_value.to_string())]);
     }

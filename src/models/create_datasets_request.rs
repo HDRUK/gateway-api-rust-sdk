@@ -19,12 +19,6 @@ pub struct CreateDatasetsRequest {
     pub user_id: Option<i32>,
     #[serde(rename = "create_origin", skip_serializing_if = "Option::is_none")]
     pub create_origin: Option<String>,
-    #[serde(rename = "mongo_object_id", skip_serializing_if = "Option::is_none")]
-    pub mongo_object_id: Option<String>,
-    #[serde(rename = "mongo_id", skip_serializing_if = "Option::is_none")]
-    pub mongo_id: Option<String>,
-    #[serde(rename = "mongo_pid", skip_serializing_if = "Option::is_none")]
-    pub mongo_pid: Option<String>,
     #[serde(rename = "datasetid", skip_serializing_if = "Option::is_none")]
     pub datasetid: Option<String>,
     #[serde(rename = "metadata", skip_serializing_if = "Option::is_none")]
@@ -37,9 +31,6 @@ impl CreateDatasetsRequest {
             team_id: None,
             user_id: None,
             create_origin: None,
-            mongo_object_id: None,
-            mongo_id: None,
-            mongo_pid: None,
             datasetid: None,
             metadata: None,
         }
