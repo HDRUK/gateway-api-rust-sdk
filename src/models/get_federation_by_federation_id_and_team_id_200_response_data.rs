@@ -49,6 +49,8 @@ pub struct GetFederationByFederationIdAndTeamId200ResponseData {
     pub notifications: Option<Vec<serde_json::Value>>,
     #[serde(rename = "is_running", skip_serializing_if = "Option::is_none")]
     pub is_running: Option<bool>,
+    #[serde(rename = "progress", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub progress: Option<Option<Box<models::GetFederationTeamId200ResponseDataInnerProgress>>>,
 }
 
 impl GetFederationByFederationIdAndTeamId200ResponseData {
@@ -72,6 +74,7 @@ impl GetFederationByFederationIdAndTeamId200ResponseData {
             tested: None,
             notifications: None,
             is_running: None,
+            progress: None,
         }
     }
 }

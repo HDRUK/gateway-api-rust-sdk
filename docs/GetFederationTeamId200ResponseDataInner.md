@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **is_running** | Option<**bool**> |  | [optional]
 **notifications** | Option<**Vec<serde_json::Value>**> |  | [optional]
 **last_run_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
+**progress** | Option<[**models::GetFederationTeamId200ResponseDataInnerProgress**](GetFederationTeamId200ResponseDataInnerProgress.md)> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

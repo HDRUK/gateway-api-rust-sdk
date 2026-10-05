@@ -59,6 +59,8 @@ pub enum GetFederationTeamIdError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum RunFederationError {
+    Status404(models::RunFederation404Response),
+    Status409(models::RunFederation409Response),
     UnknownValue(serde_json::Value),
 }
 
