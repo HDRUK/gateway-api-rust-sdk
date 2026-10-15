@@ -144,7 +144,7 @@ Name | Type | Description  | Required | Notes
 > models::FetchWidgetDataSources200Response fetch_widget_data_sources(team_id, team_ids)
 WidgetController@getWidgetData
 
-Fetch lightweight data (id, name, etc.) for multiple teams across datasets, tools, collections, and DURS
+Fetch lightweight data (id, name, etc.) for multiple teams across datasets, tools, collections, DURS and publications
 
 ### Parameters
 
@@ -175,7 +175,7 @@ Name | Type | Description  | Required | Notes
 > models::RetrieveWidgetData200Response retrieve_widget_data(team_id, id, domain_origin)
 Retrieve data related to a widget
 
-Fetches datasets, data uses, scripts, and collections linked to a widget
+Fetches datasets, data uses, scripts, collections and publications linked to a widget
 
 ### Parameters
 

@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **included_data_uses** | Option<**String**> |  | [optional]
 **included_scripts** | Option<**String**> |  | [optional]
 **included_collections** | Option<**String**> |  | [optional]
+**included_publications** | Option<**String**> |  | [optional]
 **include_search_bar** | Option<**bool**> |  | [optional]
 **include_cohort_link** | Option<**bool**> |  | [optional]
 **size_width** | Option<**i32**> |  | [optional]

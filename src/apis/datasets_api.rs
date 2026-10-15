@@ -1098,14 +1098,22 @@ pub async fn update_datasets(configuration: &configuration::Configuration, id: i
 }
 
 /// Update a dataset with a new dataset version
-pub async fn update_datasets_v2(configuration: &configuration::Configuration, id: i32, update_datasets_request: models::UpdateDatasetsRequest) -> Result<models::CreateDarIntegration201Response, Error<UpdateDatasetsV2Error>> {
+pub async fn update_datasets_v2(configuration: &configuration::Configuration, id: i32, update_datasets_request: models::UpdateDatasetsRequest, validate_input: Option<bool>, validate_output: Option<bool>) -> Result<models::CreateDarIntegration201Response, Error<UpdateDatasetsV2Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_id = id;
     let p_body_update_datasets_request = update_datasets_request;
+    let p_query_validate_input = validate_input;
+    let p_query_validate_output = validate_output;
 
     let uri_str = format!("{}/api/v2/datasets/{id}", configuration.base_path, id=p_path_id);
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
+    if let Some(ref param_value) = p_query_validate_input {
+        req_builder = req_builder.query(&[("validate_input", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_validate_output {
+        req_builder = req_builder.query(&[("validate_output", &param_value.to_string())]);
+    }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }

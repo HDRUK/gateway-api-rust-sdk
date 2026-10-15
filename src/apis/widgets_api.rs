@@ -255,7 +255,7 @@ pub async fn fetch_widget(configuration: &configuration::Configuration, team_id:
     }
 }
 
-/// Fetch lightweight data (id, name, etc.) for multiple teams across datasets, tools, collections, and DURS
+/// Fetch lightweight data (id, name, etc.) for multiple teams across datasets, tools, collections, DURS and publications
 pub async fn fetch_widget_data_sources(configuration: &configuration::Configuration, team_id: i32, team_ids: &str) -> Result<models::FetchWidgetDataSources200Response, Error<FetchWidgetDataSourcesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_team_id = team_id;
@@ -297,7 +297,7 @@ pub async fn fetch_widget_data_sources(configuration: &configuration::Configurat
     }
 }
 
-/// Fetches datasets, data uses, scripts, and collections linked to a widget
+/// Fetches datasets, data uses, scripts, collections and publications linked to a widget
 pub async fn retrieve_widget_data(configuration: &configuration::Configuration, team_id: i32, id: i32, domain_origin: &str) -> Result<models::RetrieveWidgetData200Response, Error<RetrieveWidgetDataError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_team_id = team_id;

@@ -21,6 +21,8 @@ pub struct FetchWidgetDataSources200Response {
     pub collections: Option<Vec<serde_json::Value>>,
     #[serde(rename = "durs", skip_serializing_if = "Option::is_none")]
     pub durs: Option<Vec<serde_json::Value>>,
+    #[serde(rename = "publications", skip_serializing_if = "Option::is_none")]
+    pub publications: Option<Vec<serde_json::Value>>,
 }
 
 impl FetchWidgetDataSources200Response {
@@ -30,6 +32,7 @@ impl FetchWidgetDataSources200Response {
             tools: None,
             collections: None,
             durs: None,
+            publications: None,
         }
     }
 }

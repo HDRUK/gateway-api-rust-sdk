@@ -21,6 +21,8 @@ pub struct RetrieveWidgetData200Response {
     pub scripts: Option<Vec<serde_json::Value>>,
     #[serde(rename = "collections", skip_serializing_if = "Option::is_none")]
     pub collections: Option<Vec<serde_json::Value>>,
+    #[serde(rename = "publications", skip_serializing_if = "Option::is_none")]
+    pub publications: Option<Vec<serde_json::Value>>,
 }
 
 impl RetrieveWidgetData200Response {
@@ -30,6 +32,7 @@ impl RetrieveWidgetData200Response {
             data_uses: None,
             scripts: None,
             collections: None,
+            publications: None,
         }
     }
 }

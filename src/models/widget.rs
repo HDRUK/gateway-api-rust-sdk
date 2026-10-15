@@ -28,6 +28,8 @@ pub struct Widget {
     pub included_scripts: Option<Option<String>>,
     #[serde(rename = "included_collections", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub included_collections: Option<Option<String>>,
+    #[serde(rename = "included_publications", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub included_publications: Option<Option<String>>,
     #[serde(rename = "include_search_bar", skip_serializing_if = "Option::is_none")]
     pub include_search_bar: Option<bool>,
     #[serde(rename = "include_cohort_link", skip_serializing_if = "Option::is_none")]
@@ -67,6 +69,7 @@ impl Widget {
             included_data_uses: None,
             included_scripts: None,
             included_collections: None,
+            included_publications: None,
             include_search_bar: None,
             include_cohort_link: None,
             size_width: None,

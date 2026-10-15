@@ -37,6 +37,8 @@ pub struct CreateWidgetRequest {
     pub included_scripts: Option<Vec<i32>>,
     #[serde(rename = "included_collections", skip_serializing_if = "Option::is_none")]
     pub included_collections: Option<Vec<i32>>,
+    #[serde(rename = "included_publications", skip_serializing_if = "Option::is_none")]
+    pub included_publications: Option<Vec<i32>>,
     #[serde(rename = "data_custodian_entities_ids", skip_serializing_if = "Option::is_none")]
     pub data_custodian_entities_ids: Option<Vec<i32>>,
 }
@@ -56,6 +58,7 @@ impl CreateWidgetRequest {
             included_data_uses: None,
             included_scripts: None,
             included_collections: None,
+            included_publications: None,
             data_custodian_entities_ids: None,
         }
     }

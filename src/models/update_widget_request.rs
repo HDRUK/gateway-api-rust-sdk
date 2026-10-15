@@ -39,6 +39,8 @@ pub struct UpdateWidgetRequest {
     pub included_scripts: Option<Vec<i32>>,
     #[serde(rename = "included_collections", skip_serializing_if = "Option::is_none")]
     pub included_collections: Option<Vec<i32>>,
+    #[serde(rename = "included_publications", skip_serializing_if = "Option::is_none")]
+    pub included_publications: Option<Vec<i32>>,
 }
 
 impl UpdateWidgetRequest {
@@ -57,6 +59,7 @@ impl UpdateWidgetRequest {
             data_custodian_entities_ids: None,
             included_scripts: None,
             included_collections: None,
+            included_publications: None,
         }
     }
 }

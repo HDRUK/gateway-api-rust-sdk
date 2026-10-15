@@ -655,7 +655,7 @@ Name | Type | Description  | Required | Notes
 
 ## update_datasets_v2
 
-> models::CreateDarIntegration201Response update_datasets_v2(id, update_datasets_request)
+> models::CreateDarIntegration201Response update_datasets_v2(id, update_datasets_request, validate_input, validate_output)
 DatasetController@update
 
 Update a dataset with a new dataset version
@@ -667,6 +667,8 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **i32** | dataset id | [required] |
 **update_datasets_request** | [**UpdateDatasetsRequest**](UpdateDatasetsRequest.md) |  | [required] |
+**validate_input** | Option<**bool**> | Set to false to skip TRASER input validation (ignored for draft datasets, which always skip validation) |  |
+**validate_output** | Option<**bool**> | Set to false to skip TRASER output validation (ignored for draft datasets, which always skip validation) |  |
 
 ### Return type
 

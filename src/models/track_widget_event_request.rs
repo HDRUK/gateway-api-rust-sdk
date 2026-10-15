@@ -62,6 +62,8 @@ pub enum EntityType {
     Collection,
     #[serde(rename = "dur")]
     Dur,
+    #[serde(rename = "publication")]
+    Publication,
 }
 
 impl Default for EntityType {

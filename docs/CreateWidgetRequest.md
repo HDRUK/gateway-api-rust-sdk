@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **included_data_uses** | Option<**Vec<i32>**> |  | [optional]
 **included_scripts** | Option<**Vec<i32>**> |  | [optional]
 **included_collections** | Option<**Vec<i32>**> |  | [optional]
+**included_publications** | Option<**Vec<i32>**> |  | [optional]
 **data_custodian_entities_ids** | Option<**Vec<i32>**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
