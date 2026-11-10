@@ -17,8 +17,8 @@ pub struct GetFederationHistory200ResponseDataInner {
     pub job_uuid: Option<String>,
     #[serde(rename = "started_at", skip_serializing_if = "Option::is_none")]
     pub started_at: Option<chrono::DateTime<chrono::FixedOffset>>,
-    #[serde(rename = "finished_at", skip_serializing_if = "Option::is_none")]
-    pub finished_at: Option<chrono::DateTime<chrono::FixedOffset>>,
+    #[serde(rename = "finished_at", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub finished_at: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
     #[serde(rename = "status", skip_serializing_if = "Option::is_none")]
     pub status: Option<Status>,
     #[serde(rename = "message", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
