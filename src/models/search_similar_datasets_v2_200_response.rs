@@ -12,15 +12,15 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct SearchSimilarDatasetsRequest {
-    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
-    pub id: Option<i32>,
+pub struct SearchSimilarDatasetsV2200Response {
+    #[serde(rename = "data", skip_serializing_if = "Option::is_none")]
+    pub data: Option<Vec<models::SearchSimilarDatasetsV2200ResponseDataInner>>,
 }
 
-impl SearchSimilarDatasetsRequest {
-    pub fn new() -> SearchSimilarDatasetsRequest {
-        SearchSimilarDatasetsRequest {
-            id: None,
+impl SearchSimilarDatasetsV2200Response {
+    pub fn new() -> SearchSimilarDatasetsV2200Response {
+        SearchSimilarDatasetsV2200Response {
+            data: None,
         }
     }
 }

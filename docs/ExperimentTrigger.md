@@ -1,11 +1,12 @@
-# SearchSimilarDatasets200ResponseDataInner
+# ExperimentTrigger
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**_source** | Option<[**Vec<models::SearchDatasets200ResponseDataInnerSourceInner>**](SearchDatasets200ResponseDataInnerSourceInner.md)> |  | [optional]
-**metadata** | Option<**Vec<serde_json::Value>**> |  | [optional]
+**on** | Option<**On**> |  (enum: load, delay, exitIntent) | [optional]
+**delay_seconds** | Option<**i32**> |  | [optional]
+**frequency** | Option<**Frequency**> |  (enum: once, untilAnswered, always) | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

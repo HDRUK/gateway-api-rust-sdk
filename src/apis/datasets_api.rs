@@ -170,6 +170,7 @@ pub enum PatchDatasetsV2Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PatchTeamDatasetsV2Error {
+    Status422(models::PatchTeamDatasetsV2422Response),
     Status500(models::CreateApplications500Response),
     UnknownValue(serde_json::Value),
 }

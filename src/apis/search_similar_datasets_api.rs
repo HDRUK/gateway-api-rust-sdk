@@ -19,14 +19,24 @@ use super::{Error, configuration, ContentType};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SearchSimilarDatasetsError {
+    Status400(),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`search_similar_datasets_v2`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum SearchSimilarDatasetsV2Error {
+    Status400(),
     UnknownValue(serde_json::Value),
 }
 
 
-/// Returns top three gateway datasets most similar to the provided dataset
-pub async fn search_similar_datasets(configuration: &configuration::Configuration, search_similar_datasets_request: models::SearchSimilarDatasetsRequest) -> Result<models::SearchSimilarDatasets200Response, Error<SearchSimilarDatasetsError>> {
+/// Deprecated: use /api/v2/search/similar/datasets, which this endpoint now serves. Responses carry Deprecation, Sunset and Link headers; it stops working after the Sunset date (17 May 2027).
+#[deprecated]
+pub async fn search_similar_datasets(configuration: &configuration::Configuration, search_similar_datasets_v2_request: models::SearchSimilarDatasetsV2Request) -> Result<(), Error<SearchSimilarDatasetsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_search_similar_datasets_request = search_similar_datasets_request;
+    let p_body_search_similar_datasets_v2_request = search_similar_datasets_v2_request;
 
     let uri_str = format!("{}/api/v1/search/similar/datasets", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -34,7 +44,34 @@ pub async fn search_similar_datasets(configuration: &configuration::Configuratio
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
-    req_builder = req_builder.json(&p_body_search_similar_datasets_request);
+    req_builder = req_builder.json(&p_body_search_similar_datasets_v2_request);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+
+    if !status.is_client_error() && !status.is_server_error() {
+        Ok(())
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<SearchSimilarDatasetsError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent { status, content, entity }))
+    }
+}
+
+/// Returns up to three gateway datasets sharing the most terms with the provided dataset's keywords and title. The provided dataset is never included.
+pub async fn search_similar_datasets_v2(configuration: &configuration::Configuration, search_similar_datasets_v2_request: models::SearchSimilarDatasetsV2Request) -> Result<models::SearchSimilarDatasetsV2200Response, Error<SearchSimilarDatasetsV2Error>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_body_search_similar_datasets_v2_request = search_similar_datasets_v2_request;
+
+    let uri_str = format!("{}/api/v2/search/similar/datasets", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    req_builder = req_builder.json(&p_body_search_similar_datasets_v2_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -51,12 +88,12 @@ pub async fn search_similar_datasets(configuration: &configuration::Configuratio
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::SearchSimilarDatasets200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::SearchSimilarDatasets200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::SearchSimilarDatasetsV2200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::SearchSimilarDatasetsV2200Response`")))),
         }
     } else {
         let content = resp.text().await?;
-        let entity: Option<SearchSimilarDatasetsError> = serde_json::from_str(&content).ok();
+        let entity: Option<SearchSimilarDatasetsV2Error> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent { status, content, entity }))
     }
 }
